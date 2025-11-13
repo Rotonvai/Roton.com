@@ -1,0 +1,2898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Master - Complete Tutorial Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ========================================
+           DESIGN TOKENS & COLOR SYSTEM
+           ======================================== */
+        :root {
+            /* Primary Brand Colors */
+            --primary: #6366f1;           /* Indigo - Main brand color */
+            --primary-dark: #4f46e5;      /* Darker indigo for hover states */
+            --primary-light: #818cf8;     /* Lighter indigo for backgrounds */
+            
+            /* Accent Colors */
+            --accent: #ec4899;            /* Pink accent */
+            --accent-light: #f472b6;      /* Light pink */
+            
+            /* Neutral Colors */
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Dark Mode Colors */
+            --dark-bg: #0f172a;
+            --dark-surface: #1e293b;
+            --dark-border: #334155;
+            
+            /* Semantic Colors */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
+            
+            /* Spacing Scale */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            
+            /* Typography */
+            --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-mono: 'Courier New', Courier, monospace;
+            --line-height-tight: 1.4;
+            --line-height-normal: 1.6;
+            --line-height-relaxed: 1.8;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Dark mode color overrides */
+        [data-theme="dark"] {
+            --bg-primary: var(--dark-bg);
+            --bg-secondary: var(--dark-surface);
+            --text-primary: var(--white);
+            --text-secondary: #cbd5e1;
+            --border-color: var(--dark-border);
+        }
+
+        /* Light mode colors */
+        [data-theme="light"],
+        :root:not([data-theme]) {
+            --bg-primary: var(--white);
+            --bg-secondary: var(--gray-50);
+            --text-primary: var(--gray-900);
+            --text-secondary: var(--gray-600);
+            --border-color: var(--gray-200);
+        }
+
+        /* ========================================
+           GLOBAL STYLES
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: var(--line-height-normal);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: background-color var(--transition-base), color var(--transition-base);
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--space-md);
+        }
+
+        h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+        h2 { font-size: 2rem; letter-spacing: -0.015em; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        h5 { font-size: 1.1rem; }
+        h6 { font-size: 1rem; }
+
+        p {
+            margin-bottom: var(--space-md);
+            color: var(--text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* ========================================
+           LAYOUT - FLEXBOX FIRST
+           ======================================== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .layout {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: var(--space-lg);
+            transition: transform var(--transition-base);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: var(--space-2xl);
+            overflow-y: auto;
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: var(--space-md);
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .header-brand i {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+
+        /* ========================================
+           SIDEBAR NAVIGATION
+           ======================================== */
+        .sidebar-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .sidebar-title:first-child {
+            margin-top: 0;
+        }
+
+        .topic-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .topic-item:hover {
+            background-color: var(--primary-light);
+            color: var(--white);
+            transform: translateX(4px);
+        }
+
+        .topic-item.active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary-dark);
+        }
+
+        .topic-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            border-radius: var(--radius-full);
+            background-color: rgba(255, 255, 255, 0.2);
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .topic-item.active .topic-number {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ========================================
+           BUTTONS & CONTROLS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg);
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray-200);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--gray-300);
+        }
+
+        [data-theme="dark"] .btn-secondary {
+            background-color: var(--gray-700);
+            color: var(--white);
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            background-color: var(--gray-600);
+        }
+
+        .btn-small {
+            padding: var(--space-sm) var(--space-md);
+            font-size: 0.75rem;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            background-color: var(--gray-200);
+            color: var(--text-primary);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-icon:hover {
+            background-color: var(--gray-300);
+        }
+
+        [data-theme="dark"] .btn-icon {
+            background-color: var(--gray-700);
+            color: var(--white);
+        }
+
+        [data-theme="dark"] .btn-icon:hover {
+            background-color: var(--gray-600);
+        }
+
+        /* ========================================
+           THEME TOGGLE
+           ======================================== */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 28px;
+            background-color: var(--gray-300);
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            position: relative;
+            transition: background-color var(--transition-fast);
+        }
+
+        .theme-toggle.dark {
+            background-color: var(--primary);
+        }
+
+        .theme-toggle-circle {
+            width: 24px;
+            height: 24px;
+            background-color: var(--white);
+            border-radius: var(--radius-full);
+            position: absolute;
+            left: 2px;
+            transition: left var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .theme-toggle.dark .theme-toggle-circle {
+            left: 24px;
+        }
+
+        /* ========================================
+           CONTENT SECTIONS
+           ======================================== */
+        .topic-section {
+            display: none;
+            animation: fadeIn var(--transition-slow);
+        }
+
+        .topic-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-xl);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-header h1 {
+            margin-bottom: var(--space-md);
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* ========================================
+           CODE EXAMPLES
+           ======================================== */
+        .code-block {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .code-title {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.875rem;
+            padding: var(--space-sm);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-light);
+            color: var(--white);
+        }
+
+        .code-content {
+            padding: var(--space-lg);
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            line-height: var(--line-height-relaxed);
+            color: var(--text-primary);
+        }
+
+        pre {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        /* Syntax Highlighting */
+        .keyword { color: var(--primary); font-weight: 600; }
+        .string { color: var(--success); }
+        .number { color: var(--accent); }
+        .comment { color: var(--gray-500); font-style: italic; }
+        .function { color: var(--info); }
+        .variable { color: var(--text-primary); }
+
+        /* ========================================
+           LIVE PREVIEW
+           ======================================== */
+        .preview-box {
+            background-color: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-lg) 0;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .preview-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ========================================
+           CARDS & EXAMPLES
+           ======================================== */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            transition: all var(--transition-fast);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--primary);
+        }
+
+        /* ========================================
+           GRIDS & LAYOUTS
+           ======================================== */
+        .grid {
+            display: grid;
+            gap: var(--space-lg);
+            margin: var(--space-lg) 0;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* ========================================
+           INTERACTIVE ELEMENTS
+           ======================================== */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            padding: var(--space-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all var(--transition-fast);
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ========================================
+           OUTPUT DISPLAY
+           ======================================== */
+        .output-box {
+            background-color: var(--bg-secondary);
+            border-left: 4px solid var(--primary);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            font-family: var(--font-mono);
+            margin-top: var(--space-md);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        .output-content {
+            font-size: 0.9rem;
+            line-height: var(--line-height-relaxed);
+            color: var(--text-primary);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+           ======================================== */
+        @media (max-width: 768px) {
+            .layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: absolute;
+                left: 0;
+                top: 60px;
+                width: 100%;
+                height: calc(100vh - 60px);
+                transform: translateX(-100%);
+                z-index: 1000;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .nav-toggle {
+                display: block;
+                order: -1;
+            }
+
+            .main-content {
+                height: 100%;
+            }
+
+            .content-area {
+                padding: var(--space-lg);
+            }
+
+            h1 { font-size: 1.75rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.25rem; }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .header-controls {
+                gap: var(--space-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+            }
+
+            .content-area {
+                padding: var(--space-md);
+            }
+
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
+
+            .code-block {
+                margin: var(--space-md) -var(--space-md);
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-slide-in {
+            animation: slideIn var(--transition-slow);
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* ========================================
+           SCROLLBAR STYLING
+           ======================================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--primary-light);
+            border-radius: var(--radius-full);
+            transition: background-color var(--transition-fast);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--primary);
+        }
+
+        /* ========================================
+           ACCESSIBILITY
+           ======================================== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Focus visible for keyboard navigation */
+        *:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+    </style>
+</head>
+<body data-theme="light">
+
+    <div class="layout">
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar" id="sidebar">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="sidebar-title">Topics</div>
+            <nav class="topic-list" id="topicList">
+                <!-- Topics will be generated by JavaScript -->
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <button class="nav-toggle" id="navToggleOpen" aria-label="Open navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="header-brand">
+                   
+                    <span>JavaScript Master</span>
+                </div>
+
+                <div class="header-controls">
+                    
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <div class="theme-toggle-circle">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                    </button>
+                </div>
+            </header>
+
+            <!-- CONTENT AREA -->
+            <div class="content-area" id="contentArea">
+                <!-- Content sections will be generated by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ========================================
+        // DATA STRUCTURE - ALL 15 JAVASCRIPT TOPICS
+        // ========================================
+        const topics = [
+            {
+                id: 'intro',
+                title: 'Introduction to JavaScript',
+                icon: 'fa-rocket',
+                description: 'Learn what JavaScript is, its history, and why it\'s essential for web development.',
+                content: `
+                    <div class="section-header">
+                        <h1>Introduction to JavaScript</h1>
+                        <p class="section-description">JavaScript is a versatile, high-level programming language that powers interactive web experiences. Let's explore the basics!</p>
+                    </div>
+
+                    <h2>What is JavaScript?</h2>
+                    <p>JavaScript is a lightweight, interpreted programming language originally designed to make web pages interactive. Today, it's used for:</p>
+                    <ul style="margin: var(--space-lg) 0; margin-left: var(--space-xl);">
+                        <li>Frontend development (React, Vue, Angular)</li>
+                        <li>Backend development (Node.js)</li>
+                        <li>Mobile app development (React Native)</li>
+                        <li>Desktop applications (Electron)</li>
+                        <li>Game development (Babylon.js)</li>
+                    </ul>
+
+                    <div class="card">
+                        <div class="card-title">Key Characteristics</div>
+                        <p><strong>Dynamic Typing:</strong> Variables can hold any data type and change types at runtime.</p>
+                        <p><strong>Event-Driven:</strong> Responds to user interactions like clicks, scrolls, and form submissions.</p>
+                        <p><strong>Functional & Object-Oriented:</strong> Supports both programming paradigms.</p>
+                        <p><strong>Asynchronous:</strong> Can handle operations that take time without blocking execution.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Your First JavaScript</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Welcome to JavaScript! 🎉</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Hello, JavaScript World!'</span>);
+
+<span class="comment">// JavaScript runs in browsers and servers</span>
+<span class="keyword">alert</span>(<span class="string">'JavaScript is awesome!'</span>);</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Where Does JavaScript Run?</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-title"><i class="fas fa-globe"></i> Browser Environment</div>
+                            <p>JavaScript runs in web browsers (Chrome, Firefox, Safari, Edge). It can manipulate the DOM, handle events, and manage user sessions.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title"><i class="fas fa-server"></i> Server Environment</div>
+                            <p>With Node.js, JavaScript runs on servers. It can read/write files, manage databases, and handle HTTP requests.</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'variables',
+                title: 'Variables (var, let, const)',
+                icon: 'fa-box',
+                description: 'Understanding variable declaration and scope in JavaScript.',
+                content: `
+                    <div class="section-header">
+                        <h1>Variables: var, let, const</h1>
+                        <p class="section-description">Variables are containers for storing data values. Learn the differences between var, let, and const.</p>
+                    </div>
+
+                    <h2>The Three Ways to Declare Variables</h2>
+                    <div class="grid grid-3">
+                        <div class="card">
+                            <div class="card-title" style="color: #ef4444;">var</div>
+                            <p><strong>Scope:</strong> Function-scoped</p>
+                            <p><strong>Hoisting:</strong> Hoisted & initialized</p>
+                            <p><strong>Re-declaration:</strong> Allowed</p>
+                            <p><strong>Status:</strong> Legacy (avoid)</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #3b82f6;">let</div>
+                            <p><strong>Scope:</strong> Block-scoped</p>
+                            <p><strong>Hoisting:</strong> Hoisted, not initialized</p>
+                            <p><strong>Re-declaration:</strong> Not allowed</p>
+                            <p><strong>Status:</strong> Modern (preferred)</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #10b981;">const</div>
+                            <p><strong>Scope:</strong> Block-scoped</p>
+                            <p><strong>Hoisting:</strong> Hoisted, not initialized</p>
+                            <p><strong>Re-declaration:</strong> Not allowed</p>
+                            <p><strong>Status:</strong> Modern (safest)</p>
+                        </div>
+                    </div>
+
+                    <h2>Code Examples</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Variable Declaration Comparison</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// var - Function scoped (old way)</span>
+<span class="keyword">var</span> name = <span class="string">'John'</span>;
+<span class="keyword">var</span> name = <span class="string">'Jane'</span>; <span class="comment">// Allowed - re-declaration</span>
+
+<span class="comment">// let - Block scoped (modern)</span>
+<span class="keyword">let</span> age = <span class="number">25</span>;
+age = <span class="number">26</span>; <span class="comment">// Allowed - re-assignment</span>
+<span class="comment">// let age = 27; // Error - re-declaration not allowed</span>
+
+<span class="comment">// const - Block scoped & immutable reference (safest)</span>
+<span class="keyword">const</span> email = <span class="string">'user@example.com'</span>;
+<span class="comment">// email = 'new@example.com'; // Error - can't reassign</span>
+<span class="comment">// const email = 'other@example.com'; // Error - can't re-declare</span>
+
+<span class="comment">// But const objects/arrays can have their properties modified</span>
+<span class="keyword">const</span> person = { name: <span class="string">'Alice'</span>, age: <span class="number">30</span> };
+person.age = <span class="number">31</span>; <span class="comment">// Allowed - modifying properties</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Interactive Example</h2>
+                    <div class="preview-box">
+                        <div class="input-group">
+                            <label for="varTest">Enter a variable name:</label>
+                            <input type="text" id="varTest" placeholder="e.g., myVariable" />
+                            <button class="btn" onclick="testVariable()">Test Variable</button>
+                        </div>
+                        <div id="varOutput" class="output-box" style="display: none;">
+                            <div class="output-title">Output</div>
+                            <div class="output-content" id="varOutputContent"></div>
+                        </div>
+                    </div>
+
+                    <h2>Best Practices</h2>
+                    <div class="card">
+                        <p><strong>1. Use const by default:</strong> Start with const for every variable declaration.</p>
+                        <p><strong>2. Use let when needed:</strong> Only use let if you know the variable will be reassigned.</p>
+                        <p><strong>3. Avoid var:</strong> Don't use var in modern JavaScript applications.</p>
+                        <p><strong>4. Meaningful names:</strong> Use descriptive variable names (userName, not u).</p>
+                    </div>
+                `
+            },
+            {
+                id: 'datatypes',
+                title: 'Data Types',
+                icon: 'fa-database',
+                description: 'Explore primitive and complex data types in JavaScript.',
+                content: `
+                    <div class="section-header">
+                        <h1>JavaScript Data Types</h1>
+                        <p class="section-description">JavaScript has 8 primary data types. Understanding them is crucial for writing effective code.</p>
+                    </div>
+
+                    <h2>Primitive Data Types</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-title" style="color: #3b82f6;">Number</div>
+                            <p>Represents both integers and floating-point numbers.</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">const age = 25; const pi = 3.14;</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #3b82f6;">String</div>
+                            <p>Text data enclosed in quotes (' ', " ", or backticks).</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">const name = 'Alice'; const greeting = \`Hello \${name}\`;</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #3b82f6;">Boolean</div>
+                            <p>Represents true or false values.</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">const isActive = true; const isLoggedIn = false;</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #3b82f6;">Undefined</div>
+                            <p>A variable that hasn't been assigned a value.</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">let x; console.log(x); // undefined</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #3b82f6;">Null</div>
+                            <p>Intentionally represents "no value" or "nothing".</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">let user = null; // explicitly no value</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #3b82f6;">Symbol</div>
+                            <p>Unique identifiers (advanced topic).</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">const sym = Symbol('id');</code>
+                        </div>
+                    </div>
+
+                    <h2>Complex Data Types</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Objects and Arrays</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Objects - Collections of key-value pairs</span>
+<span class="keyword">const</span> person = {
+  name: <span class="string">'Bob'</span>,
+  age: <span class="number">30</span>,
+  isStudent: <span class="keyword">false</span>
+};
+
+<span class="comment">// Arrays - Ordered collections</span>
+<span class="keyword">const</span> colors = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>];
+
+<span class="comment">// Checking types with typeof</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="keyword">typeof</span> person); <span class="comment">// 'object'</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="keyword">typeof</span> colors); <span class="comment">// 'object'</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Type Checking Tool</h2>
+                    <div class="preview-box">
+                        <div class="input-group">
+                            <label for="typeInput">Enter a value:</label>
+                            <input type="text" id="typeInput" placeholder="e.g., 42, 'hello', true" />
+                            <button class="btn" onclick="checkType()">Check Type</button>
+                        </div>
+                        <div id="typeOutput" class="output-box" style="display: none;">
+                            <div class="output-title">Type Result</div>
+                            <div class="output-content" id="typeOutputContent"></div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'operators',
+                title: 'Operators',
+                icon: 'fa-calculator',
+                description: 'Master arithmetic, logical, comparison, and assignment operators.',
+                content: `
+                    <div class="section-header">
+                        <h1>JavaScript Operators</h1>
+                        <p class="section-description">Operators are symbols that perform operations on values and variables.</p>
+                    </div>
+
+                    <h2>Arithmetic Operators</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Arithmetic Operations</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">let</span> a = <span class="number">10</span>, b = <span class="number">3</span>;
+
+<span class="keyword">console</span>.<span class="function">log</span>(a + b);  <span class="comment">// 13 - Addition</span>
+<span class="keyword">console</span>.<span class="function">log</span>(a - b);  <span class="comment">// 7 - Subtraction</span>
+<span class="keyword">console</span>.<span class="function">log</span>(a * b);  <span class="comment">// 30 - Multiplication</span>
+<span class="keyword">console</span>.<span class="function">log</span>(a / b);  <span class="comment">// 3.33... - Division</span>
+<span class="keyword">console</span>.<span class="function">log</span>(a % b);  <span class="comment">// 1 - Modulo (Remainder)</span>
+<span class="keyword">console</span>.<span class="function">log</span>(a ** b); <span class="comment">// 1000 - Exponentiation</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Comparison Operators</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Comparison & Equality</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">console</span>.<span class="function">log</span>(<span class="number">5</span> == <span class="string">'5'</span>);   <span class="comment">// true - Loose equality</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="number">5</span> === <span class="string">'5'</span>);  <span class="comment">// false - Strict equality</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="number">10</span> > <span class="number">5</span>);     <span class="comment">// true - Greater than</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="number">10</span> < <span class="number">5</span>);     <span class="comment">// false - Less than</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="number">10</span> >= <span class="number">10</span>);    <span class="comment">// true - Greater or equal</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="number">10</span> != <span class="number">5</span>);     <span class="comment">// true - Not equal</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Logical Operators</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">AND, OR, NOT Logic</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> isRaining = <span class="keyword">true</span>;
+<span class="keyword">const</span> hasMoney = <span class="keyword">false</span>;
+
+<span class="keyword">console</span>.<span class="function">log</span>(isRaining && hasMoney); <span class="comment">// false - AND</span>
+<span class="keyword">console</span>.<span class="function">log</span>(isRaining || hasMoney); <span class="comment">// true - OR</span>
+<span class="keyword">console</span>.<span class="function">log</span>(!isRaining);          <span class="comment">// false - NOT</span>
+
+<span class="comment">// Practical example</span>
+<span class="keyword">if</span> (isRaining && !hasMoney) {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Stay home and watch movies'</span>);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Assignment Operators</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem;">x = 5</code>
+                            <p>Basic assignment</p>
+                        </div>
+                        <div class="card">
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem;">x += 3</code>
+                            <p>Add and assign (x = x + 3)</p>
+                        </div>
+                        <div class="card">
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem;">x -= 3</code>
+                            <p>Subtract and assign</p>
+                        </div>
+                        <div class="card">
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem;">x *= 3</code>
+                            <p>Multiply and assign</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'conditionals',
+                title: 'Conditional Statements',
+                icon: 'fa-code-branch',
+                description: 'if, else, switch - Control program flow.',
+                content: `
+                    <div class="section-header">
+                        <h1>Conditional Statements</h1>
+                        <p class="section-description">Conditionals allow your code to make decisions based on conditions.</p>
+                    </div>
+
+                    <h2>if, else if, else</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Basic Conditional Structure</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> age = <span class="number">18</span>;
+
+<span class="keyword">if</span> (age < <span class="number">13</span>) {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Child'</span>);
+} <span class="keyword">else if</span> (age < <span class="number">18</span>) {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Teenager'</span>);
+} <span class="keyword">else if</span> (age < <span class="number">65</span>) {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Adult'</span>);
+} <span class="keyword">else</span> {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Senior'</span>);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>switch Statement</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Switch Expression</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> day = <span class="number">3</span>;
+<span class="keyword">let</span> dayName;
+
+<span class="keyword">switch</span> (day) {
+  <span class="keyword">case</span> <span class="number">1</span>:
+    dayName = <span class="string">'Monday'</span>;
+    <span class="keyword">break</span>;
+  <span class="keyword">case</span> <span class="number">2</span>:
+    dayName = <span class="string">'Tuesday'</span>;
+    <span class="keyword">break</span>;
+  <span class="keyword">case</span> <span class="number">3</span>:
+    dayName = <span class="string">'Wednesday'</span>;
+    <span class="keyword">break</span>;
+  <span class="keyword">default</span>:
+    dayName = <span class="string">'Unknown'</span>;
+}
+
+<span class="keyword">console</span>.<span class="function">log</span>(dayName); <span class="comment">// 'Wednesday'</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Ternary Operator (Shorthand if-else)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Concise Conditional</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> score = <span class="number">85</span>;
+
+<span class="comment">// Traditional if-else</span>
+<span class="keyword">let</span> result;
+<span class="keyword">if</span> (score >= <span class="number">60</span>) {
+  result = <span class="string">'Pass'</span>;
+} <span class="keyword">else</span> {
+  result = <span class="string">'Fail'</span>;
+}
+
+<span class="comment">// Ternary operator (shorthand)</span>
+<span class="keyword">const</span> result = score >= <span class="number">60</span> ? <span class="string">'Pass'</span> : <span class="string">'Fail'</span>;</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Interactive Grade Calculator</h2>
+                    <div class="preview-box">
+                        <div class="input-group">
+                            <label for="gradeInput">Enter your score (0-100):</label>
+                            <input type="number" id="gradeInput" min="0" max="100" placeholder="e.g., 85" />
+                            <button class="btn" onclick="calculateGrade()">Calculate Grade</button>
+                        </div>
+                        <div id="gradeOutput" class="output-box" style="display: none;">
+                            <div class="output-title">Result</div>
+                            <div class="output-content" id="gradeOutputContent"></div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'loops',
+                title: 'Loops',
+                icon: 'fa-repeat',
+                description: 'for, while, do-while - Repeat code blocks.',
+                content: `
+                    <div class="section-header">
+                        <h1>JavaScript Loops</h1>
+                        <p class="section-description">Loops execute code repeatedly while a condition is true.</p>
+                    </div>
+
+                    <h2>for Loop</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Traditional for Loop</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// for (initialization; condition; increment)</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Number: '</span> + i);
+}
+
+<span class="comment">// Output: Number: 0, 1, 2, 3, 4</span>
+
+<span class="comment">// Counting backwards</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">5</span>; i > <span class="number">0</span>; i--) {
+  <span class="keyword">console</span>.<span class="function">log</span>(i);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>while Loop</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">while Loop</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">let</span> count = <span class="number">0</span>;
+
+<span class="keyword">while</span> (count < <span class="number">5</span>) {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Count: '</span> + count);
+  count++;
+}
+
+<span class="comment">// Output: Count: 0, 1, 2, 3, 4</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>do-while Loop</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">do-while Loop (executes at least once)</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">let</span> i = <span class="number">0</span>;
+
+<span class="keyword">do</span> {
+  <span class="keyword">console</span>.<span class="function">log</span>(i);
+  i++;
+} <span class="keyword">while</span> (i < <span class="number">3</span>);
+
+<span class="comment">// Executes at least once, even if condition is false initially</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>for...of and for...in</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Modern Loop Methods</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// for...of iterates over values</span>
+<span class="keyword">const</span> fruits = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'orange'</span>];
+<span class="keyword">for</span> (<span class="keyword">const</span> fruit <span class="keyword">of</span> fruits) {
+  <span class="keyword">console</span>.<span class="function">log</span>(fruit);
+}
+
+<span class="comment">// for...in iterates over keys/indexes</span>
+<span class="keyword">const</span> person = { name: <span class="string">'Alice'</span>, age: <span class="number">30</span> };
+<span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> person) {
+  <span class="keyword">console</span>.<span class="function">log</span>(key + <span class="string">': '</span> + person[key]);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Loop Control: break and continue</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-title">break Statement</div>
+                            <p>Exits the loop immediately.</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">for (let i = 0; i < 10; i++) {
+  if (i === 5) break; // Stop at 5
+}</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">continue Statement</div>
+                            <p>Skips the current iteration.</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">for (let i = 0; i < 5; i++) {
+  if (i === 2) continue; // Skip 2
+}</code>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'functions',
+                title: 'Functions',
+                icon: 'fa-function',
+                description: 'Function declarations, arrow functions, and scoping.',
+                content: `
+                    <div class="section-header">
+                        <h1>JavaScript Functions</h1>
+                        <p class="section-description">Functions are reusable blocks of code that perform specific tasks.</p>
+                    </div>
+
+                    <h2>Function Declaration</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Creating and Calling Functions</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Function declaration</span>
+<span class="keyword">function</span> <span class="function">greet</span>(name) {
+  <span class="keyword">return</span> <span class="string">'Hello, '</span> + name + <span class="string">'!'</span>;
+}
+
+<span class="comment">// Calling the function</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">greet</span>(<span class="string">'Alice'</span>)); <span class="comment">// Hello, Alice!</span>
+
+<span class="comment">// Function with multiple parameters</span>
+<span class="keyword">function</span> <span class="function">add</span>(a, b) {
+  <span class="keyword">return</span> a + b;
+}
+
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 8</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Function Expression</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Anonymous and Named Expressions</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Anonymous function expression</span>
+<span class="keyword">const</span> multiply = <span class="keyword">function</span>(a, b) {
+  <span class="keyword">return</span> a * b;
+};
+
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">multiply</span>(<span class="number">4</span>, <span class="number">5</span>)); <span class="comment">// 20</span>
+
+<span class="comment">// Named function expression</span>
+<span class="keyword">const</span> factorial = <span class="keyword">function</span> <span class="function">fact</span>(n) {
+  <span class="keyword">return</span> n <= <span class="number">1</span> ? <span class="number">1</span> : n * <span class="function">fact</span>(n - <span class="number">1</span>);
+};</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Arrow Functions (ES6)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Modern Function Syntax</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Basic arrow function</span>
+<span class="keyword">const</span> square = (x) => {
+  <span class="keyword">return</span> x * x;
+};
+
+<span class="comment">// Concise arrow function (implicit return)</span>
+<span class="keyword">const</span> cube = (x) => x * x * x;
+
+<span class="comment">// Single parameter (parentheses optional)</span>
+<span class="keyword">const</span> double = x => x * <span class="number">2</span>;
+
+<span class="comment">// No parameters</span>
+<span class="keyword">const</span> random = () => <span class="keyword">Math</span>.random();
+
+<span class="keyword">console</span>.<span class="function">log</span>(square(<span class="number">5</span>)); <span class="comment">// 25</span>
+<span class="keyword">console</span>.<span class="function">log</span>(cube(<span class="number">3</span>));   <span class="comment">// 27</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Function Scope & Closure</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Understanding Scope</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> globalVar = <span class="string">'Global'</span>;
+
+<span class="keyword">function</span> <span class="function">outer</span>() {
+  <span class="keyword">const</span> outerVar = <span class="string">'Outer'</span>;
+  
+  <span class="keyword">function</span> <span class="function">inner</span>() {
+    <span class="keyword">const</span> innerVar = <span class="string">'Inner'</span>;
+    <span class="keyword">console</span>.<span class="function">log</span>(globalVar, outerVar, innerVar);
+    <span class="comment">// inner() can access all scopes</span>
+  }
+  
+  <span class="keyword">return</span> inner;
+}
+
+<span class="keyword">const</span> closure = <span class="function">outer</span>();
+<span class="function">closure</span>(); <span class="comment">// 'Global' 'Outer' 'Inner'</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Default Parameters</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Functions with Default Values</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">function</span> <span class="function">greetUser</span>(name = <span class="string">'Guest'</span>, greeting = <span class="string">'Welcome'</span>) {
+  <span class="keyword">return</span> greeting + <span class="string">', '</span> + name;
+}
+
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">greetUser</span>());                  <span class="comment">// Welcome, Guest</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">greetUser</span>(<span class="string">'Alice'</span>));          <span class="comment">// Welcome, Alice</span>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">greetUser</span>(<span class="string">'Bob'</span>, <span class="string">'Hi'</span>));    <span class="comment">// Hi, Bob</span></code></pre>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'arrays-objects',
+                title: 'Arrays and Objects',
+                icon: 'fa-list',
+                description: 'Working with collections and key-value data.',
+                content: `
+                    <div class="section-header">
+                        <h1>Arrays and Objects</h1>
+                        <p class="section-description">Arrays and objects are fundamental data structures for organizing complex data.</p>
+                    </div>
+
+                    <h2>Arrays</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Array Operations</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Creating arrays</span>
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+<span class="keyword">const</span> mixed = [<span class="number">1</span>, <span class="string">'text'</span>, <span class="keyword">true</span>, <span class="keyword">null</span>];
+
+<span class="comment">// Accessing elements (0-indexed)</span>
+<span class="keyword">console</span>.<span class="function">log</span>(numbers[<span class="number">0</span>]); <span class="comment">// 1</span>
+<span class="keyword">console</span>.<span class="function">log</span>(numbers.length); <span class="comment">// 5</span>
+
+<span class="comment">// Array methods</span>
+numbers.<span class="function">push</span>(<span class="number">6</span>);     <span class="comment">// Add to end</span>
+numbers.<span class="function">pop</span>();     <span class="comment">// Remove from end</span>
+numbers.<span class="function">shift</span>();   <span class="comment">// Remove from start</span>
+numbers.<span class="function">unshift</span>(<span class="number">0</span>); <span class="comment">// Add to start</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Array Methods (map, filter, reduce)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Functional Array Methods</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+
+<span class="comment">// map - Transform each element</span>
+<span class="keyword">const</span> squared = nums.<span class="function">map</span>(n => n * n);
+<span class="comment">// [1, 4, 9, 16, 25]</span>
+
+<span class="comment">// filter - Keep elements that pass a test</span>
+<span class="keyword">const</span> evens = nums.<span class="function">filter</span>(n => n % <span class="number">2</span> === <span class="number">0</span>);
+<span class="comment">// [2, 4]</span>
+
+<span class="comment">// reduce - Combine all elements into one value</span>
+<span class="keyword">const</span> sum = nums.<span class="function">reduce</span>((acc, n) => acc + n, <span class="number">0</span>);
+<span class="comment">// 15</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Objects</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Creating and Using Objects</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Object literal</span>
+<span class="keyword">const</span> person = {
+  name: <span class="string">'John'</span>,
+  age: <span class="number">30</span>,
+  email: <span class="string">'john@example.com'</span>,
+  greet() {
+    <span class="keyword">return</span> <span class="string">'Hi, I am '</span> + <span class="keyword">this</span>.name;
+  }
+};
+
+<span class="comment">// Accessing properties</span>
+<span class="keyword">console</span>.<span class="function">log</span>(person.name);      <span class="comment">// John</span>
+<span class="keyword">console</span>.<span class="function">log</span>(person[<span class="string">'age'</span>]);    <span class="comment">// 30</span>
+<span class="keyword">console</span>.<span class="function">log</span>(person.<span class="function">greet</span>()); <span class="comment">// Hi, I am John</span>
+
+<span class="comment">// Modifying properties</span>
+person.age = <span class="number">31</span>;
+person.city = <span class="string">'NYC'</span>; <span class="comment">// Add new property</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Destructuring (ES6)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Extract Values with Destructuring</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Array destructuring</span>
+<span class="keyword">const</span> [first, second] = [<span class="number">10</span>, <span class="number">20</span>];
+<span class="keyword">console</span>.<span class="function">log</span>(first); <span class="comment">// 10</span>
+
+<span class="comment">// Object destructuring</span>
+<span class="keyword">const</span> { name, age } = { name: <span class="string">'Alice'</span>, age: <span class="number">25</span> };
+<span class="keyword">console</span>.<span class="function">log</span>(name); <span class="comment">// Alice</span>
+
+<span class="comment">// Nested destructuring</span>
+<span class="keyword">const</span> { address: { city } } = { 
+  name: <span class="string">'Bob'</span>, 
+  address: { city: <span class="string">'LA'</span> } 
+};
+<span class="keyword">console</span>.<span class="function">log</span>(city); <span class="comment">// LA</span></code></pre>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'dom',
+                title: 'Events & DOM Manipulation',
+                icon: 'fa-mouse',
+                description: 'Handle events and manipulate the DOM.',
+                content: `
+                    <div class="section-header">
+                        <h1>Events and DOM Manipulation</h1>
+                        <p class="section-description">Interact with HTML elements and respond to user actions.</p>
+                    </div>
+
+                    <h2>Selecting Elements</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Querying the DOM</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// By ID</span>
+<span class="keyword">const</span> element = <span class="keyword">document</span>.<span class="function">getElementById</span>(<span class="string">'myId'</span>);
+
+<span class="comment">// By class (returns NodeList)</span>
+<span class="keyword">const</span> elements = <span class="keyword">document</span>.<span class="function">getElementsByClassName</span>(<span class="string">'myClass'</span>);
+
+<span class="comment">// By tag name</span>
+<span class="keyword">const</span> buttons = <span class="keyword">document</span>.<span class="function">getElementsByTagName</span>(<span class="string">'button'</span>);
+
+<span class="comment">// CSS selectors (modern way)</span>
+<span class="keyword">const</span> first = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'.myClass'</span>);
+<span class="keyword">const</span> all = <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">'div.container'</span>);</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Modifying Content</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Update HTML and Text</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> element = <span class="keyword">document</span>.<span class="function">getElementById</span>(<span class="string">'demo'</span>);
+
+<span class="comment">// Change text content</span>
+element.textContent = <span class="string">'Hello, World!'</span>;
+
+<span class="comment">// Change HTML content</span>
+element.innerHTML = <span class="string">'&lt;strong&gt;Bold Text&lt;/strong&gt;'</span>;
+
+<span class="comment">// Get current content</span>
+<span class="keyword">console</span>.<span class="function">log</span>(element.textContent);
+<span class="keyword">console</span>.<span class="function">log</span>(element.innerHTML);</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Event Handling</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Responding to User Actions</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> button = <span class="keyword">document</span>.<span class="function">getElementById</span>(<span class="string">'myButton'</span>);
+
+<span class="comment">// Method 1: addEventListener (recommended)</span>
+button.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Button clicked!'</span>);
+});
+
+<span class="comment">// Method 2: Inline event handler</span>
+button.onclick = () => {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Button clicked!'</span>);
+};
+
+<span class="comment">// Common events</span>
+<span class="comment">// 'click', 'dblclick', 'mouseover', 'mouseout'</span>
+<span class="comment">// 'keydown', 'keyup', 'input', 'change'</span>
+<span class="comment">// 'submit', 'focus', 'blur'</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Styling Elements</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Modify CSS with JavaScript</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> element = <span class="keyword">document</span>.<span class="function">getElementById</span>(<span class="string">'box'</span>);
+
+<span class="comment">// Direct style modification (camelCase)</span>
+element.style.color = <span class="string">'red'</span>;
+element.style.fontSize = <span class="string">'20px'</span>;
+element.style.backgroundColor = <span class="string">'yellow'</span>;
+
+<span class="comment">// Add/Remove/Toggle classes</span>
+element.<span class="function">classList</span>.<span class="function">add</span>(<span class="string">'active'</span>);
+element.<span class="function">classList</span>.<span class="function">remove</span>(<span class="string">'inactive'</span>);
+element.<span class="function">classList</span>.<span class="function">toggle</span>(<span class="string">'highlight'</span>);</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Interactive Demo</h2>
+                    <div class="preview-box">
+                        <button class="btn" onclick="interactiveDemo()">Click Me!</button>
+                        <div id="demoOutput" style="margin-top: var(--space-lg); display: none;">
+                            <div class="output-box">
+                                <div class="output-title">Output</div>
+                                <div class="output-content" id="demoOutputContent"></div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'es6',
+                title: 'ES6+ Features',
+                icon: 'fa-sparkles',
+                description: 'Modern JavaScript: arrow functions, destructuring, spread, classes.',
+                content: `
+                    <div class="section-header">
+                        <h1>ES6+ Modern Features</h1>
+                        <p class="section-description">ES6 and beyond introduced powerful new features to JavaScript.</p>
+                    </div>
+
+                    <h2>Template Literals</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">String Interpolation with Backticks</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> name = <span class="string">'Alice'</span>;
+<span class="keyword">const</span> age = <span class="number">25</span>;
+
+<span class="comment">// Old way - string concatenation</span>
+<span class="keyword">const</span> message1 = <span class="string">'Hello, '</span> + name + <span class="string">'! You are '</span> + age + <span class="string">' years old.'</span>;
+
+<span class="comment">// ES6 way - template literals</span>
+<span class="keyword">const</span> message2 = \`Hello, \${name}! You are \${age} years old.\`;
+
+<span class="comment">// Multi-line strings</span>
+<span class="keyword">const</span> html = \`
+  &lt;div&gt;
+    &lt;h1&gt;\${name}&lt;/h1&gt;
+    &lt;p&gt;Age: \${age}&lt;/p&gt;
+  &lt;/div&gt;
+\`;</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Spread Operator</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Expand Arrays and Objects</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Spread in arrays</span>
+<span class="keyword">const</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+<span class="keyword">const</span> arr2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];
+<span class="keyword">const</span> combined = [...arr1, ...arr2];
+<span class="comment">// [1, 2, 3, 4, 5, 6]</span>
+
+<span class="comment">// Spread in objects</span>
+<span class="keyword">const</span> obj1 = { name: <span class="string">'Alice'</span>, age: <span class="number">25</span> };
+<span class="keyword">const</span> obj2 = { city: <span class="string">'NYC'</span>, country: <span class="string">'USA'</span> };
+<span class="keyword">const</span> merged = { ...obj1, ...obj2 };
+<span class="comment">// { name: 'Alice', age: 25, city: 'NYC', country: 'USA' }</span>
+
+<span class="comment">// Rest parameter in functions</span>
+<span class="keyword">function</span> <span class="function">sum</span>(...numbers) {
+  <span class="keyword">return</span> numbers.<span class="function">reduce</span>((a, b) => a + b, <span class="number">0</span>);
+}
+<span class="function">sum</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 10</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Classes</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Object-Oriented Programming with Classes</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">class</span> <span class="function">Person</span> {
+  <span class="function">constructor</span>(name, age) {
+    <span class="keyword">this</span>.name = name;
+    <span class="keyword">this</span>.age = age;
+  }
+
+  <span class="function">greet</span>() {
+    <span class="keyword">return</span> \`Hello, I'm \${<span class="keyword">this</span>.name}\`;
+  }
+
+  <span class="function">getAge</span>() {
+    <span class="keyword">return</span> <span class="keyword">this</span>.age;
+  }
+}
+
+<span class="keyword">const</span> person = <span class="keyword">new</span> <span class="function">Person</span>(<span class="string">'John'</span>, <span class="number">30</span>);
+<span class="keyword">console</span>.<span class="function">log</span>(person.<span class="function">greet</span>()); <span class="comment">// Hello, I'm John</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>For of and Async/Await</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Modern Iteration and Async Patterns</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// for...of loop</span>
+<span class="keyword">const</span> items = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];
+<span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> items) {
+  <span class="keyword">console</span>.<span class="function">log</span>(item);
+}
+
+<span class="comment">// Async/await</span>
+<span class="keyword">async</span> <span class="keyword">function</span> <span class="function">fetchData</span>() {
+  <span class="keyword">try</span> {
+    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'/api/data'</span>);
+    <span class="keyword">const</span> data = <span class="keyword">await</span> response.<span class="function">json</span>();
+    <span class="keyword">console</span>.<span class="function">log</span>(data);
+  } <span class="keyword">catch</span> (error) {
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Error:'</span>, error);
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'json',
+                title: 'JSON',
+                icon: 'fa-code',
+                description: 'Working with JSON data format.',
+                content: `
+                    <div class="section-header">
+                        <h1>JSON - JavaScript Object Notation</h1>
+                        <p class="section-description">JSON is a text format for exchanging structured data between servers and clients.</p>
+                    </div>
+
+                    <h2>JSON Basics</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Valid JSON Data</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// JSON object</span>
+{
+  <span class="string">"name"</span>: <span class="string">"Alice"</span>,
+  <span class="string">"age"</span>: <span class="number">30</span>,
+  <span class="string">"isActive"</span>: <span class="keyword">true</span>,
+  <span class="string">"email"</span>: <span class="keyword">null</span>,
+  <span class="string">"hobbies"</span>: [<span class="string">"reading"</span>, <span class="string">"coding"</span>]
+}
+
+<span class="comment">// JSON array</span>
+[
+  { <span class="string">"id"</span>: <span class="number">1</span>, <span class="string">"name"</span>: <span class="string">"John"</span> },
+  { <span class="string">"id"</span>: <span class="number">2</span>, <span class="string">"name"</span>: <span class="string">"Jane"</span> }
+]</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>JSON.stringify() and JSON.parse()</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Converting Between JSON and Objects</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Object to JSON string (stringify)</span>
+<span class="keyword">const</span> person = {
+  name: <span class="string">'Alice'</span>,
+  age: <span class="number">30</span>,
+  email: <span class="string">'alice@example.com'</span>
+};
+
+<span class="keyword">const</span> jsonString = <span class="keyword">JSON</span>.<span class="function">stringify</span>(person);
+<span class="keyword">console</span>.<span class="function">log</span>(jsonString);
+<span class="comment">// {"name":"Alice","age":30,"email":"alice@example.com"}</span>
+
+<span class="comment">// JSON string to object (parse)</span>
+<span class="keyword">const</span> jsonData = <span class="string">'{"name":"Bob","age":25,"city":"NYC"}'</span>;
+<span class="keyword">const</span> obj = <span class="keyword">JSON</span>.<span class="function">parse</span>(jsonData);
+<span class="keyword">console</span>.<span class="function">log</span>(obj.name); <span class="comment">// Bob</span>
+
+<span class="comment">// Pretty print JSON</span>
+<span class="keyword">const</span> prettyJson = <span class="keyword">JSON</span>.<span class="function">stringify</span>(person, <span class="keyword">null</span>, <span class="number">2</span>);
+<span class="keyword">console</span>.<span class="function">log</span>(prettyJson);</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Real-world Example: API Data</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Working with JSON from APIs</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Fetch API returns JSON</span>
+<span class="keyword">fetch</span>(<span class="string">'/api/users'</span>)
+  .<span class="function">then</span>(response => response.<span class="function">json</span>()) <span class="comment">// Parse JSON</span>
+  .<span class="function">then</span>(data => {
+    <span class="keyword">console</span>.<span class="function">log</span>(data); <span class="comment">// Use the data</span>
+    data.<span class="function">forEach</span>(user => {
+      <span class="keyword">console</span>.<span class="function">log</span>(user.name);
+    });
+  })
+  .<span class="keyword">catch</span>(error => <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Error:'</span>, error));</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>JSON Converter Tool</h2>
+                    <div class="preview-box">
+                        <div class="input-group">
+                            <label for="jsonInput">Enter JSON:</label>
+                            <textarea id="jsonInput" placeholder='{"name": "Alice", "age": 25}' style="height: 120px;"></textarea>
+                            <button class="btn" onclick="validateJSON()">Validate JSON</button>
+                        </div>
+                        <div id="jsonOutput" class="output-box" style="display: none;">
+                            <div class="output-title">Result</div>
+                            <div class="output-content" id="jsonOutputContent"></div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'async',
+                title: 'Async JavaScript',
+                icon: 'fa-clock',
+                description: 'Callbacks, Promises, async/await - Handle asynchronous operations.',
+                content: `
+                    <div class="section-header">
+                        <h1>Asynchronous JavaScript</h1>
+                        <p class="section-description">Learn to handle operations that take time without blocking execution.</p>
+                    </div>
+
+                    <h2>Callbacks</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Traditional Callback Pattern</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">function</span> <span class="function">fetchData</span>(callback) {
+  <span class="keyword">setTimeout</span>(() => {
+    <span class="keyword">const</span> data = { id: <span class="number">1</span>, name: <span class="string">'Alice'</span> };
+    <span class="function">callback</span>(data);
+  }, <span class="number">2000</span>);
+}
+
+<span class="keyword">function</span> <span class="function">displayData</span>(data) {
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Data received:'</span>, data);
+}
+
+<span class="function">fetchData</span>(displayData);
+
+<span class="comment">// Drawback: Callback Hell / Pyramid of Doom</span>
+<span class="function">fetchData</span>((data1) => {
+  <span class="function">fetchData</span>((data2) => {
+    <span class="function">fetchData</span>((data3) => {
+      <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'All done!'</span>);
+    });
+  });
+});</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Promises</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Promise-Based Approach</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Creating a Promise</span>
+<span class="keyword">const</span> myPromise = <span class="keyword">new</span> Promise((resolve, reject) => {
+  <span class="keyword">setTimeout</span>(() => {
+    <span class="keyword">const</span> data = { id: <span class="number">1</span>, name: <span class="string">'Bob'</span> };
+    resolve(data); <span class="comment">// Success</span>
+    <span class="comment">// reject(new Error('Something went wrong'));</span>
+  }, <span class="number">2000</span>);
+});
+
+<span class="comment">// Using the Promise</span>
+myPromise
+  .<span class="function">then</span>(data => <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Success:'</span>, data))
+  .<span class="keyword">catch</span>(error => <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Error:'</span>, error));
+
+<span class="comment">// Promise chaining (cleaner than callbacks)</span>
+<span class="keyword">fetch</span>(<span class="string">'/api/user'</span>)
+  .<span class="function">then</span>(res => res.<span class="function">json</span>())
+  .<span class="function">then</span>(data => <span class="keyword">console</span>.<span class="function">log</span>(data))
+  .<span class="keyword">catch</span>(err => <span class="keyword">console</span>.<span class="function">log</span>(err));</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Async/Await</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Modern Async Pattern</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">async</span> <span class="keyword">function</span> <span class="function">getUserData</span>() {
+  <span class="keyword">try</span> {
+    <span class="comment">// Wait for Promise to resolve</span>
+    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="keyword">fetch</span>(<span class="string">'/api/user'</span>);
+    <span class="keyword">const</span> data = <span class="keyword">await</span> response.<span class="function">json</span>();
+    
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'User data:'</span>, data);
+    <span class="keyword">return</span> data;
+  } <span class="keyword">catch</span> (error) {
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Error fetching user:'</span>, error);
+  } <span class="keyword">finally</span> {
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Request completed'</span>);
+  }
+}
+
+<span class="comment">// Call async function</span>
+<span class="keyword">await</span> <span class="function">getUserData</span>();
+
+<span class="comment">// Or use .then()</span>
+<span class="function">getUserData</span>().<span class="function">then</span>(data => <span class="keyword">console</span>.<span class="function">log</span>(data));</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Promise Utility Methods</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-title">Promise.all()</div>
+                            <p>Wait for all promises to resolve</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block; font-size: 0.85rem;">Promise.all([p1, p2, p3])</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Promise.race()</div>
+                            <p>Return first resolved promise</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block; font-size: 0.85rem;">Promise.race([p1, p2, p3])</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Promise.allSettled()</div>
+                            <p>Wait for all to settle</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block; font-size: 0.85rem;">Promise.allSettled([p1, p2])</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Promise.any()</div>
+                            <p>First fulfilled promise</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block; font-size: 0.85rem;">Promise.any([p1, p2, p3])</code>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'storage',
+                title: 'LocalStorage & SessionStorage',
+                icon: 'fa-save',
+                description: 'Store data in the browser persistently or temporarily.',
+                content: `
+                    <div class="section-header">
+                        <h1>Browser Storage</h1>
+                        <p class="section-description">Store data locally in the user's browser without a server.</p>
+                    </div>
+
+                    <h2>LocalStorage vs SessionStorage</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-title" style="color: #10b981;">LocalStorage</div>
+                            <p><strong>Persistence:</strong> Data persists after browser closes</p>
+                            <p><strong>Size:</strong> ~5-10MB per domain</p>
+                            <p><strong>Use:</strong> User preferences, saved data</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #3b82f6;">SessionStorage</div>
+                            <p><strong>Persistence:</strong> Data cleared when tab closes</p>
+                            <p><strong>Size:</strong> ~5-10MB per tab</p>
+                            <p><strong>Use:</strong> Temporary session data</p>
+                        </div>
+                    </div>
+
+                    <h2>LocalStorage Methods</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Working with LocalStorage</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="comment">// Set an item (string values only)</span>
+<span class="keyword">localStorage</span>.<span class="function">setItem</span>(<span class="string">'username'</span>, <span class="string">'Alice'</span>);
+<span class="keyword">localStorage</span>.<span class="function">setItem</span>(<span class="string">'age'</span>, <span class="string">'30'</span>);
+
+<span class="comment">// Get an item</span>
+<span class="keyword">const</span> username = <span class="keyword">localStorage</span>.<span class="function">getItem</span>(<span class="string">'username'</span>);
+<span class="keyword">console</span>.<span class="function">log</span>(username); <span class="comment">// 'Alice'</span>
+
+<span class="comment">// Check if key exists</span>
+<span class="keyword">if</span> (<span class="keyword">localStorage</span>.<span class="function">getItem</span>(<span class="string">'theme'</span>)) {
+  <span class="comment">// Theme exists</span>
+}
+
+<span class="comment">// Remove an item</span>
+<span class="keyword">localStorage</span>.<span class="function">removeItem</span>(<span class="string">'age'</span>);
+
+<span class="comment">// Clear all items</span>
+<span class="keyword">localStorage</span>.<span class="function">clear</span>();</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Storing Objects (Using JSON)</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Store Complex Data</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> user = {
+  name: <span class="string">'Alice'</span>,
+  email: <span class="string">'alice@example.com'</span>,
+  preferences: {
+    theme: <span class="string">'dark'</span>,
+    notifications: <span class="keyword">true</span>
+  }
+};
+
+<span class="comment">// Save object as JSON</span>
+<span class="keyword">localStorage</span>.<span class="function">setItem</span>(<span class="string">'user'</span>, <span class="keyword">JSON</span>.<span class="function">stringify</span>(user));
+
+<span class="comment">// Retrieve and parse object</span>
+<span class="keyword">const</span> savedUser = <span class="keyword">JSON</span>.<span class="function">parse</span>(<span class="keyword">localStorage</span>.<span class="function">getItem</span>(<span class="string">'user'</span>));
+<span class="keyword">console</span>.<span class="function">log</span>(savedUser.name); <span class="comment">// 'Alice'</span></code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Interactive Storage Demo</h2>
+                    <div class="preview-box">
+                        <div class="input-group">
+                            <label for="storageKey">Key:</label>
+                            <input type="text" id="storageKey" placeholder="e.g., username" />
+                        </div>
+                        <div class="input-group">
+                            <label for="storageValue">Value:</label>
+                            <input type="text" id="storageValue" placeholder="e.g., Alice" />
+                        </div>
+                        <div style="display: flex; gap: var(--space-md);">
+                            <button class="btn" onclick="saveToStorage()">Save</button>
+                            <button class="btn" onclick="loadFromStorage()">Load</button>
+                            <button class="btn btn-secondary" onclick="clearStorage()">Clear</button>
+                        </div>
+                        <div id="storageOutput" class="output-box" style="display: none; margin-top: var(--space-lg);">
+                            <div class="output-title">Storage Contents</div>
+                            <div class="output-content" id="storageOutputContent"></div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'error-handling',
+                title: 'Error Handling',
+                icon: 'fa-exclamation-triangle',
+                description: 'try, catch, finally - Handle and debug errors gracefully.',
+                content: `
+                    <div class="section-header">
+                        <h1>Error Handling in JavaScript</h1>
+                        <p class="section-description">Learn to catch, handle, and recover from errors gracefully.</p>
+                    </div>
+
+                    <h2>try, catch, finally</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Basic Error Handling</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">try</span> {
+  <span class="comment">// Code that might throw an error</span>
+  <span class="keyword">const</span> result = riskyFunction();
+  <span class="keyword">console</span>.<span class="function">log</span>(result);
+} <span class="keyword">catch</span> (error) {
+  <span class="comment">// Handle the error</span>
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Error caught:'</span>, error.message);
+} <span class="keyword">finally</span> {
+  <span class="comment">// Always executes, whether there's an error or not</span>
+  <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Cleanup completed'</span>);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Types of Errors</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-title">ReferenceError</div>
+                            <p>Using a variable that doesn't exist</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">console.log(undefinedVar);</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">TypeError</div>
+                            <p>Using wrong type or calling non-function</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">const x = 5; x.toUpperCase();</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">SyntaxError</div>
+                            <p>Malformed code structure</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">const x = {invalid syntax}</code>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">RangeError</div>
+                            <p>Value out of range</p>
+                            <code style="background-color: var(--gray-200); padding: 0.5rem; border-radius: 0.25rem; display: block;">const arr = new Array(-1);</code>
+                        </div>
+                    </div>
+
+                    <h2>Throwing Custom Errors</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Create and Throw Errors</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">function</span> <span class="function">validateAge</span>(age) {
+  <span class="keyword">if</span> (age < <span class="number">0</span>) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'Age cannot be negative'</span>);
+  }
+  <span class="keyword">if</span> (age > <span class="number">150</span>) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'Age seems invalid'</span>);
+  }
+  <span class="keyword">return</span> <span class="keyword">true</span>;
+}
+
+<span class="keyword">try</span> {
+  <span class="function">validateAge</span>(-<span class="number">5</span>);
+} <span class="keyword">catch</span> (error) {
+  <span class="keyword">console</span>.<span class="function">log</span>(error.message); <span class="comment">// Age cannot be negative</span>
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Error Properties</h2>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Inspecting Error Objects</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">try</span> {
+  <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'Something went wrong!'</span>);
+} <span class="keyword">catch</span> (error) {
+  <span class="keyword">console</span>.<span class="function">log</span>(error.name);     <span class="comment">// 'Error'</span>
+  <span class="keyword">console</span>.<span class="function">log</span>(error.message);  <span class="comment">// 'Something went wrong!'</span>
+  <span class="keyword">console</span>.<span class="function">log</span>(error.stack);    <span class="comment">// Full stack trace</span>
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Error Handling Interactive Demo</h2>
+                    <div class="preview-box">
+                        <div class="input-group">
+                            <label for="errorInput">Enter a number (1-100):</label>
+                            <input type="number" id="errorInput" placeholder="e.g., 50" />
+                            <button class="btn" onclick="testErrorHandling()">Test Error Handling</button>
+                        </div>
+                        <div id="errorOutput" class="output-box" style="display: none;">
+                            <div class="output-title">Output</div>
+                            <div class="output-content" id="errorOutputContent"></div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'projects',
+                title: 'Mini Projects & Examples',
+                icon: 'fa-project-diagram',
+                description: 'Build practical applications combining all concepts.',
+                content: `
+                    <div class="section-header">
+                        <h1>Mini Projects & Practical Examples</h1>
+                        <p class="section-description">Apply your JavaScript knowledge by building real-world projects.</p>
+                    </div>
+
+                    <h2>Project 1: Todo List Application</h2>
+                    <div class="card">
+                        <p><strong>Concepts:</strong> DOM manipulation, Events, LocalStorage, Array methods</p>
+                        <p><strong>Features:</strong> Add todos, mark complete, delete, persist with localStorage</p>
+                    </div>
+
+                    <div class="preview-box">
+                        <h3 style="margin-bottom: var(--space-md);">Interactive Todo List</h3>
+                        <div class="input-group">
+                            <input type="text" id="todoInput" placeholder="Add a new todo..." />
+                            <button class="btn" onclick="addTodo()">Add Todo</button>
+                        </div>
+                        <ul id="todoList" style="list-style: none; margin-top: var(--space-lg);">
+                            <!-- Todos will be added here -->
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Todo List Code Structure</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">class</span> <span class="function">TodoApp</span> {
+  <span class="function">constructor</span>() {
+    <span class="keyword">this</span>.todos = <span class="keyword">JSON</span>.<span class="function">parse</span>(
+      <span class="keyword">localStorage</span>.<span class="function">getItem</span>(<span class="string">'todos'</span>) || <span class="string">'[]'</span>
+    );
+  }
+
+  <span class="function">addTodo</span>(text) {
+    <span class="keyword">const</span> todo = { id: <span class="keyword">Date</span>.now(), text, done: <span class="keyword">false</span> };
+    <span class="keyword">this</span>.todos.<span class="function">push</span>(todo);
+    <span class="keyword">this</span>.<span class="function">save</span>();
+  }
+
+  <span class="function">toggleTodo</span>(id) {
+    <span class="keyword">const</span> todo = <span class="keyword">this</span>.todos.<span class="function">find</span>(t => t.id === id);
+    <span class="keyword">if</span> (todo) todo.done = !todo.done;
+    <span class="keyword">this</span>.<span class="function">save</span>();
+  }
+
+  <span class="function">deleteTodo</span>(id) {
+    <span class="keyword">this</span>.todos = <span class="keyword">this</span>.todos.<span class="function">filter</span>(t => t.id !== id);
+    <span class="keyword">this</span>.<span class="function">save</span>();
+  }
+
+  <span class="function">save</span>() {
+    <span class="keyword">localStorage</span>.<span class="function">setItem</span>(<span class="string">'todos'</span>, <span class="keyword">JSON</span>.<span class="function">stringify</span>(<span class="keyword">this</span>.todos));
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Project 2: Calculator</h2>
+                    <div class="card">
+                        <p><strong>Concepts:</strong> Event handling, String manipulation, Math operations</p>
+                        <p><strong>Features:</strong> Basic arithmetic, clear, responsive design</p>
+                    </div>
+
+                    <div class="preview-box">
+                        <h3 style="margin-bottom: var(--space-md);">Simple Calculator</h3>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; max-width: 250px;">
+                            <input type="text" id="calcDisplay" readonly style="grid-column: 1 / -1; padding: var(--space-md); text-align: right; font-size: 1.5rem;" />
+                            <button class="btn" onclick="appendToCalc('1')" style="width: 100%;">1</button>
+                            <button class="btn" onclick="appendToCalc('2')" style="width: 100%;">2</button>
+                            <button class="btn" onclick="appendToCalc('3')" style="width: 100%;">3</button>
+                            <button class="btn" onclick="appendToCalc('+')" style="width: 100%;">+</button>
+                            <button class="btn" onclick="appendToCalc('4')" style="width: 100%;">4</button>
+                            <button class="btn" onclick="appendToCalc('5')" style="width: 100%;">5</button>
+                            <button class="btn" onclick="appendToCalc('6')" style="width: 100%;">6</button>
+                            <button class="btn" onclick="appendToCalc('-')" style="width: 100%;">-</button>
+                            <button class="btn" onclick="appendToCalc('7')" style="width: 100%;">7</button>
+                            <button class="btn" onclick="appendToCalc('8')" style="width: 100%;">8</button>
+                            <button class="btn" onclick="appendToCalc('9')" style="width: 100%;">9</button>
+                            <button class="btn" onclick="appendToCalc('*')" style="width: 100%;">×</button>
+                            <button class="btn btn-secondary" onclick="clearCalc()" style="grid-column: 1 / 3; width: 100%;">C</button>
+                            <button class="btn" onclick="appendToCalc('/')" style="grid-column: 3; width: 100%;">÷</button>
+                            <button class="btn" onclick="calculateResult()" style="grid-column: 4; width: 100%;">=</button>
+                        </div>
+                    </div>
+
+                    <h2>Project 3: Weather Display (API Integration)</h2>
+                    <div class="card">
+                        <p><strong>Concepts:</strong> Fetch API, JSON, Async/await, Error handling</p>
+                        <p><strong>Features:</strong> Fetch real weather data, display formatted results</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Weather App Code</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">async</span> <span class="keyword">function</span> <span class="function">getWeather</span>(city) {
+  <span class="keyword">try</span> {
+    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="keyword">fetch</span>(
+      \`https://api.open-meteo.com/v1/forecast?latitude=0&longitude=0&current=temperature_2m\`
+    );
+    <span class="keyword">const</span> data = <span class="keyword">await</span> response.<span class="function">json</span>();
+    <span class="keyword">console</span>.<span class="function">log</span>(\`Weather in \${city}:\`, data);
+    <span class="keyword">return</span> data;
+  } <span class="keyword">catch</span> (error) {
+    <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Failed to fetch weather:'</span>, error);
+  }
+}
+
+<span class="keyword">const</span> weather = <span class="keyword">await</span> <span class="function">getWeather</span>(<span class="string">'New York'</span>);</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Best Practices for Projects</h2>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-title">Code Organization</div>
+                            <p>Separate concerns into functions and classes. Keep functions small and focused.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Error Handling</div>
+                            <p>Always wrap async operations in try-catch. Validate user input.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Performance</div>
+                            <p>Use efficient selectors, debounce events, minimize DOM manipulation.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Testing</div>
+                            <p>Test edge cases, empty states, and error scenarios regularly.</p>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // ========================================
+        // INITIALIZATION & DOM RENDERING
+        // ========================================
+        function initializePlatform() {
+            renderTopicList();
+            setupEventListeners();
+            loadTheme();
+            displayTopic('intro');
+        }
+
+        function renderTopicList() {
+            const topicList = document.getElementById('topicList');
+            topicList.innerHTML = topics.map((topic, index) => `
+                <button class="topic-item ${index === 0 ? 'active' : ''}" onclick="displayTopic('${topic.id}')">
+                    <span class="topic-number">${index + 1}</span>
+                    <span>${topic.title}</span>
+                </button>
+            `).join('');
+        }
+
+        function displayTopic(topicId) {
+            const topic = topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            // Update sidebar highlighting
+            document.querySelectorAll('.topic-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.topic-item').classList.add('active');
+
+            // Close sidebar on mobile after selection
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('active');
+                document.getElementById('navToggle').innerHTML = '<i class="fas fa-times"></i>';
+            }
+
+            // Display content with fade-in animation
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = `<div class="topic-section active">${topic.content}</div>`;
+        }
+
+        function setupEventListeners() {
+            const sidebar = document.getElementById('sidebar');
+            const navToggle = document.getElementById('navToggle');
+            const navToggleOpen = document.getElementById('navToggleOpen');
+            const themeToggle = document.getElementById('themeToggle');
+
+            // Mobile menu toggle
+            navToggleOpen.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                navToggle.innerHTML = sidebar.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            navToggle.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                navToggleOpen.click();
+            });
+
+            // Theme toggle
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            });
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !navToggleOpen.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeToggle(theme);
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+        }
+
+        function updateThemeToggle(theme) {
+            const toggle = document.getElementById('themeToggle');
+            const circle = toggle.querySelector('.theme-toggle-circle');
+            
+            if (theme === 'dark') {
+                toggle.classList.add('dark');
+                circle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                toggle.classList.remove('dark');
+                circle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // ========================================
+        // UTILITY FUNCTIONS
+        // ========================================
+        function copyCode(button) {
+            const codeContent = button.closest('.code-block').querySelector('code').textContent;
+            navigator.clipboard.writeText(codeContent).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+
+        // ========================================
+        // INTERACTIVE EXAMPLES
+        // ========================================
+        function testVariable() {
+            const input = document.getElementById('varTest').value;
+            const output = document.getElementById('varOutput');
+            const content = document.getElementById('varOutputContent');
+
+            if (!input.trim()) {
+                content.textContent = 'Please enter a variable name';
+                output.style.display = 'block';
+                return;
+            }
+
+            const isValid = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(input);
+            content.textContent = isValid ? 
+                `✓ "${input}" is a valid variable name` : 
+                `✗ "${input}" is NOT a valid variable name (must start with letter, _, or $)`;
+            output.style.display = 'block';
+        }
+
+        function checkType() {
+            const input = document.getElementById('typeInput').value;
+            const output = document.getElementById('typeOutput');
+            const content = document.getElementById('typeOutputContent');
+
+            try {
+                const value = eval(input);
+                const type = typeof value;
+                content.textContent = `Value: ${value}\nType: ${type}`;
+                output.style.display = 'block';
+            } catch (e) {
+                content.textContent = `Error: ${e.message}`;
+                output.style.display = 'block';
+            }
+        }
+
+        function calculateGrade() {
+            const score = parseInt(document.getElementById('gradeInput').value);
+            const output = document.getElementById('gradeOutput');
+            const content = document.getElementById('gradeOutputContent');
+
+            if (isNaN(score) || score < 0 || score > 100) {
+                content.textContent = 'Please enter a valid score (0-100)';
+                output.style.display = 'block';
+                return;
+            }
+
+            let grade, message;
+            if (score >= 90) {
+                grade = 'A';
+                message = 'Excellent!';
+            } else if (score >= 80) {
+                grade = 'B';
+                message = 'Good job!';
+            } else if (score >= 70) {
+                grade = 'C';
+                message = 'Satisfactory';
+            } else if (score >= 60) {
+                grade = 'D';
+                message = 'Passing';
+            } else {
+                grade = 'F';
+                message = 'Failing';
+            }
+
+            content.textContent = `Score: ${score}\nGrade: ${grade}\n${message}`;
+            output.style.display = 'block';
+        }
+
+        function validateJSON() {
+            const input = document.getElementById('jsonInput').value;
+            const output = document.getElementById('jsonOutput');
+            const content = document.getElementById('jsonOutputContent');
+
+            try {
+                const parsed = JSON.parse(input);
+                const pretty = JSON.stringify(parsed, null, 2);
+                content.textContent = `✓ Valid JSON!\n\n${pretty}`;
+                output.style.display = 'block';
+            } catch (e) {
+                content.textContent = `✗ Invalid JSON!\nError: ${e.message}`;
+                output.style.display = 'block';
+            }
+        }
+
+        function interactiveDemo() {
+            const output = document.getElementById('demoOutput');
+            const content = document.getElementById('demoOutputContent');
+            
+            const messages = [
+                'Button clicked! 🎉',
+                'You\'re learning JavaScript! 🚀',
+                'DOM manipulation works! ✨',
+                'Events are powerful! ⚡'
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            content.textContent = randomMessage;
+            output.style.display = 'block';
+        }
+
+        function saveToStorage() {
+            const key = document.getElementById('storageKey').value;
+            const value = document.getElementById('storageValue').value;
+
+            if (!key.trim() || !value.trim()) {
+                alert('Please enter both key and value');
+                return;
+            }
+
+            localStorage.setItem(key, value);
+            displayStorageContents();
+        }
+
+        function loadFromStorage() {
+            const key = document.getElementById('storageKey').value;
+            
+            if (!key.trim()) {
+                alert('Please enter a key');
+                return;
+            }
+
+            const value = localStorage.getItem(key);
+            if (value) {
+                document.getElementById('storageValue').value = value;
+                displayStorageContents();
+            } else {
+                alert('Key not found in storage');
+            }
+        }
+
+        function clearStorage() {
+            if (confirm('Are you sure you want to clear all storage?')) {
+                localStorage.clear();
+                document.getElementById('storageKey').value = '';
+                document.getElementById('storageValue').value = '';
+                displayStorageContents();
+            }
+        }
+
+        function displayStorageContents() {
+            const output = document.getElementById('storageOutput');
+            const content = document.getElementById('storageOutputContent');
+            
+            let storageText = '';
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                storageText += `${key}: ${value}\n`;
+            }
+
+            content.textContent = storageText || 'Storage is empty';
+            output.style.display = 'block';
+        }
+
+        function testErrorHandling() {
+            const input = parseInt(document.getElementById('errorInput').value);
+            const output = document.getElementById('errorOutput');
+            const content = document.getElementById('errorOutputContent');
+
+            try {
+                if (isNaN(input)) {
+                    throw new Error('Input must be a number');
+                }
+                if (input < 1 || input > 100) {
+                    throw new RangeError('Number must be between 1 and 100');
+                }
+                
+                const result = `✓ Valid input: ${input}\nSquare: ${input * input}`;
+                content.textContent = result;
+            } catch (error) {
+                content.textContent = `✗ Error: ${error.message}\nType: ${error.constructor.name}`;
+            } finally {
+                output.style.display = 'block';
+            }
+        }
+
+        // ========================================
+        // TODO LIST PROJECT
+        // ========================================
+        let todos = JSON.parse(localStorage.getItem('todos') || '[]');
+
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+
+            if (!text) {
+                alert('Please enter a todo');
+                return;
+            }
+
+            const todo = {
+                id: Date.now(),
+                text: text,
+                done: false
+            };
+
+            todos.push(todo);
+            saveTodos();
+            renderTodos();
+            input.value = '';
+        }
+
+        function toggleTodo(id) {
+            const todo = todos.find(t => t.id === id);
+            if (todo) {
+                todo.done = !todo.done;
+                saveTodos();
+                renderTodos();
+            }
+        }
+
+        function deleteTodo(id) {
+            todos = todos.filter(t => t.id !== id);
+            saveTodos();
+            renderTodos();
+        }
+
+        function saveTodos() {
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+
+        function renderTodos() {
+            const list = document.getElementById('todoList');
+            if (!list) return;
+
+            list.innerHTML = todos.map(todo => `
+                <li style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background-color: var(--bg-secondary); border-radius: var(--radius-md); margin-bottom: var(--space-sm);">
+                    <input type="checkbox" ${todo.done ? 'checked' : ''} onchange="toggleTodo(${todo.id})" style="width: 20px; height: 20px; cursor: pointer;" />
+                    <span style="flex: 1; ${todo.done ? 'text-decoration: line-through; color: var(--text-secondary);' : ''}">${todo.text}</span>
+                    <button class="btn btn-small" onclick="deleteTodo(${todo.id})">Delete</button>
+                </li>
+            `).join('');
+        }
+
+        // ========================================
+        // CALCULATOR PROJECT
+        // ========================================
+        let calcDisplay = '';
+
+        function appendToCalc(value) {
+            const display = document.getElementById('calcDisplay');
+            if (!display) return;
+
+            calcDisplay += value;
+            display.value = calcDisplay;
+        }
+
+        function clearCalc() {
+            const display = document.getElementById('calcDisplay');
+            if (!display) return;
+
+            calcDisplay = '';
+            display.value = '';
+        }
+
+        function calculateResult() {
+            const display = document.getElementById('calcDisplay');
+            if (!display) return;
+
+            try {
+                calcDisplay = eval(calcDisplay).toString();
+                display.value = calcDisplay;
+            } catch (e) {
+                display.value = 'Error';
+                calcDisplay = '';
+            }
+        }
+
+        // ========================================
+        // INITIALIZE ON PAGE LOAD
+        // ========================================
+        document.addEventListener('DOMContentLoaded', initializePlatform);
+    </script>
+</body>
+</html>

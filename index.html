@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" href="./assets/clogo.svg" type="image/svg">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bangla&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="icon" href="./assets/1.png" type="image/png">
 
 </head>
 <body>
@@ -44,8 +48,8 @@
                         <li><a href="#HOME" data-target="HOME" class="active">HOME</a></li>
                         <li><a href="#ABOUT" data-target="ABOUT">ABOUT</a></li>
                         <li><a href="#SERVICES" data-target="SERVICES">SERVICES</a></li>
-                        <li><a href="#PORTFOLIO" data-target="PORTFOLIO">PORTFOLIO</a></li>
-                        <li><a href="#PAGES" data-target="PAGES">PAGES</a></li>
+                        <li><a href="#poem" data-target="poem">poetry</a></li>
+                        <li><a href="./GALLERY/main.html" data-target="gallery" target="_blank">Gallery</a></li>
                     </ul>
                 </nav>
 
@@ -96,10 +100,9 @@
                 })();
                 </script>
                 <div class="header-right">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search">
-                    </div>
+                    <div class="search-container" id="searchBox"><i class="fas fa-search search-icon"></i><input type="text" class="search-input" placeholder="Search..."></div><style>.search-container{position:relative;width:220px;transition:all 0.3s ease;}.search-input{width:100%;padding:8px 35px 8px 35px;border:none;border-radius:40px;outline:none;background:rgba(255,255,255,0.1);color:#fff;font-size:14px;transition:all 0.3s ease-in-out;}.search-input::placeholder{color:rgba(255,255,255,0.6);}.search-input:focus{background:rgba(255,255,255,0.2);box-shadow:0 0 8px rgba(255,255,255,0.3);}.search-icon{position:absolute;top:50%;left:12px;transform:translateY(-50%);font-size:14px;color:#fff;transition:all 0.4s ease;pointer-events:none;}.search-container.active .search-icon{left:calc(100% - 28px);color:#2bff00;transform:translateY(-50%) rotate(360deg);}@media(max-width:480px){.search-container{width:80%;max-width:260px;}}</style><script>const searchContainer=document.getElementById('searchBox');const input=searchContainer.querySelector('.search-input');input.addEventListener('focus',()=>{searchContainer.classList.add('active');});input.addEventListener('blur',()=>{if(input.value.trim()===''){searchContainer.classList.remove('active');}});</script>
+
+
                     <div class="menu-dots" class="open-btn" onclick="toggleSidebar()">
                         <div class="dots-grid">
                             <span></span><span></span><span></span>
@@ -126,7 +129,7 @@
                     <a href="#HOME" class="btn-primary">GETTING STARTED</a>
                 </div>
                 <div class="hero-image">
-                    <img src="./assets/image.png" alt="Professional man">
+                    <img src="./assets/image.png" alt="Professional man" onclick="openPopup(this.src)" style="cursor:pointer;">
                 </div>
             </div>
         </div>
@@ -136,28 +139,44 @@
         </div>
     </section>
      <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <span class="close-btn" onclick="toggleSidebar()">&times;</span>
-    <h2 style="color:#00ff66;">Roton</h2>
-    <p>Discover the world of programming with easy-to-follow tutorials and real-life examples. Whether you're a beginner or looking to sharpen your skills, you'll find step-by-step guides on HTML, CSS, JavaScript, Python, and C. Unlock your creativity, build amazing projects, and turn your ideas into reality—one tutorial at a time!</p><br>
-    <h2 style="color:#00ff66;">Course</h2>
-    <div class="social">
-      <a href="./HTML/html-tutorial.html" target="_blank"><i class="fa-brands fa-html5"></i></a>
-      <a href="#"><i class="fa-brands fa-css3"></i></a>
-      <a href="#"><i class="fa-brands fa-js"></i></a>
-      <a href="#"><i class="fa-brands fa-python"></i></a>
-      <a href="#"><i class="fa-solid fa-c"></i></a>
-    </div><br>
-    <h2 style="color:#00ff66;">Social</h2>
-    <div class="social">
-      <a href="https://www.facebook.com/Roton595" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://x.com/Roton595"><i class="fab fa-twitter" target="_blank"></i></a>
-      <a href="https://www.tiktok.com/@paradoxical_roton" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-      <a href="https://www.instagram.com/paradoxical_roton/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://github.com/Rotonvai" target="_blank"><i class="fab fa-github"></i></a>
-      
-    </div>
+  <!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+  
+  <h2>Roton</h2>
+  <p>Discover the world of programming with easy-to-follow tutorials and real-life examples. Whether you're a beginner or looking to sharpen your skills, you'll find step-by-step guides on HTML, CSS, JavaScript, Python, and C. Unlock your creativity, build amazing projects, and turn your ideas into reality—one tutorial at a time!</p>
+
+  <h2>Course</h2>
+  <div class="social">
+    <a href="./HTML/index.html" target="_blank"><i class="fa-brands fa-html5"></i></a>
+    <a href="./CSS/index.html" target="_blank"><i class="fa-brands fa-css3"></i></a>
+    <a href="./JavaScript/index.html" target="_blank"><i class="fa-brands fa-js"></i></a>
+    <a href="./Python/index.html" target="_blank"><i class="fa-brands fa-python"></i></a>
+    <a href="./C/index.html" target="_blank"><i class="fa-solid fa-c"></i></a>
   </div>
+
+  <h2>Social</h2>
+  <div class="social">
+    <a href="https://www.facebook.com/Roton595" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/Roton595" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.tiktok.com/@paradoxical_roton" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="https://www.instagram.com/paradoxical_roton/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://github.com/Rotonvai" target="_blank"><i class="fab fa-github"></i></a>
+  </div>
+
+  <h2>Achievement</h2>
+  <div class="social">
+    <img src="./certificate/certificate1.png" alt="Certificate 1" onclick="openPopup(this.src)">
+    <img src="./certificate/certificate2.png" alt="Certificate 2" onclick="openPopup(this.src)">
+    <img src="./certificate/certificate3.jpg" alt="Certificate 3" onclick="openPopup(this.src)">
+  </div>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <span class="close-popup" onclick="closePopup()">&times;</span>
+  <img id="popupImage" src="" alt="Certificate">
+</div>
 
 
     <!-- Video Section -->
@@ -165,7 +184,7 @@
         <div class="container">
             <div class="video-content">
                 <div class="video-wrapper">
-                    <img src="./assets/IMG_3940.JPG" alt="Businessman">   
+                    <img src="./assets/IMG_3753.JPG" alt="Businessman" onclick="openPopup(this.src)" style="cursor:pointer;">   
                 </div>
                 <div class="video-text">
                     <h2>FAILURE IS THE CONDIMENT THAT GIVES <span class="green">SUCCESS</span></h2>
@@ -272,42 +291,230 @@
             </div>
         </div>
     </section>
+    <section id="poem"> <pre>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio-section" id="#PAGES">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">WORKING PROCESS</span>
-                <h2>LASTET WORKING <span class="green">PROJECT</span></h2>
-                <p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Sed Ratione Reprehenderit</p>
-            </div>
-            
-            <!-- <div class="portfolio-grid">
-                <div class="portfolio-item">
-                   <a href="https://rotonvai.github.io/learnn5bd/" target="_blank"><img src="https://www.pactranz.com/cms3/wp-content/uploads/2018/10/Japanese-language-300x170.png" alt="Portfolio Item 1"></a>
-                </div>
-                <div class="portfolio-item">
-                   <a href="https://rotonvai.github.io/Durgapur-City-Bank/" target="_blank">  <img src="https://img.freepik.com/premium-vector/banking-conceptual-logo-unique-vector-symbol-banking-system_570429-35827.jpg?semt=ais_incoming&w=740&q=80" alt="Portfolio Item 2"></a>
-                </div>
-               
-                <div class="portfolio-item" >
-                   <a href="https://rotonvai.github.io/x-search-engine/" target="_blank"> <img src="https://sitechecker.pro/wp-content/uploads/2017/12/search-engines.png" alt="Portfolio Item 4"></a>
-                </div>
-            </div> -->
-            
-            <div class="portfolio-nav">
-                <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
-            </div>
+
+    </pre>
+   <h2 style="text-align: center; white-space: nowrap; font-size: 38px; font-family: 'Kalpurush', sans-serif;">
+      আমার  <span style="color: red;">সাহিত্য</span>
+    </h2> <pre>
+
+    </pre>
+
+   <div class="poem-text">
+  জীবনের প্রতিটি ক্ষণ একেকটা কবিতা, যেখানে ব্যথা, স্বপ্ন আর ভালোবাসা মিশে রঙ ছড়ায় অস্তগামী সূর্যের আলোয়।
+</div>
+
+<style>
+.poem-text {
+  text-align: center;
+  white-space: nowrap;
+  font-family: 'Kalpurush', sans-serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Mobile view font-size adjust */
+@media (max-width: 780px) {
+  .poem-text {
+    font-size: 20px;
+    white-space: normal; /* যাতে মোবাইলে টেক্সট লাইন ব্রেক নিতে পারে */
+  }
+}
+</style>
+
+
+
+  <style>
+    /* Responsive 6-card grid: 3 / 2 / 1 columns */
+    .poem-cards {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      justify-items: stretch;
+      
+    }
+
+    @media (max-width: 900px) {
+      .poem-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .poem-cards { grid-template-columns: 1fr; padding: 16px; gap: 18px; }
+    }
+
+    .poem-card {
+      background: rgba(255,255,255,0.03); /* subtle card bg to match dark themes */
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 360px; /* ensures uniform card heights */
+      box-shadow: 0 6px 18px rgba(5,8,15,0.35);
+      transition: transform .18s ease, box-shadow .18s ease;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .poem-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(5,8,15,0.45);
+    }
+
+    .poem-card__media {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: #222;
+    }
+
+    /* Content area grows so footers align at bottom */
+    .poem-card__body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1 1 auto;
+    }
+
+    .poem-card__category {
+      font-size: 12px;
+      letter-spacing: .6px;
+      color: #00ff66;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .poem-card__title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.15;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .poem-card__excerpt {
+      color: #cfcfcf;
+      font-size: 14px;
+      line-height: 1.45;
+      margin: 0;
+      flex: 1 1 auto;
+    }
+
+    .poem-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      color: #9aa0a6;
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.02);
+      padding-top: 12px;
+    }
+
+    /* Keep buttons or links subtle */
+    .poem-card__read {
+      color: #00ff66;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+    }
+  </style>
+
+  <div class="poem-cards" role="list">
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&q=60&auto=format&fit=crop" alt="poem image 1">
+      <div class="poem-card__body">
+        <div class="poem-card__category">কবিতা</div>
+        <h3 class="poem-card__title">তোমার জন্য</h3>
+        <p class="poem-card__excerpt">তোমার জন্য দাঁড়িয়ে ছিলাম বলে ---
+        মেঘ বলেছে খানিক আঁধার ঢেলেও</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/তোমার জন্য.html" aria-label="Read more: তোমার জন্য">Read</a>
         </div>
-    </section>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=60&auto=format&fit=crop" alt="poem image 2">
+      <div class="poem-card__body">
+        <div class="poem-card__category">কবিতা</div>
+        <h3 class="poem-card__title">কল্পকথার গল্প</h3>
+        <p class="poem-card__excerpt">তোমাকে দেখিনাই কল্পনায় দেখি, তোমার উক্তি হৃদয়ে মাখি ।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/কল্পকথার গল্প.html" aria-label="Read more: কল্পকথার গল্প">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://images.unsplash.com/photo-1473186505569-9c61870c11f9?w=1200&q=60&auto=format&fit=crop" alt="poem image 3">
+      <div class="poem-card__body">
+        <div class="poem-card__category">কবিতা</div>
+        <h3 class="poem-card__title">অপেক্ষার প্রহর</h3>
+        <p class="poem-card__excerpt">তোমার জন্য কবিতার মহিমায়--- জগৎ আমার স্নিগ্ধ বাতাসের কোলাহল।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/অপেক্ষার প্রহর.html" aria-label="Read more: অপেক্ষার প্রহর">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://www.nhm.ac.uk/content/dam/nhm-www/discover/what-is-space/what-is-space-milky-way-full-width.jpg" alt="poem image 4">
+      <div class="poem-card__body">
+        <div class="poem-card__category">কবিতা</div>
+        <h3 class="poem-card__title">মহাকাশের নিঃস্তব্ধতা</h3>
+        <p class="poem-card__excerpt">তারাদের ভিড়ে খুঁজে পাই সে একা, মহাকাশের নিস্তব্ধতা, তার হৃদয়ের ভাষা---</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/মহাকাশের নিস্তব্ধতা.html" aria-label="Read more: মহাকাশের নিস্তব্ধতা">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=60&auto=format&fit=crop" alt="poem image 5">
+      <div class="poem-card__body">
+        <div class="poem-card__category">কবিতা</div>
+        <h3 class="poem-card__title">মরীচিকার প্রেম</h3>
+        <p class="poem-card__excerpt">মরীচিকার প্রেমে মগ্ন হৃদয়-- কম্পাসে থাকে না চোখ;</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/মরীচিকার প্রেম.html" aria-label="Read more: মরীচিকার প্রেম">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://images.pexels.com/photos/1407278/pexels-photo-1407278.jpeg?cs=srgb&dl=pexels-mccutcheon-1407278.jpg&fm=jpg" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">কবিতা</div>
+        <h3 class="poem-card__title">ধ্বংসের তীরে</h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+  </div>
+  </section>
+     
 
      <!-- Newsletter Section -->
   <div class="newsletter-section">
     <div class="label">Newsletter</div>
     <h2>STAY UP TO DATE, SUBSCRIBE<br>TO THE FREE <span>NEWSLETTER</span> !</h2>
     <form class="subscribe-form">
-      <input type="email" placeholder="Enter Your Email.." class="email-input" />
+      <!-- <input type="email" placeholder="Enter Your Email.." class="email-input" /> -->
       <!-- <button type="button" class="t-icon">t</button> -->
       <button type="submit" class="subscribe-btn">
         Subscribe
@@ -347,7 +554,7 @@
     <a href="#ABOUT">ABOUT ME</a>
     <a href="#">CAREER</a>
     <a href="#">BLOG</a>
-    <a href="#">GALLERY</a>
+    <a href="./GALLERY/main.html" target="_blank">GALLERY</a>
      <a href="tel:+8801975506870" class="contact-btn" aria-label="Call +1 (555) 123-4567" onmouseover="this.style.color='while'" onmouseout="this.style.color='while'">Contact Us</a>
   </div>
 
@@ -365,8 +572,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
-
-
-

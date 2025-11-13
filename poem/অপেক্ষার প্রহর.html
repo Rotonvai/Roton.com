@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
+    <title>অপেক্ষার প্রহর</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Kalpurush', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #000000 0%, #434343 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+        }
+        
+        .back-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #cac9c9, #efcfa0);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .poem-section {
+            margin-bottom: 30px;
+        }
+        
+        .poem-section p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        
+        .note {
+            font-size: 0.9rem;
+            color: #ccc;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #555;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .back-button {
+                top: 15px;
+                left: 15px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .back-button svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="goBack()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            
+        </button>
+        
+        <header class="header">
+            <h1>অপেক্ষার প্রহর</h1>
+            <h2>তবুও হৃদয়ে তোমার ছায়া।</h2>
+            <h3>-- মোঃ মাহফুজুর রহমান রতন --</h3>
+        </header>
+        
+        <div class="content">
+            <div class="poem-section">
+
+                <div style="display: grid; align-items: center; justify-content: center;  font-size:20px;">
+                    <p style="margin:0;">
+                        তোমার জন্য কবিতার মহিমায়---<br>
+                        জগৎ আমার স্নিগ্ধ বাতাসের কোলাহল।<br>
+                        নদীর ঢেউ এর মতো বলো হে কন্যা,<br>
+                        কবে হবে আবার আষাঢ়ী বন্যা?
+                    </p>
+                </div><br>
+
+                <div style="display: grid; align-items: center; justify-content: center; font-size:20px;">
+                    <p style="margin:0;"></p>
+                        দেখবো না আর কভু তোমায়,<br>
+                        দেখেলে ও এর না দেখে---<br>
+                        অপেক্ষার প্রহর শেষ হলো আজ!<br>
+                        জীবনের সেই প্রান্তে দাঁড়িয়ে।
+                    </p>
+                </div>
+                
+                
+                <div class="note">
+                    Writing Date:  April 2, 2024
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            // This will take the user to the previous page in their browsing history
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

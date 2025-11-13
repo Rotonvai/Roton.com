@@ -4,6 +4,20 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00d563;
+    border-radius: 4px;
+}
+
+::selection {
+    background-color: pink;
+    color: purple;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #1a1a1a;
@@ -20,6 +34,7 @@ body {
 .green {
     color: #00d563;
 }
+
 
 /* Top Bar */
 .top-bar {
@@ -487,6 +502,8 @@ body {
 
 .service-item:hover {
     transform: translateY(-10px);
+    color: #000000;
+    background-color: #00cc4c;
 }
 
 .service-icon {
@@ -520,8 +537,12 @@ body {
 }
 
 .service-item p {
-    color: #cccccc;
+    color: #ffffff;
     line-height: 1.6;
+}
+
+.service-item p:hover {
+    color: #000000;
 }
 
 .service-item.featured p {
@@ -617,57 +638,116 @@ body {
 
 /* Sidebar */
     .sidebar {
-      position: fixed;
-      top: 0;
-      right: -400px;
-      width: 350px;
-      height: 100%;
-      background: #111;
-      padding: 30px;
-      transition: 0.3s;
-      z-index: 2000;
-    }
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    height: 100%;
+    background: #111;
+    padding: 30px;
+    transition: 0.3s;
+    z-index: 2000;
+    overflow-y: auto;
+  }
 
-    .sidebar.active {
-      right: 0;
-    }
+  .sidebar.active {
+    right: 0;
+  }
 
-    .sidebar .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 20px;
-      cursor: pointer;
-    }
+  .sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar::-webkit-scrollbar-thumb {
+    background: #00ff66;
+    border-radius: 10px;
+  }
 
-    .sidebar p {
-      margin-top: 30px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #ccc;
-    }
+  .sidebar .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #fff;
+  }
 
-    .sidebar .social {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-    }
+  .sidebar h2 {
+    color: #00ff66;
+    margin-top: 40px;
+  }
 
-    .sidebar .social a {
-      color: #fff;
-      font-size: 18px;
-      border: 1px solid #fff;
-      padding: 8px 10px;
-      border-radius: 4px;
-      transition: 0.3s;
-    }
+  .sidebar p {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+  }
 
-    .sidebar .social a:hover {
-      background: #00ff66;
-      color: #000;
-      border-color: #00ff66;
-    }
+  .sidebar .social {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 
+  .sidebar .social a {
+    color: #fff;
+    font-size: 20px;
+    border: 1px solid #fff;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+  }
+
+  .sidebar .social a:hover {
+    background: #00ff66;
+    color: #000;
+    border-color: #00ff66;
+  }
+
+  /* Certificate images */
+  .sidebar .social img {
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.3s;
+  }
+
+  .sidebar .social img:hover {
+    transform: scale(1.05);
+  }
+
+  /* === Popup overlay === */
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup img {
+    width: 60%;
+    max-width: 700px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.8);
+  }
+
+  .popup .close-popup {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+  }
     /* Sidebar Trigger Button */
     .open-btn {
       position: fixed;
@@ -842,4 +922,97 @@ body {
     }
 
 
-    
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-items: center;
+  align-items: start;
+  max-width: 1300px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 380px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 18px 20px;
+}
+
+.category {
+  font-size: 15px;
+  color: #444;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.text {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+    .one-line {
+    display: block;
+    text-align: center;        /* মাঝখানে দেখাবে */
+    white-space: nowrap;       /* এক লাইনে রাখবে — line-break হবে না */
+    overflow: hidden;          /* অতিরিক্ত টেক্সট কাটা লাগলে চেইফ হবে */
+    text-overflow: ellipsis;   /* প্রয়োজন হলে ... দেখাবে */
+    font-family: "Noto Sans Bengali", "SolaimanLipi", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(0,0,0,0.03));
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: inline-block;     /* centered container width fits content */
+    max-width: 100%;
+  }
+
+  .highlight {
+    color: #c62828;            /* লাল রঙ — বদলাতে পারো */
+    font-weight: 600;
+  }
+
+  /* ছোট পর্দায় অটোম্যাটিকly ফিট করতে চাইলে শব্দ ভেঙে দিতে চাইলে নিচটা আনকমেন্ট করো */
+  /* @media (max-width:420px){ .one-line{ white-space: normal; } } */

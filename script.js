@@ -164,4 +164,18 @@ function toggleSidebar() {
   });
 
 
+    function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  function openPopup(src) {
+    document.getElementById("popupImage").src = src;
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+
   

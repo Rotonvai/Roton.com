@@ -1,0 +1,49 @@
+/* ============================================================================
+   Dark Mode Theme - Default Stylesheet
+   ============================================================================
+   This file provides dark mode color overrides when data-theme="dark"
+   Dark mode is the default theme.
+   ========================================================================== */
+
+body[data-theme="dark"] {
+  --color-primary: #0ea5e9;
+  --color-primary-dark: #0284c7;
+  --color-primary-light: #38bdf8;
+
+  --color-secondary: #1e293b;
+  --color-surface: #0f172a;
+  --color-background: #000814;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  --color-border: #334155;
+}
+
+body[data-theme="dark"] code {
+  background-color: var(--color-secondary);
+  color: var(--color-primary-light);
+}
+
+body[data-theme="dark"] a {
+  color: var(--color-primary);
+}
+
+body[data-theme="dark"] a:hover {
+  color: var(--color-primary-light);
+}
+
+body[data-theme="dark"] .code-input {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+body[data-theme="dark"] .preview-frame {
+  background-color: white;
+  color: black;
+}
+
+body[data-theme="dark"] .topic-card:hover {
+  background-color: rgba(14, 165, 233, 0.05);
+}

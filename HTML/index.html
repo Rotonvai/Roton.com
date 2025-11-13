@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags for Responsiveness and SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn HTML5 from beginner to advanced">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Learn HTML5</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/light-mode.css">
+    <link rel="stylesheet" href="styles/dark-mode.css">
+</head>
+<body data-theme="dark">
+    <!-- Skip to Main Content Link for Accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <!-- Theme Toggle Button (Fixed Position) -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">
+        <svg class="theme-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+            <!-- Logo Section -->
+            <div class="sidebar-logo">
+                <div class="logo-icon">&lt;/&gt;</div>
+                <span class="logo-text">Alfaaa Academy</span> 
+            </div>
+
+            <!-- Navigation Toggle Button (Mobile) -->
+            <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" data-page="home">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 11.5L12 4l9 7.5"></path>
+                                    <path d="M5 10v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M9 21V12h6v9"></path>
+                                </svg>
+                            </span>
+                            <span class="nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-section-title">Core Concepts</li>
+                    <li class="nav-item">
+                        <a href="#intro" class="nav-link" data-page="intro">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                            </span>
+                            <span class="nav-text">Introduction to HTML</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#structure" class="nav-link" data-page="structure">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                                    <!-- building outline -->
+                                    <rect x="2" y="3" width="20" height="18" rx="2" fill="none"></rect>
+                                    <!-- floor divider -->
+                                    <path d="M2 10h20" fill="none"></path>
+                                    <!-- windows (filled for contrast) -->
+                                    <rect x="5.5" y="6.5" width="3" height="3" fill="currentColor" stroke="none"></rect>
+                                    <rect x="10.5" y="6.5" width="3" height="3" fill="currentColor" stroke="none"></rect>
+                                    <rect x="15.5" y="6.5" width="3" height="3" fill="currentColor" stroke="none"></rect>
+
+                                    <rect x="5.5" y="11.5" width="3" height="3" fill="currentColor" stroke="none"></rect>
+                                    <rect x="10.5" y="11.5" width="3" height="3" fill="currentColor" stroke="none"></rect>
+                                    <rect x="15.5" y="11.5" width="3" height="3" fill="currentColor" stroke="none"></rect>
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">Basic Structure</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#headings" class="nav-link" data-page="headings">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                                    <!-- Heading (H) -->
+                                    <path d="M3 4v16" />
+                                    <path d="M11 4v16" />
+                                    <path d="M3 12h8" />
+                                    <!-- Paragraph (lines) -->
+                                    <path d="M16 7h5" />
+                                    <path d="M16 11h5" />
+                                    <path d="M16 15h5" />
+                                    <path d="M16 19h5" />
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">Headings & Paragraphs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#links" class="nav-link" data-page="links">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                </svg>
+                            </span>
+                            <span class="nav-text">Links</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#images" class="nav-link" data-page="images">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                                    <!-- picture frame -->
+                                    <rect x="2.5" y="3" width="19" height="17" rx="2"></rect>
+                                    <!-- sun / highlight -->
+                                    <circle cx="8" cy="8" r="1.6" fill="currentColor" stroke="none"></circle>
+                                    <!-- mountains / landscape -->
+                                    <path d="M21 18l-6-6-5 5-3-3" fill="none"></path>
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">Images</span>
+                        </a>
+                    </li>
+                    <li class="nav-section-title">Content Structure</li>
+                    <li class="nav-item">
+                        <a href="#lists" class="nav-link" data-page="lists">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">Lists</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tables" class="nav-link" data-page="tables">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    <line x1="3" y1="9" x2="21" y2="9" />
+                                    <line x1="3" y1="15" x2="21" y2="15" />
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">Tables</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#forms" class="nav-link" data-page="forms">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 3h18v18H3V3z" fill="none"></path>
+                                    <path d="M3 3l18 18" stroke="currentColor"></path>
+                                    <path d="M8 3v18" stroke="currentColor"></path>
+                                    <path d="M16 3v18" stroke="currentColor"></path>
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">Forms</span>
+                        </a>
+                    </li>
+                    <li class="nav-section-title">Advanced Topics</li>
+                    <li class="nav-item">
+                        <a href="#semantic" class="nav-link" data-page="semantic">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 4v16h18V4H3z" />
+                                    <path d="M3 4l9 7 9-7" />
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">Semantic Tags</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#media" class="nav-link" data-page="media">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 3h18v18H3V3z" /> <!-- Rectangle for video -->
+                                    <path d="M8 5v14l11-7z" /> <!-- Play button -->
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">Audio & Video</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#html5" class="nav-link" data-page="html5">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 22h20L12 2z" />
+                                </svg>
+                            </span></span>
+                            <span class="nav-text">HTML5 Elements</span>
+                        </a>
+                    </li>
+                    <li class="nav-section-title">Practice & Assessment</li>
+                    <li class="nav-item">
+                        <a href="#examples" class="nav-link" data-page="examples">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" /> <!-- Rectangle for code block -->
+                                    <path d="M8 5v14l11-7z" /> <!-- Play button -->
+                                    <path d="M4 10h16" stroke="currentColor" stroke-width="1.5" /> <!-- Horizontal line for code -->
+                                </svg>
+                            </span>
+                            <span class="nav-text">Code Examples</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quiz" class="nav-link" data-page="quiz">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></svg></span>
+                            <span class="nav-text">Quiz</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main id="main-content" class="main-content" role="main">
+            <!-- Header -->
+            <header class="header" role="banner">
+                <div class="header-content">
+                    <h1 class="header-title">HTML Tutorial Platform</h1>
+                    <p class="header-subtitle">Master HTML5 - From Basics to Advanced</p>
+                </div>
+            </header>
+
+            <!-- Content Pages Container -->
+            <div class="pages-container">
+                <!-- Home Page -->
+                <section id="page-home" class="page active" data-page="home" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <!-- Hero Section -->
+                        <section class="hero" role="banner">
+                            <div class="hero-content">
+                                <h2 class="hero-title">Welcome to HTML Academy</h2>
+                                <p class="hero-description">Start your journey to master HTML5 with our comprehensive, beginner-friendly tutorials. Learn step-by-step with interactive code examples and practical exercises.</p>
+                                <button class="cta-button" onclick="navigateTo('intro')">Start Learning</button>
+                            </div>
+                        </section>
+
+                        <!-- Progress Tracker -->
+                        <section class="progress-section">
+                            <h3>Your Learning Progress</h3>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p class="progress-text"><span id="progress-percentage">0</span>% Complete</p>
+                        </section>
+
+                        <!-- Featured Topics Grid -->
+                        <section class="topics-grid">
+                            <h3>Explore Topics</h3>
+                            <div class="grid">
+                                <article class="topic-card" onclick="navigateTo('intro')">
+                                    <div class="card-icon">📖</div>
+                                    <h4>Introduction to HTML</h4>
+                                    <p>Learn what HTML is and why it matters</p>
+                                </article>
+                                <article class="topic-card" onclick="navigateTo('structure')">
+                                    <div class="card-icon">🏗️</div>
+                                    <h4>Basic Structure</h4>
+                                    <p>Understand HTML document structure</p>
+                                </article>
+                                <article class="topic-card" onclick="navigateTo('headings')">
+                                    <div class="card-icon">🔤</div>
+                                    <h4>Headings & Paragraphs</h4>
+                                    <p>Master text formatting and hierarchy</p>
+                                </article>
+                                <article class="topic-card" onclick="navigateTo('forms')">
+                                    <div class="card-icon">📝</div>
+                                    <h4>Forms</h4>
+                                    <p>Create interactive user input forms</p>
+                                </article>
+                                <article class="topic-card" onclick="navigateTo('semantic')">
+                                    <div class="card-icon">🏛️</div>
+                                    <h4>Semantic Tags</h4>
+                                    <p>Write meaningful and accessible HTML</p>
+                                </article>
+                                <article class="topic-card" onclick="navigateTo('quiz')">
+                                    <div class="card-icon">✓</div>
+                                    <h4>Test Your Knowledge</h4>
+                                    <p>Take a quiz and assess your skills</p>
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <!-- Introduction Page -->
+                <section id="page-intro" class="page" data-page="intro" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Introduction to HTML</h2>
+                            <p class="intro-text">HTML (HyperText Markup Language) is the standard markup language used to create web pages. It provides the structure and content of websites.</p>
+
+                            <h3>What is HTML?</h3>
+                            <p>HTML uses a system of tags and elements to tell web browsers how to display content. Every element serves a specific purpose, from defining headings to creating links and embedding images.</p>
+
+                            <h3>Why Learn HTML?</h3>
+                            <ul class="tutorial-list">
+                                <li>Foundation for web development</li>
+                                <li>Works on all devices and browsers</li>
+                                <li>Easy to learn for beginners</li>
+                                <li>Essential for web designers and developers</li>
+                            </ul>
+
+                            <div class="code-example-container">
+                                <h4>Try This Example</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="intro"><!DOCTYPE html>
+<html>
+<head>
+    <title>My First Page</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>This is my first HTML page.</p>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Basic Structure Page -->
+                <section id="page-structure" class="page" data-page="structure" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Basic HTML Structure</h2>
+                            <p class="intro-text">Every HTML document follows a standard structure. Understanding this structure is fundamental to creating web pages.</p>
+
+                            <h3>The Essential Elements</h3>
+                            <dl class="definition-list">
+                                <dt>&lt;!DOCTYPE html&gt;</dt>
+                                <dd>Declares that this is an HTML5 document</dd>
+                                <dt>&lt;html&gt;</dt>
+                                <dd>The root element that wraps all content</dd>
+                                <dt>&lt;head&gt;</dt>
+                                <dd>Contains metadata, title, and links to stylesheets</dd>
+                                <dt>&lt;body&gt;</dt>
+                                <dd>Contains all visible page content</dd>
+                            </dl>
+
+                            <div class="code-example-container">
+                                <h4>Basic Document Structure</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="structure"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title</title>
+</head>
+<body>
+    <h1>Welcome</h1>
+    <p>This is the basic structure of an HTML page.</p>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Headings & Paragraphs Page -->
+                <section id="page-headings" class="page" data-page="headings" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Headings and Paragraphs</h2>
+                            <p class="intro-text">Headings and paragraphs are fundamental text elements for structuring content and improving readability.</p>
+
+                            <h3>Heading Levels</h3>
+                            <p>HTML provides six levels of headings, from &lt;h1&gt; (most important) to &lt;h6&gt; (least important). Use them semantically to structure your document hierarchy.</p>
+
+                            <div class="code-example-container">
+                                <h4>Headings Example</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="headings"><!DOCTYPE html>
+<html>
+<head>
+    <title>Headings Demo</title>
+</head>
+<body>
+    <h1>Main Heading (H1)</h1>
+    <h2>Subheading (H2)</h2>
+    <h3>Section Heading (H3)</h3>
+    <p>This is a paragraph. Paragraphs are used for body text content. They are block-level elements that create spacing between sections.</p>
+    <p>Multiple paragraphs can be used to organize content into logical sections.</p>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Links Page -->
+                <section id="page-links" class="page" data-page="links" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Links</h2>
+                            <p class="intro-text">The anchor tag (&lt;a&gt;) creates hyperlinks that connect web pages and resources.</p>
+
+                            <h3>Creating Links</h3>
+                            <p>Links are created using the &lt;a&gt; (anchor) element with the href attribute pointing to the destination URL.</p>
+
+                            <div class="code-example-container">
+                                <h4>Link Examples</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="links"><!DOCTYPE html>
+<html>
+<head>
+    <title>Links Demo</title>
+</head>
+<body>
+    <h1>Types of Links</h1>
+    
+    <h2>External Links</h2>
+    <a href="https://www.example.com">Visit Example</a>
+    
+    <h2>Internal Links</h2>
+    <a href="page.html">Go to Page</a>
+    
+    <h2>Email Links</h2>
+    <a href="mailto:info@example.com">Send Email</a>
+    
+    <h2>Links with Attributes</h2>
+    <a href="https://example.com" target="_blank" title="Opens in new tab">External Link (New Tab)</a>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Images Page -->
+                <section id="page-images" class="page" data-page="images" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Images</h2>
+                            <p class="intro-text">The &lt;img&gt; tag is used to embed images in web pages. It's a self-closing element requiring specific attributes.</p>
+
+                            <h3>Image Attributes</h3>
+                            <dl class="definition-list">
+                                <dt>src</dt>
+                                <dd>Specifies the path to the image file (required)</dd>
+                                <dt>alt</dt>
+                                <dd>Alternative text describing the image (required for accessibility)</dd>
+                                <dt>width & height</dt>
+                                <dd>Set the image dimensions in pixels</dd>
+                            </dl>
+
+                            <div class="code-example-container">
+                                <h4>Image Example</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="images"><!DOCTYPE html>
+<html>
+<head>
+    <title>Images Demo</title>
+</head>
+<body>
+    <h1>Working with Images</h1>
+    
+    <h2>Basic Image</h2>
+    <img src="https://via.placeholder.com/300x200" alt="Sample image">
+    
+    <h2>Image with Dimensions</h2>
+    <img src="https://via.placeholder.com/400x300" alt="Placeholder" width="200" height="150">
+    
+    <h2>Image as Link</h2>
+    <a href="https://example.com">
+        <img src="https://via.placeholder.com/200x200" alt="Click to visit example">
+    </a>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Lists Page -->
+                <section id="page-lists" class="page" data-page="lists" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Lists</h2>
+                            <p class="intro-text">HTML provides three types of lists for organizing information: unordered, ordered, and description lists.</p>
+
+                            <div class="code-example-container">
+                                <h4>List Types</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="lists"><!DOCTYPE html>
+<html>
+<head>
+    <title>Lists Demo</title>
+</head>
+<body>
+    <h1>HTML Lists</h1>
+    
+    <h2>Unordered List (&lt;ul&gt;)</h2>
+    <ul>
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Orange</li>
+    </ul>
+    
+    <h2>Ordered List (&lt;ol&gt;)</h2>
+    <ol>
+        <li>First step</li>
+        <li>Second step</li>
+        <li>Third step</li>
+    </ol>
+    
+    <h2>Nested Lists</h2>
+    <ul>
+        <li>Fruits
+            <ul>
+                <li>Apples</li>
+                <li>Oranges</li>
+            </ul>
+        </li>
+        <li>Vegetables</li>
+    </ul>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Tables Page -->
+                <section id="page-tables" class="page" data-page="tables" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Tables</h2>
+                            <p class="intro-text">Tables organize data into rows and columns using semantic HTML elements like &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, and &lt;th&gt;.</p>
+
+                            <div class="code-example-container">
+                                <h4>Table Example</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="tables"><!DOCTYPE html>
+<html>
+<head>
+    <title>Tables Demo</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Student Grades</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Math</th>
+                <th>English</th>
+                <th>Science</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alice</td>
+                <td>95</td>
+                <td>88</td>
+                <td>92</td>
+            </tr>
+            <tr>
+                <td>Bob</td>
+                <td>87</td>
+                <td>90</td>
+                <td>85</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Forms Page -->
+                <section id="page-forms" class="page" data-page="forms" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Forms</h2>
+                            <p class="intro-text">Forms allow users to submit data through various input elements like text fields, checkboxes, radio buttons, and buttons.</p>
+
+                            <div class="code-example-container">
+                                <h4>Form Example</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="forms"><!DOCTYPE html>
+<html>
+<head>
+    <title>Forms Demo</title>
+    <style>
+        label { display: block; margin-top: 10px; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; }
+        button { margin-top: 15px; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h1>Contact Form</h1>
+    <form>
+        <label>Name:</label>
+        <input type="text" name="name" required>
+        
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        
+        <label>Gender:</label>
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+        
+        <label>Subscribe:</label>
+        <input type="checkbox" name="subscribe"> Yes, subscribe me
+        
+        <label>Message:</label>
+        <textarea name="message" rows="5"></textarea>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Semantic Tags Page -->
+                <section id="page-semantic" class="page" data-page="semantic" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Semantic HTML Tags</h2>
+                            <p class="intro-text">Semantic tags clearly define the meaning of content, improving accessibility and SEO. They tell both browsers and developers what content they contain.</p>
+
+                            <h3>Common Semantic Tags</h3>
+                            <dl class="definition-list">
+                                <dt>&lt;header&gt;</dt>
+                                <dd>Defines the header section of a page or article</dd>
+                                <dt>&lt;nav&gt;</dt>
+                                <dd>Contains navigation links</dd>
+                                <dt>&lt;article&gt;</dt>
+                                <dd>Represents independent content</dd>
+                                <dt>&lt;section&gt;</dt>
+                                <dd>Groups related content together</dd>
+                                <dt>&lt;aside&gt;</dt>
+                                <dd>Contains sidebar or supplementary content</dd>
+                                <dt>&lt;footer&gt;</dt>
+                                <dd>Defines the footer section</dd>
+                            </dl>
+
+                            <div class="code-example-container">
+                                <h4>Semantic Structure</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="semantic"><!DOCTYPE html>
+<html>
+<head>
+    <title>Semantic HTML</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        header { background: #333; color: white; padding: 20px; }
+        nav { background: #666; }
+        nav a { color: white; padding: 10px; display: inline-block; text-decoration: none; }
+        article { margin: 20px; }
+        footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Website</h1>
+    </header>
+    
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+    
+    <article>
+        <h2>Article Title</h2>
+        <p>Article content goes here.</p>
+    </article>
+    
+    <footer>
+        <p>&copy; 2025 My Website</p>
+    </footer>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Audio & Video Page -->
+                <section id="page-media" class="page" data-page="media" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Audio & Video Elements</h2>
+                            <p class="intro-text">HTML5 introduces native &lt;audio&gt; and &lt;video&gt; elements for embedding multimedia content without requiring plugins.</p>
+
+                            <div class="code-example-container">
+                                <h4>Audio and Video Example</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="media"><!DOCTYPE html>
+<html>
+<head>
+    <title>Media Demo</title>
+</head>
+<body>
+    <h1>Multimedia Elements</h1>
+    
+    <h2>Audio Player</h2>
+    <audio controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <h2>Video Player</h2>
+    <video width="400" controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video element.
+    </video>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- HTML5 Elements Page -->
+                <section id="page-html5" class="page" data-page="html5" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>HTML5 New Elements</h2>
+                            <p class="intro-text">HTML5 introduced many new semantic and functional elements that improve code structure and user experience.</p>
+
+                            <h3>New HTML5 Elements</h3>
+                            <ul class="tutorial-list">
+                                <li>&lt;canvas&gt; - For drawing graphics</li>
+                                <li>&lt;time&gt; - Represents a specific date/time</li>
+                                <li>&lt;mark&gt; - Highlights text</li>
+                                <li>&lt;progress&gt; - Shows task progress</li>
+                                <li>&lt;meter&gt; - Represents a measurement</li>
+                                <li>&lt;figure&gt; and &lt;figcaption&gt; - For illustrations and captions</li>
+                            </ul>
+
+                            <div class="code-example-container">
+                                <h4>HTML5 Elements Example</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="html5"><!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 Elements</title>
+</head>
+<body>
+    <h1>HTML5 New Elements</h1>
+    
+    <p>Progress: <progress value="70" max="100"></progress></p>
+    
+    <p>This is <mark>highlighted text</mark> in HTML5.</p>
+    
+    <p>Last updated: <time datetime="2024-01-15">January 15, 2024</time></p>
+    
+    <figure>
+        <img src="https://via.placeholder.com/300x200" alt="Sample figure">
+        <figcaption>This is a figure with a caption</figcaption>
+    </figure>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Code Examples Page -->
+                <section id="page-examples" class="page" data-page="examples" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="tutorial-article">
+                            <h2>Code Examples & Practice</h2>
+                            <p class="intro-text">Practice your HTML skills with these interactive examples. Edit the code and see the results in real-time.</p>
+
+                            <div class="code-example-container">
+                                <h4>Interactive Code Editor</h4>
+                                <div class="code-preview-wrapper">
+                                    <div class="code-editor">
+                                        <textarea class="code-input" data-example="practice"><!DOCTYPE html>
+<html>
+<head>
+    <title>My Practice Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Practice Page</h1>
+        <p>Edit this code and experiment with HTML!</p>
+        
+        <h2>Try adding:</h2>
+        <ul>
+            <li>New headings</li>
+            <li>Images</li>
+            <li>Links</li>
+            <li>Lists</li>
+        </ul>
+    </div>
+</body>
+</html></textarea>
+                                    </div>
+                                    <div class="code-preview">
+                                        <iframe class="preview-frame" title="Code preview"></iframe>
+                                    </div>
+                                </div>
+                                <button class="run-code-btn" onclick="runCode(this)">Run Code</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Quiz Page -->
+                <section id="page-quiz" class="page" data-page="quiz" role="region" aria-live="polite">
+                    <div class="page-content">
+                        <article class="quiz-container">
+                            <h2>HTML Quiz - Test Your Knowledge</h2>
+                            <p class="intro-text">Answer all questions to complete the quiz. See your score at the end.</p>
+
+                            <div id="quiz-questions-container">
+                                <!-- Questions will be dynamically added by JavaScript -->
+                            </div>
+
+                            <button id="submit-quiz-btn" class="cta-button" onclick="submitQuiz()" style="margin-top: 20px;">Submit Quiz</button>
+
+                            <div id="quiz-result" class="quiz-result" style="display: none; margin-top: 30px;">
+                                <h3>Your Score</h3>
+                                <p id="score-display" style="font-size: 24px; margin: 20px 0;"></p>
+                                <button class="cta-button" onclick="resetQuiz()">Retake Quiz</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/app.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/code-preview.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html>

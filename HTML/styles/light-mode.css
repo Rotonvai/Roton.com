@@ -1,0 +1,47 @@
+/* ============================================================================
+   Light Mode Theme - Optional Stylesheet
+   ============================================================================
+   This file provides light mode color overrides when data-theme="light"
+   ========================================================================== */
+
+body[data-theme="light"] {
+  --color-primary: #0ea5e9;
+  --color-primary-dark: #0284c7;
+  --color-primary-light: #38bdf8;
+
+  --color-secondary: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-background: #fafafa;
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+
+  --color-border: #e2e8f0;
+}
+
+body[data-theme="light"] code {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+body[data-theme="light"] a {
+  color: var(--color-primary-dark);
+}
+
+body[data-theme="light"] a:hover {
+  color: var(--color-primary);
+}
+
+body[data-theme="light"] .code-input {
+  background-color: #fafafa;
+  color: #0f172a;
+}
+
+body[data-theme="light"] .preview-frame {
+  background-color: white;
+}
+
+body[data-theme="light"] .topic-card:hover {
+  background-color: #f0f9ff;
+}

@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn CSS from Basics to Advanced</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="6" fill="url(#gradient)"/>
+                    <text x="16" y="22" font-size="18" font-weight="bold" fill="white" text-anchor="middle">CSS</text>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>CSS Master</span>
+            </div>
+            
+            <nav class="nav-desktop">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#tutorials" class="nav-link" data-section="tutorials">Tutorials</a>
+                
+                <a href="#resources" class="nav-link" data-section="resources">Resources</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="#home" class="mobile-nav-link" data-section="home">Home</a>
+        <a href="#tutorials" class="mobile-nav-link" data-section="tutorials">Tutorials</a>
+        
+        <a href="#resources" class="mobile-nav-link" data-section="resources">Resources</a>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Home Section -->
+        <section id="home" class="section hero-section active">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Master CSS Like a Pro</h1>
+                    <p>Learn Cascading Style Sheets from beginner to advanced. Interactive tutorials, practical examples, and live code previews.</p>
+                    <button class="cta-button" data-navigate="tutorials">Start Learning</button>
+                </div>
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>14 Core Topics</h3>
+                        <p>Comprehensive coverage of CSS fundamentals to advanced techniques</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Live Preview</h3>
+                        <p>See your CSS changes in real-time with interactive examples</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Modern Design</h3>
+                        <p>Learn responsive design, animations, and modern CSS features</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌓</div>
+                        <h3>Dark Mode</h3>
+                        <p>Comfortable learning experience with theme support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorials Section -->
+        <section id="tutorials" class="section tutorials-section">
+            <div class="section-header">
+                <h2>CSS Learning Path</h2>
+                <p>Master CSS step by step with our comprehensive tutorials</p>
+            </div>
+
+            <div class="content-wrapper">
+                <!-- Sidebar Navigation -->
+                <aside class="sidebar">
+                    <nav class="topics-nav">
+                        <button class="topic-item active" data-topic="intro">
+                            <span class="topic-number">01</span>
+                            <span>Introduction to CSS</span>
+                        </button>
+                        <button class="topic-item" data-topic="syntax">
+                            <span class="topic-number">02</span>
+                            <span>Syntax & Selectors</span>
+                        </button>
+                        <button class="topic-item" data-topic="colors">
+                            <span class="topic-number">03</span>
+                            <span>Colors & Backgrounds</span>
+                        </button>
+                        <button class="topic-item" data-topic="boxmodel">
+                            <span class="topic-number">04</span>
+                            <span>Box Model</span>
+                        </button>
+                        <button class="topic-item" data-topic="text">
+                            <span class="topic-number">05</span>
+                            <span>Text Styling</span>
+                        </button>
+                        <button class="topic-item" data-topic="fonts">
+                            <span class="topic-number">06</span>
+                            <span>Fonts & Typography</span>
+                        </button>
+                        <button class="topic-item" data-topic="spacing">
+                            <span class="topic-number">07</span>
+                            <span>Margins, Padding, Borders</span>
+                        </button>
+                        <button class="topic-item" data-topic="display">
+                            <span class="topic-number">08</span>
+                            <span>Display, Position, Z-index</span>
+                        </button>
+                        <button class="topic-item" data-topic="flexbox">
+                            <span class="topic-number">09</span>
+                            <span>Flexbox</span>
+                        </button>
+                        <button class="topic-item" data-topic="grid">
+                            <span class="topic-number">10</span>
+                            <span>CSS Grid</span>
+                        </button>
+                        <button class="topic-item" data-topic="animations">
+                            <span class="topic-number">11</span>
+                            <span>Transitions & Animations</span>
+                        </button>
+                        <button class="topic-item" data-topic="responsive">
+                            <span class="topic-number">12</span>
+                            <span>Media Queries</span>
+                        </button>
+                        <button class="topic-item" data-topic="pseudo">
+                            <span class="topic-number">13</span>
+                            <span>Pseudo-classes & Elements</span>
+                        </button>
+                        <button class="topic-item" data-topic="variables">
+                            <span class="topic-number">14</span>
+                            <span>CSS Variables</span>
+                        </button>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="content-area">
+                    <!-- Topic: Introduction -->
+                    <div class="topic-content active" data-topic="intro">
+                        <h2>Introduction to CSS</h2>
+                        <p>CSS (Cascading Style Sheets) is used to style and layout web pages — for example, to alter the font, color, size, and spacing of your content.</p>
+                        
+                        <div class="content-block">
+                            <h3>What is CSS?</h3>
+                            <p>CSS is a stylesheet language that describes how HTML elements are displayed on screen. It allows you to:</p>
+                            <ul class="feature-list">
+                                <li>Control colors, fonts, and layouts</li>
+                                <li>Create responsive designs for all devices</li>
+                                <li>Add animations and transitions</li>
+                                <li>Build modern, interactive user interfaces</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Example: CSS Basics</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* This is a CSS comment */
+p {
+  color: blue;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.highlight {
+  background-color: yellow;
+  padding: 5px;
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-intro p { color: #6366f1; font-size: 16px; margin: 10px 0; }
+                                    .preview-intro .highlight { background-color: #fbbf24; padding: 5px; border-radius: 4px; }
+                                </style>
+                                <div class="preview-intro">
+                                    <p>This paragraph is styled with CSS.</p>
+                                    <p>And this text has a <span class="highlight">highlighted background</span>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Syntax & Selectors -->
+                    <div class="topic-content" data-topic="syntax">
+                        <h2>CSS Syntax & Selectors</h2>
+                        <p>Understanding CSS syntax and selectors is fundamental to writing effective stylesheets.</p>
+
+                        <div class="content-block">
+                            <h3>CSS Rule Structure</h3>
+                            <p>A CSS rule consists of a selector and a declaration block:</p>
+                            <ul class="feature-list">
+                                <li><strong>Selector:</strong> targets HTML elements</li>
+                                <li><strong>Property:</strong> the style attribute you want to change</li>
+                                <li><strong>Value:</strong> the new value for the property</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>CSS Selectors</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Element selector */
+p { color: black; }
+
+/* Class selector */
+.intro { font-size: 18px; }
+
+/* ID selector */
+#header { background-color: navy; }
+
+/* Descendant selector */
+div p { margin: 5px; }
+
+/* Attribute selector */
+input[type="text"] { padding: 8px; }
+
+/* Multiple selectors */
+h1, h2, h3 { font-family: Arial; }</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-syntax .intro-text { font-size: 18px; color: #6366f1; }
+                                    .preview-syntax .highlight-red { color: #ef4444; }
+                                    .preview-syntax h4 { font-family: Georgia, serif; }
+                                </style>
+                                <div class="preview-syntax">
+                                    <p class="intro-text">This text uses a class selector.</p>
+                                    <p class="highlight-red">This text is red using class selector.</p>
+                                    <h4>This heading uses element selector</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Colors & Backgrounds -->
+                    <div class="topic-content" data-topic="colors">
+                        <h2>Colors & Backgrounds</h2>
+                        <p>Learn how to use colors and background images to style your web pages.</p>
+
+                        <div class="content-block">
+                            <h3>Color Methods</h3>
+                            <p>CSS supports multiple color formats:</p>
+                            <ul class="feature-list">
+                                <li>Named colors: <code>red</code>, <code>blue</code>, <code>green</code></li>
+                                <li>Hex values: <code>#FF5733</code>, <code>#6366f1</code></li>
+                                <li>RGB: <code>rgb(255, 87, 51)</code></li>
+                                <li>HSL: <code>hsl(12, 100%, 60%)</code></li>
+                                <li>RGBA/HSLA with transparency</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Colors & Backgrounds</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Text color */
+.text-blue { color: #3b82f6; }
+
+/* Background color */
+.bg-light { background-color: #f3f4f6; }
+
+/* Gradient background */
+.gradient {
+  background: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 100%
+  );
+  color: white;
+  padding: 20px;
+}
+
+/* Background image */
+.bg-image {
+  background-image: url('image.jpg');
+  background-size: cover;
+  background-position: center;
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-colors .color-box { 
+                                        padding: 20px; 
+                                        margin: 10px 0; 
+                                        border-radius: 8px; 
+                                        color: white;
+                                        text-align: center;
+                                    }
+                                    .preview-colors .gradient-box {
+                                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                    }
+                                    .preview-colors .rgb-box {
+                                        background: rgb(59, 130, 246);
+                                    }
+                                </style>
+                                <div class="preview-colors">
+                                    <div class="color-box gradient-box">Gradient Background</div>
+                                    <div class="color-box rgb-box">RGB Color</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Box Model -->
+                    <div class="topic-content" data-topic="boxmodel">
+                        <h2>Box Model</h2>
+                        <p>The CSS box model is the foundation of layout. Every element is a box composed of content, padding, border, and margin.</p>
+
+                        <div class="content-block">
+                            <h3>Box Model Components</h3>
+                            <ul class="feature-list">
+                                <li><strong>Content:</strong> The actual content (text, images)</li>
+                                <li><strong>Padding:</strong> Space inside the border</li>
+                                <li><strong>Border:</strong> The edge around the padding</li>
+                                <li><strong>Margin:</strong> Space outside the border</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Box Model Example</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>.box {
+  width: 300px;
+  height: 150px;
+  
+  /* Content */
+  background-color: #e0e7ff;
+  
+  /* Padding - inside the border */
+  padding: 20px;
+  
+  /* Border */
+  border: 3px solid #6366f1;
+  
+  /* Margin - outside the border */
+  margin: 20px 0;
+  
+  /* Box sizing */
+  box-sizing: border-box;
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-box .box-model {
+                                        width: 300px;
+                                        background-color: #e0e7ff;
+                                        padding: 20px;
+                                        border: 3px solid #6366f1;
+                                        margin: 20px auto;
+                                        box-sizing: border-box;
+                                        text-align: center;
+                                        color: #6366f1;
+                                        font-weight: bold;
+                                    }
+                                </style>
+                                <div class="preview-box">
+                                    <div class="box-model">Margin + Border + Padding + Content</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Text Styling -->
+                    <div class="topic-content" data-topic="text">
+                        <h2>Text Styling</h2>
+                        <p>CSS provides many properties to style text, including color, alignment, decoration, and transformation.</p>
+
+                        <div class="content-block">
+                            <h3>Text Properties</h3>
+                            <ul class="feature-list">
+                                <li>Text alignment: <code>left</code>, <code>center</code>, <code>right</code>, <code>justify</code></li>
+                                <li>Text decoration: <code>underline</code>, <code>overline</code>, <code>line-through</code></li>
+                                <li>Text transform: <code>uppercase</code>, <code>lowercase</code>, <code>capitalize</code></li>
+                                <li>Letter and word spacing</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Text Styling</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>.center-text {
+  text-align: center;
+  color: #6366f1;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.decorated {
+  text-decoration: underline;
+  text-decoration-color: #ec4899;
+  text-decoration-thickness: 3px;
+}
+
+.shadow {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-text .center-text { text-align: center; color: #6366f1; margin: 10px 0; }
+                                    .preview-text .uppercase { text-transform: uppercase; letter-spacing: 2px; color: #8b5cf6; margin: 10px 0; }
+                                    .preview-text .decorated { text-decoration: underline; text-decoration-color: #ec4899; margin: 10px 0; }
+                                </style>
+                                <div class="preview-text">
+                                    <p class="center-text">This text is centered</p>
+                                    <p class="uppercase">uppercase with letter spacing</p>
+                                    <p class="decorated">This text is underlined</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Fonts & Typography -->
+                    <div class="topic-content" data-topic="fonts">
+                        <h2>Fonts & Typography</h2>
+                        <p>Choose and style fonts effectively to improve readability and design.</p>
+
+                        <div class="content-block">
+                            <h3>Font Families</h3>
+                            <p>Web-safe fonts, system fonts, and web fonts via @import or @font-face</p>
+                            <ul class="feature-list">
+                                <li>Serif fonts: Georgia, Times New Roman</li>
+                                <li>Sans-serif fonts: Arial, Helvetica, Verdana</li>
+                                <li>Monospace fonts: Courier, Courier New</li>
+                                <li>Google Fonts and custom web fonts</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Font Styling</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Font family stack */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Bold and italic */
+.bold { font-weight: 700; }
+.italic { font-style: italic; }
+.light { font-weight: 300; }
+
+/* Font variants */
+.small-caps {
+  font-variant: small-caps;
+}
+
+/* Web fonts (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+.serif-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-fonts .sans { font-family: Arial, sans-serif; margin: 10px 0; }
+                                    .preview-fonts .serif { font-family: Georgia, serif; margin: 10px 0; }
+                                    .preview-fonts .mono { font-family: 'Courier New', monospace; margin: 10px 0; }
+                                    .preview-fonts .bold { font-weight: 700; margin: 10px 0; }
+                                </style>
+                                <div class="preview-fonts">
+                                    <p class="sans">Sans-serif font (Arial)</p>
+                                    <p class="serif">Serif font (Georgia)</p>
+                                    <p class="mono">Monospace font (Courier New)</p>
+                                    <p class="bold">Bold text (font-weight: 700)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Spacing -->
+                    <div class="topic-content" data-topic="spacing">
+                        <h2>Margin, Padding & Borders</h2>
+                        <p>Master spacing and borders to create well-structured layouts.</p>
+
+                        <div class="content-block">
+                            <h3>Spacing Basics</h3>
+                            <ul class="feature-list">
+                                <li><strong>Margin:</strong> Creates space outside an element</li>
+                                <li><strong>Padding:</strong> Creates space inside an element</li>
+                                <li><strong>Border:</strong> Creates a boundary around an element</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Margin, Padding & Borders</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Margin - shorthand */
+.element {
+  margin: 10px;           /* All sides */
+  margin: 10px 20px;      /* Top/Bottom, Left/Right */
+  margin: 10px 20px 30px 40px; /* Top, Right, Bottom, Left */
+}
+
+/* Padding - individual sides */
+.box {
+  padding-top: 20px;
+  padding-right: 15px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+}
+
+/* Borders */
+.card {
+  border: 2px solid #6366f1;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+}
+
+.dashed {
+  border: 2px dashed #ec4899;
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-spacing .card {
+                                        border: 2px solid #6366f1;
+                                        border-radius: 8px;
+                                        padding: 20px;
+                                        margin: 10px 0;
+                                        background: #f0f4ff;
+                                    }
+                                    .preview-spacing .dashed-box {
+                                        border: 2px dashed #ec4899;
+                                        padding: 15px;
+                                        margin-top: 10px;
+                                    }
+                                </style>
+                                <div class="preview-spacing">
+                                    <div class="card">Card with padding, border, and margin</div>
+                                    <div class="dashed-box">Dashed border element</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Display, Position, Z-index -->
+                    <div class="topic-content" data-topic="display">
+                        <h2>Display, Position & Z-index</h2>
+                        <p>Control how elements are displayed and positioned on the page.</p>
+
+                        <div class="content-block">
+                            <h3>Display Values</h3>
+                            <ul class="feature-list">
+                                <li><code>block</code> - Full width, starts new line</li>
+                                <li><code>inline</code> - Only takes needed width</li>
+                                <li><code>inline-block</code> - Hybrid of inline and block</li>
+                                <li><code>flex</code> - Flexible box layout</li>
+                                <li><code>grid</code> - Grid layout</li>
+                                <li><code>none</code> - Hidden from layout</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Display & Position</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Display */
+.block-element { display: block; }
+.inline-element { display: inline; }
+.hidden { display: none; }
+
+/* Position */
+.static { position: static; } /* default */
+.relative { position: relative; top: 10px; left: 10px; }
+.absolute { position: absolute; top: 50px; left: 50px; }
+.fixed { position: fixed; top: 0; right: 0; }
+.sticky { position: sticky; top: 0; }
+
+/* Z-index */
+.layer1 { position: relative; z-index: 1; }
+.layer2 { position: relative; z-index: 2; }
+.layer3 { position: relative; z-index: 3; }</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-display .box-container {
+                                        position: relative;
+                                        height: 150px;
+                                        background: #f3f4f6;
+                                        border: 2px solid #d1d5db;
+                                        border-radius: 8px;
+                                    }
+                                    .preview-display .positioned {
+                                        position: absolute;
+                                        width: 100px;
+                                        height: 50px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        color: white;
+                                        border-radius: 4px;
+                                        font-size: 12px;
+                                    }
+                                    .preview-display .pos1 { background: #6366f1; top: 10px; left: 10px; z-index: 3; }
+                                    .preview-display .pos2 { background: #ec4899; top: 30px; left: 60px; z-index: 2; }
+                                    .preview-display .pos3 { background: #f59e0b; top: 50px; left: 110px; z-index: 1; }
+                                </style>
+                                <div class="preview-display">
+                                    <div class="box-container">
+                                        <div class="positioned pos1">z-index: 3</div>
+                                        <div class="positioned pos2">z-index: 2</div>
+                                        <div class="positioned pos3">z-index: 1</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Flexbox -->
+                    <div class="topic-content" data-topic="flexbox">
+                        <h2>Flexbox</h2>
+                        <p>Create flexible, responsive layouts using CSS Flexbox.</p>
+
+                        <div class="content-block">
+                            <h3>Flexbox Basics</h3>
+                            <ul class="feature-list">
+                                <li><strong>Container:</strong> Parent element with <code>display: flex</code></li>
+                                <li><strong>Items:</strong> Direct children of flex container</li>
+                                <li><strong>Main axis:</strong> Primary axis (default: horizontal)</li>
+                                <li><strong>Cross axis:</strong> Perpendicular to main axis</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Flexbox Example</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>.flex-container {
+  display: flex;
+  justify-content: center;    /* Align horizontally */
+  align-items: center;        /* Align vertically */
+  gap: 20px;                  /* Space between items */
+  flex-wrap: wrap;            /* Wrap items */
+}
+
+.flex-item {
+  flex: 1;                    /* Grow equally */
+  min-width: 200px;
+  padding: 20px;
+  background: #e0e7ff;
+  border-radius: 8px;
+}
+
+/* Flex properties */
+.grow { flex-grow: 2; }
+.shrink { flex-shrink: 0; }
+.basis { flex-basis: 300px; }</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-flex .flex-demo {
+                                        display: flex;
+                                        gap: 15px;
+                                        flex-wrap: wrap;
+                                        justify-content: center;
+                                    }
+                                    .preview-flex .flex-item {
+                                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                        color: white;
+                                        padding: 20px;
+                                        border-radius: 8px;
+                                        min-width: 150px;
+                                        text-align: center;
+                                    }
+                                </style>
+                                <div class="preview-flex">
+                                    <div class="flex-demo">
+                                        <div class="flex-item">Flex Item 1</div>
+                                        <div class="flex-item">Flex Item 2</div>
+                                        <div class="flex-item">Flex Item 3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: CSS Grid -->
+                    <div class="topic-content" data-topic="grid">
+                        <h2>CSS Grid</h2>
+                        <p>Master CSS Grid for advanced two-dimensional layouts.</p>
+
+                        <div class="content-block">
+                            <h3>Grid Basics</h3>
+                            <ul class="feature-list">
+                                <li><strong>Container:</strong> Parent with <code>display: grid</code></li>
+                                <li><strong>Rows & Columns:</strong> Define with <code>grid-template-columns/rows</code></li>
+                                <li><strong>Gap:</strong> Space between grid cells</li>
+                                <li><strong>Auto-placement:</strong> Automatic item positioning</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>CSS Grid Example</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+  grid-template-rows: auto;                /* Auto height rows */
+  gap: 20px;                               /* Space between items */
+  padding: 20px;
+}
+
+.grid-item {
+  background: #e0e7ff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Spanning multiple cells */
+.span-2 { grid-column: span 2; }
+.span-full { grid-column: 1 / -1; }
+
+/* Responsive grid */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-grid .grid-demo {
+                                        display: grid;
+                                        grid-template-columns: repeat(3, 1fr);
+                                        gap: 15px;
+                                    }
+                                    .preview-grid .grid-item {
+                                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                        color: white;
+                                        padding: 20px;
+                                        border-radius: 8px;
+                                        text-align: center;
+                                    }
+                                    @media (max-width: 600px) {
+                                        .preview-grid .grid-demo { grid-template-columns: 1fr; }
+                                    }
+                                </style>
+                                <div class="preview-grid">
+                                    <div class="grid-demo">
+                                        <div class="grid-item">Item 1</div>
+                                        <div class="grid-item">Item 2</div>
+                                        <div class="grid-item">Item 3</div>
+                                        <div class="grid-item">Item 4</div>
+                                        <div class="grid-item">Item 5</div>
+                                        <div class="grid-item">Item 6</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Animations -->
+                    <div class="topic-content" data-topic="animations">
+                        <h2>Transitions & Animations</h2>
+                        <p>Add smooth motion and interactive effects to your designs.</p>
+
+                        <div class="content-block">
+                            <h3>Transitions vs Animations</h3>
+                            <ul class="feature-list">
+                                <li><strong>Transitions:</strong> Smooth change from one state to another</li>
+                                <li><strong>Animations:</strong> Complex sequences with keyframes</li>
+                                <li>Timing functions: ease, linear, ease-in, ease-out</li>
+                                <li>Duration, delay, and iteration count</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Transitions & Animations</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Transition */
+.button {
+  background: #6366f1;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: #4f46e5;
+  transform: scale(1.05);
+}
+
+/* Keyframe animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animated {
+  animation: slideIn 0.6s ease forwards;
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    @keyframes bounce {
+                                        0%, 100% { transform: translateY(0); }
+                                        50% { transform: translateY(-20px); }
+                                    }
+                                    .preview-anim .bounce-box {
+                                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                        color: white;
+                                        padding: 20px;
+                                        border-radius: 8px;
+                                        text-align: center;
+                                        animation: bounce 1s infinite;
+                                    }
+                                    .preview-anim .hover-box {
+                                        background: #6366f1;
+                                        color: white;
+                                        padding: 15px 30px;
+                                        border-radius: 6px;
+                                        cursor: pointer;
+                                        transition: all 0.3s ease;
+                                        display: inline-block;
+                                        margin-top: 10px;
+                                    }
+                                    .preview-anim .hover-box:hover {
+                                        background: #4f46e5;
+                                        transform: scale(1.1);
+                                    }
+                                </style>
+                                <div class="preview-anim">
+                                    <div class="bounce-box">Bouncing Animation</div>
+                                    <div style="text-align: center; margin-top: 20px;">
+                                        <div class="hover-box">Hover Me</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Media Queries -->
+                    <div class="topic-content" data-topic="responsive">
+                        <h2>Media Queries & Responsive Design</h2>
+                        <p>Create designs that work on all devices with media queries.</p>
+
+                        <div class="content-block">
+                            <h3>Responsive Breakpoints</h3>
+                            <ul class="feature-list">
+                                <li>Mobile: 320px - 480px</li>
+                                <li>Tablet: 481px - 768px</li>
+                                <li>Desktop: 769px - 1024px</li>
+                                <li>Large Desktop: 1025px+</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Media Queries</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Base styles (mobile-first) */
+.container { width: 100%; padding: 10px; }
+.column { width: 100%; }
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container { width: 750px; margin: 0 auto; }
+  .column { width: 48%; float: left; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container { width: 960px; }
+  .column { width: 32%; }
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none; }
+  body { font-size: 12pt; }
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview (Resize to see changes):</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-responsive .responsive-box {
+                                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                        color: white;
+                                        padding: 20px;
+                                        border-radius: 8px;
+                                        text-align: center;
+                                        margin: 10px 0;
+                                    }
+                                    .preview-responsive .responsive-grid {
+                                        display: grid;
+                                        grid-template-columns: 1fr;
+                                        gap: 10px;
+                                    }
+                                    @media (min-width: 600px) {
+                                        .preview-responsive .responsive-grid { grid-template-columns: 1fr 1fr; }
+                                    }
+                                </style>
+                                <div class="preview-responsive">
+                                    <div class="responsive-grid">
+                                        <div class="responsive-box">Box 1</div>
+                                        <div class="responsive-box">Box 2</div>
+                                        <div class="responsive-box">Box 3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: Pseudo-classes & Pseudo-elements -->
+                    <div class="topic-content" data-topic="pseudo">
+                        <h2>Pseudo-classes & Pseudo-elements</h2>
+                        <p>Style elements based on their state or position using pseudo-selectors.</p>
+
+                        <div class="content-block">
+                            <h3>Common Pseudo-classes</h3>
+                            <ul class="feature-list">
+                                <li><code>:hover</code> - When user hovers over element</li>
+                                <li><code>:focus</code> - When element has focus</li>
+                                <li><code>:active</code> - When element is being activated</li>
+                                <li><code>:first-child</code>, <code>:last-child</code> - Position based</li>
+                                <li><code>:nth-child()</code> - Select specific children</li>
+                                <li><code>:not()</code> - Negation pseudo-class</li>
+                            </ul>
+
+                            <h3>Common Pseudo-elements</h3>
+                            <ul class="feature-list">
+                                <li><code>::before</code> - Insert content before element</li>
+                                <li><code>::after</code> - Insert content after element</li>
+                                <li><code>::first-line</code> - Style first line of text</li>
+                                <li><code>::first-letter</code> - Style first letter</li>
+                                <li><code>::selection</code> - Highlight selection color</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Pseudo-classes & Elements</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Pseudo-classes */
+a:hover { color: #6366f1; }
+button:active { transform: scale(0.98); }
+input:focus { border-color: #6366f1; outline: none; }
+
+/* Nth-child selector */
+li:nth-child(odd) { background: #f3f4f6; }
+li:nth-child(3n) { color: #6366f1; }
+
+/* Pseudo-elements */
+.card::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 100%;
+  background: #6366f1;
+  position: absolute;
+  left: 0;
+}
+
+p::first-letter {
+  font-size: 2em;
+  font-weight: bold;
+  color: #6366f1;
+}
+
+::selection { background: #6366f1; color: white; }</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-pseudo .pseudo-link {
+                                        color: #6366f1;
+                                        text-decoration: none;
+                                        transition: all 0.3s ease;
+                                        cursor: pointer;
+                                    }
+                                    .preview-pseudo .pseudo-link:hover {
+                                        color: #8b5cf6;
+                                        text-decoration: underline;
+                                    }
+                                    .preview-pseudo .pseudo-list {
+                                        list-style: none;
+                                        padding: 0;
+                                    }
+                                    .preview-pseudo .pseudo-list li {
+                                        padding: 10px;
+                                        margin: 5px 0;
+                                        background: #f3f4f6;
+                                        border-radius: 4px;
+                                    }
+                                    .preview-pseudo .pseudo-list li:hover {
+                                        background: #e0e7ff;
+                                    }
+                                </style>
+                                <div class="preview-pseudo">
+                                    <a href="#" class="pseudo-link">Hover over this link</a>
+                                    <ul class="pseudo-list" style="margin-top: 20px;">
+                                        <li>Hover over any item</li>
+                                        <li>They all change color</li>
+                                        <li>Using :hover pseudo-class</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic: CSS Variables -->
+                    <div class="topic-content" data-topic="variables">
+                        <h2>CSS Variables (Custom Properties)</h2>
+                        <p>Use CSS variables to create maintainable and scalable stylesheets.</p>
+
+                        <div class="content-block">
+                            <h3>Benefits of CSS Variables</h3>
+                            <ul class="feature-list">
+                                <li>Reuse values across your stylesheet</li>
+                                <li>Easy to maintain and update colors, sizes, etc.</li>
+                                <li>Can be scoped to elements or globally</li>
+                                <li>Can be changed with JavaScript</li>
+                                <li>Supports fallback values</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>CSS Variables</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>/* Define global variables */
+:root {
+  --primary-color: #6366f1;
+  --secondary-color: #8b5cf6;
+  --background: #f8fafc;
+  --text-color: #1e293b;
+  --border-radius: 8px;
+  --spacing-unit: 8px;
+}
+
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --text-color: #f1f5f9;
+  }
+}
+
+/* Using variables */
+.button {
+  background: var(--primary-color);
+  color: white;
+  padding: calc(var(--spacing-unit) * 2);
+  border-radius: var(--border-radius);
+  border: none;
+}
+
+.card {
+  background: var(--background, white);
+  color: var(--text-color, black);
+  padding: calc(var(--spacing-unit) * 3);
+  border-radius: var(--border-radius);
+}</code></pre>
+                        </div>
+
+                        <div class="live-preview-section">
+                            <h4>Live Preview:</h4>
+                            <div class="live-preview">
+                                <style>
+                                    .preview-vars {
+                                        --var-primary: #6366f1;
+                                        --var-secondary: #ec4899;
+                                        --var-spacing: 15px;
+                                    }
+                                    .preview-vars .var-box {
+                                        background: var(--var-primary);
+                                        color: white;
+                                        padding: var(--var-spacing);
+                                        margin: var(--var-spacing) 0;
+                                        border-radius: 8px;
+                                        text-align: center;
+                                    }
+                                    .preview-vars .var-box.secondary {
+                                        background: var(--var-secondary);
+                                    }
+                                </style>
+                                <div class="preview-vars">
+                                    <div class="var-box">Using CSS Variable (Primary)</div>
+                                    <div class="var-box secondary">Using CSS Variable (Secondary)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+
+        <!-- Resources Section -->
+        <section id="resources" class="section resources-section">
+            <div class="section-header">
+                <h2>Learning Resources</h2>
+                <p>Additional resources to accelerate your CSS mastery</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>📚 MDN Web Docs</h3>
+                    <p>Comprehensive CSS reference and tutorials from Mozilla Developer Network.</p>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="resource-link">Visit →</a>
+                </div>
+                <div class="resource-card">
+                    <h3>🎓 W3Schools CSS</h3>
+                    <p>Interactive CSS tutorials with tryit editor for hands-on learning.</p>
+                    <a href="https://www.w3schools.com/css/" target="_blank" class="resource-link">Visit →</a>
+                </div>
+                <div class="resource-card">
+                    <h3>🎨 CSS Tricks</h3>
+                    <p>Tips, tricks, and techniques for modern CSS design and layout.</p>
+                    <a href="https://css-tricks.com" target="_blank" class="resource-link">Visit →</a>
+                </div>
+                <div class="resource-card">
+                    <h3>🚀 Can I Use</h3>
+                    <p>Check browser compatibility for CSS features and properties.</p>
+                    <a href="https://caniuse.com" target="_blank" class="resource-link">Visit →</a>
+                </div>
+                <div class="resource-card">
+                    <h3>🎯 CSS Grid Guide</h3>
+                    <p>Complete guide to mastering CSS Grid layout.</p>
+                    <a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank" class="resource-link">Visit →</a>
+                </div>
+                <div class="resource-card">
+                    <h3>📖 CSS Spec</h3>
+                    <p>Official W3C CSS specifications and standards.</p>
+                    <a href="https://www.w3.org/Style/CSS/" target="_blank" class="resource-link">Visit →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

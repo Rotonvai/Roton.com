@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --background-light: #ffffff;
+            --background-dark: #0f172a;
+            --text-light: #1f2937;
+            --text-dark: #f3f4f6;
+            --border-light: #e5e7eb;
+            --border-dark: #334155;
+            --code-bg-light: #f9fafb;
+            --code-bg-dark: #1e293b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+
+        /* Light Mode */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background-color: var(--background-light);
+            border-right: 1px solid var(--border-light);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 100;
+        }
+
+        body.dark-mode .sidebar {
+            background-color: var(--background-dark);
+            border-right-color: var(--border-dark);
+        }
+
+        /* Sidebar Header */
+        .sidebar-header {
+            padding: 24px 16px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        body.dark-mode .sidebar-header {
+            border-bottom-color: var(--border-dark);
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation Items */
+        .sidebar-nav {
+            padding: 16px 0;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .nav-item {
+            color: var(--text-dark);
+        }
+
+        .nav-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-item.active {
+            background-color: rgba(59, 130, 246, 0.15);
+            border-left-color: var(--primary-color);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .nav-item-icon {
+            display: inline-block;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--background-light);
+        }
+
+        body.dark-mode .main-content {
+            background-color: var(--background-dark);
+        }
+
+        /* Header */
+        .header {
+            padding: 20px 32px;
+            background-color: var(--background-light);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .header {
+            background-color: var(--background-dark);
+            border-bottom-color: var(--border-dark);
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .theme-toggle {
+            background-color: var(--code-bg-light);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        body.dark-mode .theme-toggle {
+            background-color: var(--code-bg-dark);
+            color: var(--text-dark);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+        }
+
+        /* Section Styles */
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-light);
+            opacity: 0.7;
+            margin-bottom: 24px;
+        }
+
+        body.dark-mode .section-subtitle {
+            color: var(--text-dark);
+        }
+
+        /* Content Box */
+        .content-box {
+            background-color: var(--background-light);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .content-box {
+            background-color: var(--code-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        .content-box:hover {
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .content-box h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .content-box p {
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .content-box p {
+            color: var(--text-dark);
+        }
+
+        /* Code Block */
+        .code-block {
+            background-color: var(--code-bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 16px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .code-block {
+            background-color: var(--code-bg-dark);
+            border-color: var(--border-dark);
+            color: #a8e6cf;
+        }
+
+        .code-block code {
+            color: var(--text-light);
+        }
+
+        body.dark-mode .code-block code {
+            color: #a8e6cf;
+        }
+
+        /* Code Preview Section */
+        .code-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        /* Output Box */
+        .output-box {
+            background-color: var(--code-bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            min-height: 150px;
+            overflow-y: auto;
+        }
+
+        body.dark-mode .output-box {
+            background-color: var(--code-bg-dark);
+            border-color: var(--border-dark);
+            color: #a8e6cf;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-right: 8px;
+            margin-top: 12px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d97706;
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-color: var(--success-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 60px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-light);
+                display: flex;
+                align-items: center;
+                padding: 0 16px;
+                overflow-y: visible;
+                overflow-x: auto;
+            }
+
+            .sidebar-header {
+                border-bottom: none;
+                padding: 0;
+                margin-right: 16px;
+                flex-shrink: 0;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                padding: 0;
+                gap: 0;
+                flex: 1;
+                overflow-x: auto;
+            }
+
+            .nav-item {
+                white-space: nowrap;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                padding: 12px 16px;
+            }
+
+            .nav-item.active {
+                border-bottom-color: var(--primary-color);
+                border-left: none;
+            }
+
+            .content-area {
+                padding: 20px 16px;
+            }
+
+            .code-preview {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 16px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .header-title {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .sidebar-nav {
+                gap: 8px;
+            }
+
+            .nav-item {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .nav-item-icon {
+                font-size: 14px;
+                margin-right: 4px;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .content-box {
+            animation: slideIn 0.4s ease;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--primary-color);
+        }
+
+        body.dark-mode ::-webkit-scrollbar-thumb {
+            background-color: rgba(59, 130, 246, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">🐍</div>
+                <div class="logo-text">PyLearn</div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-section="intro">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Introduction</title>
+                            <defs>
+                                <linearGradient id="introGrad_x" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#3b82f6"/>
+                                    <stop offset="0.6" stop-color="#1e40af"/>
+                                    <stop offset="1" stop-color="#f59e0b"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Left page (gradient) -->
+                            <path d="M3 5.5C3 4.7 3.7 4 4.5 4h6.5v14s-3-1-6-1-2-7-2-7V5.5z"
+                                        fill="url(#introGrad_x)" opacity="0.98"/>
+
+                            <!-- Right page (light) -->
+                            <path d="M20.5 4C19.7 4 19 4.7 19 5.5v11.5s-1 .5-4 .5-6-1-6-1V4h10.5c.8 0 1.5.7 1.5 1.5V20"/>
+                            <path d="M19 5.5V20" stroke="#ffffff" stroke-opacity="0.08" stroke-linecap="round"/>
+
+                            <!-- Page lines -->
+                            <path d="M5 9.5c2-1 4-1 6 0" stroke="#ffffff" stroke-opacity="0.22" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+                            <path d="M13 9.5c2-1 4-1 6 0" stroke="#000000" stroke-opacity="0.06" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+
+                            <!-- Bookmark accent -->
+                            <path d="M12 6.5 L13.8 9.8 L11 9.2 Z" fill="#fff" opacity="0.9"/>
+
+                            <!-- Outline subtle -->
+                            <path d="M4.5 4h15" stroke="#000000" stroke-opacity="0.03" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <span>Introduction</span>
+                </div>
+                <div class="nav-item" data-section="setup">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Settings</title>
+                            <path d="M12 8.5c-1.38 0-2.5 1.12-2.5 2.5S10.62 13.5 12 13.5s2.5-1.12 2.5-2.5S13.38 8.5 12 8.5zm0 4.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM19.14 12.94c.04-.32.06-.65.06-.94s-.02-.62-.06-.94l2.03-1.57c.19-.15.25-.41.15-.63l-2.36-4.09c-.1-.22-.34-.34-.58-.34h-2.47c-.26-1.2-.86-2.29-1.74-3.07-.24-.2-.57-.2-.81 0-.24.2-.24.52 0 .72.67.56 1.17 1.27 1.43 2.07H9.5C8.84 4.5 8.15 4 7.5 4H5.03c-.24 0-.48.12-.58.34l-2.36 4.09c-.1.22-.04.48.15.63l2.03 1.57c-.04.32-.06.65-.06.94s.02.62.06.94l-2.03 1.57c-.19.15-.25.41-.15.63l2.36 4.09c.1.22.34.34.58.34h2.47c.26 1.2.86 2.29 1.74 3.07.24.2.57.2.81 0 .24-.2.24-.52 0-.72-.67-.56-1.17-1.27-1.43-2.07h5.5c.66 0 1.35-.5 1.99-1.5h2.47c.24 0 .48-.12.58-.34l2.36-4.09c.1-.22.04-.48-.15-.63l-2.03-1.57zM12 17.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span>Setup</span>
+                </div>
+                <div class="nav-item" data-section="variables">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Variables</title>
+                            <path d="M12 2L2 7v5c0 1.1.9 2 2 2h1v5h4v-5h6v5h4v-5h1c1.1 0 2-.9 2-2V7l-10-5zm0 2.5L20 7v3h-1v-1H5v1H4V7l8-2.5z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span>Variables</span>
+                </div>
+                <div class="nav-item" data-section="io">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Input/Output</title>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-4.14-.49-7.43-3.68-7.93-7.93H11v2H5.07c.49 3.54 3.29 6.34 6.93 6.93v-2.07zm0-3.86H5.07c.49-3.54 3.29-6.34 6.93-6.93V11h2V5.07c4.14.49 7.43 3.68 7.93 7.93H13v-2h5.93c-.49-3.54-3.29-6.34-7.93-6.93v2.07z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span>Input/Output</span>
+                </div>
+                <div class="nav-item" data-section="operators">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Operators</title>
+                            <path d="M12 2C11.4477 2 11 2.44772 11 3V11H3C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11H13V3C13 2.44772 12.5523 2 12 2Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span>Operators</span>
+                </div>
+                <div class="nav-item" data-section="conditionals">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Conditionals</title>
+                            <path d="M12 2C11.4477 2 11 2.44772 11 3V11H3C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11H13V3C13 2.44772 12.5523 2 12 2Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span>Conditionals</span>
+                </div>
+                <div class="nav-item" data-section="loops">
+                    <span class="nav-item-icon">🔄</span>
+        </span>            <span>Loops</span>
+                </div>
+                <div class="nav-item" data-section="datastructures">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Chart</title>
+                            <path d="M3 13h2v8H3v-8zm4-4h2v12H7V9zm4-4h2v16h-2V5zm4 8h2v8h-2v-8zm4-4h2v12h-2V9z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span>Data Structures</span>
+                </div>
+                <div class="nav-item" data-section="functions">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Functions</title>
+                            <path d="M13 2L11 8H7l6 12 2-6h4l-6-12z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span>Functions</span>
+                </div>
+                <div class="nav-item" data-section="strings">
+                    <span class="nav-item-icon">🔤</span>
+                    <span>Strings</span>
+                </div>
+                <div class="nav-item" data-section="filehandling">
+                    <span class="nav-item-icon">📁</span>
+                    <span>File Handling</span>
+                </div>
+                <div class="nav-item" data-section="errorhandling">
+                    <span class="nav-item-icon">⚠️</span>
+                    <span>Error Handling</span>
+                </div>
+                <div class="nav-item" data-section="oop">
+                    <span class="nav-item-icon">🏗️</span>
+                    <span>OOP</span>
+                </div>
+                <div class="nav-item" data-section="modules">
+                    <span class="nav-item-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <title>Modules</title>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span>Modules</span>
+                </div>
+                <div class="nav-item" data-section="database">
+                    <span class="nav-item-icon">🗄️</span>
+                    <span>Database</span>
+                </div>
+                <div class="nav-item" data-section="projects">
+                    <span class="nav-item-icon">🚀</span>
+                    <span>Projects</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="header-title">Python Tutorial Platform</h1>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Introduction Section -->
+                <section id="intro" class="section active">
+                    <h2 class="section-title">Welcome to Python Learning</h2>
+                    <p class="section-subtitle">Your beginner-friendly guide to mastering Python programming</p>
+
+                    <div class="content-box">
+                        <h3>What is Python?</h3>
+                        <p>Python is a high-level, interpreted programming language known for its simplicity and readability. It's one of the most popular languages for beginners and professionals alike.</p>
+                        <ul class="feature-list">
+                            <li>Easy to learn and understand</li>
+                            <li>Versatile for web development, data science, and automation</li>
+                            <li>Large community and extensive libraries</li>
+                            <li>Open-source and free</li>
+                            <li>Cross-platform compatibility</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Why Learn Python?</h3>
+                        <p>Python is used by millions of developers worldwide and is the language of choice for:</p>
+                        <ul class="feature-list">
+                            <li>Web Development (Django, Flask)</li>
+                            <li>Data Science and Machine Learning</li>
+                            <li>Artificial Intelligence</li>
+                            <li>Automation and Scripting</li>
+                            <li>Game Development</li>
+                            <li>Scientific Computing</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Setup Section -->
+                <section id="setup" class="section">
+                    <h2 class="section-title">Installation and Setup</h2>
+                    <p class="section-subtitle">Get Python installed on your computer</p>
+
+                    <div class="content-box">
+                        <h3>Installing Python</h3>
+                        <p>Follow these steps to install Python on your system:</p>
+                        <ol class="feature-list">
+                            <li>Visit <strong>www.python.org</strong></li>
+                            <li>Click on the download button for the latest version</li>
+                            <li>Run the installer</li>
+                            <li>Check "Add Python to PATH" before installing</li>
+                            <li>Complete the installation</li>
+                        </ol>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Verify Installation</h3>
+                        <p>Open your terminal or command prompt and type:</p>
+                        <div class="code-block"><code>python --version</code></div>
+                        <p>You should see the Python version number displayed.</p>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Your First Python Program</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>print("Hello, Python World!")</code></div>
+                                <button class="btn" onclick="runHelloWorld()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-setup"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Variables and Data Types Section -->
+                <section id="variables" class="section">
+                    <h2 class="section-title">Variables and Data Types</h2>
+                    <p class="section-subtitle">Understanding data storage and types</p>
+
+                    <div class="content-box">
+                        <h3>What are Variables?</h3>
+                        <p>Variables are containers for storing data values. In Python, you don't need to declare the type of a variable; it's automatically inferred.</p>
+                        <div class="code-block"><code>name = "John"
+age = 25
+height = 5.9
+is_student = True</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Data Types</h3>
+                        <p>Python has several built-in data types:</p>
+                        <div class="code-block"><code># Strings
+text = "Hello Python"
+
+# Integers
+number = 42
+
+# Floats
+decimal = 3.14
+
+# Booleans
+is_ready = True
+
+# Lists
+fruits = ["apple", "banana", "cherry"]
+
+# Dictionaries
+person = {"name": "Alice", "age": 30}</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Try It Out</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>name = "Python"
+age = 31
+result = f"Language: {name}, Age: {age} years"
+print(result)</code></div>
+                                <button class="btn" onclick="runVariables()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-variables"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Input/Output Section -->
+                <section id="io" class="section">
+                    <h2 class="section-title">Input and Output</h2>
+                    <p class="section-subtitle">Interacting with users through input and output</p>
+
+                    <div class="content-box">
+                        <h3>The print() Function</h3>
+                        <p>The <code>print()</code> function outputs data to the console:</p>
+                        <div class="code-block"><code>print("Hello, World!")
+print("Name:", "Alice")
+print(1 + 2)  # Output: 3</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>The input() Function</h3>
+                        <p>The <code>input()</code> function reads user input from the console:</p>
+                        <div class="code-block"><code>name = input("Enter your name: ")
+age = input("Enter your age: ")
+print(f"Hello {name}, you are {age} years old!")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Output Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>x = 10
+y = 20
+print(f"Sum: {x + y}")
+print(f"Product: {x * y}")</code></div>
+                                <button class="btn" onclick="runIO()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-io"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Operators Section -->
+                <section id="operators" class="section">
+                    <h2 class="section-title">Operators</h2>
+                    <p class="section-subtitle">Performing operations on data</p>
+
+                    <div class="content-box">
+                        <h3>Arithmetic Operators</h3>
+                        <div class="code-block"><code># Addition
+a = 10 + 5  # 15
+
+# Subtraction
+b = 10 - 5  # 5
+
+# Multiplication
+c = 10 * 5  # 50
+
+# Division
+d = 10 / 5  # 2.0
+
+# Floor Division
+e = 10 // 3  # 3
+
+# Modulus
+f = 10 % 3  # 1
+
+# Exponentiation
+g = 2 ** 3  # 8</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Comparison and Logical Operators</h3>
+                        <div class="code-block"><code># Comparison
+x == y    # Equal to
+x != y    # Not equal to
+x > y     # Greater than
+x < y     # Less than
+x >= y    # Greater than or equal
+x <= y    # Less than or equal
+
+# Logical
+x and y   # True if both are true
+x or y    # True if one is true
+not x     # Reverses the result</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Operator Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>a, b = 15, 5
+print(f"Addition: {a + b}")
+print(f"Division: {a / b}")
+print(f"Modulus: {a % b}")
+print(f"Comparison: {a > b}")</code></div>
+                                <button class="btn" onclick="runOperators()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-operators"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Conditionals Section -->
+                <section id="conditionals" class="section">
+                    <h2 class="section-title">Conditional Statements</h2>
+                    <p class="section-subtitle">Making decisions in code with if, elif, and else</p>
+
+                    <div class="content-box">
+                        <h3>if Statement</h3>
+                        <div class="code-block"><code>age = 18
+
+if age >= 18:
+    print("You are an adult")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>if-else Statement</h3>
+                        <div class="code-block"><code>age = 15
+
+if age >= 18:
+    print("You are an adult")
+else:
+    print("You are a minor")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>if-elif-else Statement</h3>
+                        <div class="code-block"><code>score = 75
+
+if score >= 90:
+    print("Grade: A")
+elif score >= 80:
+    print("Grade: B")
+elif score >= 70:
+    print("Grade: C")
+else:
+    print("Grade: F")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Conditional Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>number = 10
+
+if number > 0:
+    print("Positive number")
+elif number < 0:
+    print("Negative number")
+else:
+    print("Zero")</code></div>
+                                <button class="btn" onclick="runConditionals()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-conditionals"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Loops Section -->
+                <section id="loops" class="section">
+                    <h2 class="section-title">Loops</h2>
+                    <p class="section-subtitle">Repeating code with for and while loops</p>
+
+                    <div class="content-box">
+                        <h3>for Loop</h3>
+                        <div class="code-block"><code>for i in range(5):
+    print(f"Number: {i}")
+
+# Output:
+# Number: 0
+# Number: 1
+# Number: 2
+# Number: 3
+# Number: 4</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>while Loop</h3>
+                        <div class="code-block"><code>count = 0
+
+while count < 3:
+    print(f"Count: {count}")
+    count += 1
+
+# Output:
+# Count: 0
+# Count: 1
+# Count: 2</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Loop Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>numbers = [1, 2, 3, 4, 5]
+total = 0
+
+for num in numbers:
+    total += num
+
+print(f"Sum: {total}")</code></div>
+                                <button class="btn" onclick="runLoops()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-loops"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Structures Section -->
+                <section id="datastructures" class="section">
+                    <h2 class="section-title">Data Structures</h2>
+                    <p class="section-subtitle">Collections for storing multiple values</p>
+
+                    <div class="content-box">
+                        <h3>Lists</h3>
+                        <div class="code-block"><code">fruits = ["apple", "banana", "cherry"]
+numbers = [1, 2, 3, 4, 5]
+
+# Access elements
+print(fruits[0])  # apple
+print(fruits[-1])  # cherry
+
+# Add elements
+fruits.append("orange")
+
+# Remove elements
+fruits.remove("banana")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Dictionaries</h3>
+                        <div class="code-block"><code>person = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
+
+# Access values
+print(person["name"])  # John
+
+# Add key-value pairs
+person["email"] = "john@example.com"
+
+# Remove items
+del person["city"]</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Tuples and Sets</h3>
+                        <div class="code-block"><code"># Tuples (immutable)
+coordinates = (10, 20, 30)
+
+# Sets (unique values)
+colors = {"red", "blue", "green"}
+colors.add("yellow")
+colors.remove("red")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Data Structure Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>students = {
+    "Alice": 85,
+    "Bob": 90,
+    "Charlie": 78
+}
+
+for name, score in students.items():
+    print(f"{name}: {score}")</code></div>
+                                <button class="btn" onclick="runDataStructures()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-datastructures"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Functions Section -->
+                <section id="functions" class="section">
+                    <h2 class="section-title">Functions</h2>
+                    <p class="section-subtitle">Reusable blocks of code</p>
+
+                    <div class="content-box">
+                        <h3>Defining Functions</h3>
+                        <div class="code-block"><code>def greet(name):
+    return f"Hello, {name}!"
+
+# Call the function
+result = greet("Alice")
+print(result)  # Hello, Alice!</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Functions with Multiple Parameters</h3>
+                        <div class="code-block"><code>def add(a, b):
+    """Add two numbers and return the result"""
+    return a + b
+
+def multiply(a, b, c):
+    """Multiply three numbers"""
+    return a * b * c
+
+print(add(5, 3))  # 8
+print(multiply(2, 3, 4))  # 24</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Function Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>def square(num):
+    return num ** 2
+
+numbers = [1, 2, 3, 4, 5]
+squared = [square(n) for n in numbers]
+print(squared)</code></div>
+                                <button class="btn" onclick="runFunctions()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-functions"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- String Manipulation Section -->
+                <section id="strings" class="section">
+                    <h2 class="section-title">String Manipulation</h2>
+                    <p class="section-subtitle">Working with text in Python</p>
+
+                    <div class="content-box">
+                        <h3>String Methods</h3>
+                        <div class="code-block"><code>text = "Hello Python"
+
+# Length
+print(len(text))  # 12
+
+# Uppercase and Lowercase
+print(text.upper())  # HELLO PYTHON
+print(text.lower())  # hello python
+
+# Replace
+print(text.replace("Python", "World"))
+
+# Split
+words = text.split()  # ['Hello', 'Python']</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>String Formatting</h3>
+                        <div class="code-block"><code">name = "Alice"
+age = 30
+
+# f-strings (recommended)
+print(f"Name: {name}, Age: {age}")
+
+# format() method
+print("Name: {}, Age: {}".format(name, age))
+
+# % operator
+print("Name: %s, Age: %d" % (name, age))</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>String Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code>sentence = "python is awesome"
+print(sentence.capitalize())
+print(sentence.title())
+print(len(sentence))</code></div>
+                                <button class="btn" onclick="runStrings()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-strings"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- File Handling Section -->
+                <section id="filehandling" class="section">
+                    <h2 class="section-title">File Handling</h2>
+                    <p class="section-subtitle">Reading and writing files</p>
+
+                    <div class="content-box">
+                        <h3>Opening Files</h3>
+                        <div class="code-block"><code"># Open and read a file
+with open("file.txt", "r") as file:
+    content = file.read()
+    print(content)
+
+# Read line by line
+with open("file.txt", "r") as file:
+    for line in file:
+        print(line.strip())</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Writing Files</h3>
+                        <div class="code-block"><code># Write to a file
+with open("file.txt", "w") as file:
+    file.write("Hello, World!\n")
+    file.write("This is line 2")
+
+# Append to a file
+with open("file.txt", "a") as file:
+    file.write("\nThis is a new line")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>File Operations Example</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Info:</p>
+                                <div class="code-block"><code"># Simulated file handling
+# In real code:
+# with open("data.txt", "r") as f:
+#     lines = f.readlines()
+
+# Here we simulate with variables
+print("File operations work with:")
+print("- read(): Read entire file")
+print("- readlines(): Read as list")
+print("- write(): Write content")</code></div>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-filehandling">
+File operations work with:
+- read(): Read entire file
+- readlines(): Read as list
+- write(): Write content
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Error Handling Section -->
+                <section id="errorhandling" class="section">
+                    <h2 class="section-title">Error Handling</h2>
+                    <p class="section-subtitle">Managing exceptions gracefully</p>
+
+                    <div class="content-box">
+                        <h3>try-except Block</h3>
+                        <div class="code-block"><code">try:
+    result = 10 / 2
+    print(result)
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+except Exception as e:
+    print(f"An error occurred: {e}")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>try-except-finally</h3>
+                        <div class="code-block"><code">try:
+    file = open("missing.txt")
+except FileNotFoundError:
+    print("File not found!")
+finally:
+    print("This always executes")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Error Handling Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code">try:
+    num = int("abc")
+except ValueError:
+    print("Invalid number format!")
+except Exception as e:
+    print(f"Error: {e}")</code></div>
+                                <button class="btn" onclick="runErrorHandling()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-errorhandling"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- OOP Section -->
+                <section id="oop" class="section">
+                    <h2 class="section-title">Object-Oriented Programming</h2>
+                    <p class="section-subtitle">Creating classes and objects</p>
+
+                    <div class="content-box">
+                        <h3>Classes and Objects</h3>
+                        <div class="code-block"><code">class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def bark(self):
+        return f"{self.name} says Woof!"
+
+# Create an object
+my_dog = Dog("Buddy", 3)
+print(my_dog.bark())</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Inheritance</h3>
+                        <div class="code-block"><code">class Animal:
+    def __init__(self, name):
+        self.name = name
+
+class Cat(Animal):
+    def meow(self):
+        return f"{self.name} says Meow!"
+
+cat = Cat("Whiskers")
+print(cat.meow())</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>OOP Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code">class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+c = Circle(5)
+print(f"Area: {c.area()}")</code></div>
+                                <button class="btn" onclick="runOOP()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-oop"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Modules Section -->
+                <section id="modules" class="section">
+                    <h2 class="section-title">Modules and Packages</h2>
+                    <p class="section-subtitle">Organizing code with modules</p>
+
+                    <div class="content-box">
+                        <h3>Importing Modules</h3>
+                        <div class="code-block"><code">import math
+import random
+from datetime import datetime
+
+print(math.pi)  # 3.14159...
+print(random.randint(1, 10))
+print(datetime.now())</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Common Modules</h3>
+                        <ul class="feature-list">
+                            <li>math - Mathematical functions</li>
+                            <li>random - Random number generation</li>
+                            <li>datetime - Date and time handling</li>
+                            <li>os - Operating system interactions</li>
+                            <li>json - JSON handling</li>
+                            <li>requests - HTTP requests</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Module Examples</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code">import math
+
+radius = 5
+area = math.pi * radius ** 2
+print(f"Area: {area:.2f}")</code></div>
+                                <button class="btn" onclick="runModules()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-modules"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Database Section -->
+                <section id="database" class="section">
+                    <h2 class="section-title">Python with Database</h2>
+                    <p class="section-subtitle">Connecting to and managing databases</p>
+
+                    <div class="content-box">
+                        <h3>SQLite Connection</h3>
+                        <div class="code-block"><code">import sqlite3
+
+# Connect to database
+conn = sqlite3.connect('database.db')
+cursor = conn.cursor()
+
+# Create table
+cursor.execute('''CREATE TABLE users
+                (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)''')
+
+# Insert data
+cursor.execute("INSERT INTO users VALUES (1, 'Alice', 30)")
+conn.commit()
+
+# Query data
+cursor.execute("SELECT * FROM users")
+rows = cursor.fetchall()
+
+conn.close()</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Database Operations</h3>
+                        <ul class="feature-list">
+                            <li>CREATE - Create tables</li>
+                            <li>INSERT - Add data</li>
+                            <li>SELECT - Retrieve data</li>
+                            <li>UPDATE - Modify data</li>
+                            <li>DELETE - Remove data</li>
+                            <li>DROP - Delete tables</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Database Example</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code">import sqlite3
+
+# Simulated database operations
+print("Database operations:")
+print("1. Connect to database")
+print("2. Create table: users")
+print("3. Insert records")
+print("4. Query data")</code></div>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-database">
+Database operations:
+1. Connect to database
+2. Create table: users
+3. Insert records
+4. Query data
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="projects" class="section">
+                    <h2 class="section-title">Basic Projects and Examples</h2>
+                    <p class="section-subtitle">Practical Python projects to practice your skills</p>
+
+                    <div class="content-box">
+                        <h3>Project 1: Calculator</h3>
+                        <div class="code-block"><code">def calculator(a, b, operation):
+    if operation == '+':
+        return a + b
+    elif operation == '-':
+        return a - b
+    elif operation == '*':
+        return a * b
+    elif operation == '/':
+        return a / b
+
+print(calculator(10, 5, '+'))   # 15
+print(calculator(10, 5, '*'))   # 50</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Project 2: Number Guessing Game</h3>
+                        <div class="code-block"><code">import random
+
+secret = random.randint(1, 100)
+guess = 0
+
+while guess != secret:
+    guess = int(input("Guess a number (1-100): "))
+    if guess < secret:
+        print("Too low!")
+    elif guess > secret:
+        print("Too high!")
+    else:
+        print("Correct!")</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Project 3: To-Do List</h3>
+                        <div class="code-block"><code">tasks = []
+
+def add_task(task):
+    tasks.append(task)
+
+def show_tasks():
+    for i, task in enumerate(tasks, 1):
+        print(f"{i}. {task}")
+
+def remove_task(index):
+    tasks.pop(index - 1)
+
+# Usage
+add_task("Learn Python")
+add_task("Build a project")
+show_tasks()</code></div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3>Run a Project Example</h3>
+                        <div class="code-preview">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Code:</p>
+                                <div class="code-block"><code">tasks = ["Learn Python", "Build Projects", "Master Python"]
+
+print("=== To-Do List ===")
+for i, task in enumerate(tasks, 1):
+    print(f"{i}. {task}")</code></div>
+                                <button class="btn" onclick="runProjects()">Run Code</button>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px;">Output:</p>
+                                <div class="output-box" id="output-projects"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // Navigation Functionality
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const sectionId = item.getAttribute('data-section');
+
+                // Remove active class from all nav items and sections
+                navItems.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Add active class to clicked nav item and corresponding section
+                item.classList.add('active');
+                document.getElementById(sectionId).classList.add('active');
+
+                // Scroll to top
+                document.querySelector('.content-area').scrollTop = 0;
+            });
+        });
+
+        // Code Execution Functions (Simulated)
+        function runHelloWorld() {
+            document.getElementById('output-setup').textContent = 'Hello, Python World!';
+        }
+
+        function runVariables() {
+            document.getElementById('output-variables').textContent = 'Language: Python, Age: 31 years';
+        }
+
+        function runIO() {
+            document.getElementById('output-io').textContent = 'Sum: 30\nProduct: 200';
+        }
+
+        function runOperators() {
+            const output = `Addition: 20
+Division: 3.0
+Modulus: 0
+Comparison: True`;
+            document.getElementById('output-operators').textContent = output;
+        }
+
+        function runConditionals() {
+            document.getElementById('output-conditionals').textContent = 'Positive number';
+        }
+
+        function runLoops() {
+            document.getElementById('output-loops').textContent = 'Sum: 15';
+        }
+
+        function runDataStructures() {
+            const output = `Alice: 85
+Bob: 90
+Charlie: 78`;
+            document.getElementById('output-datastructures').textContent = output;
+        }
+
+        function runFunctions() {
+            document.getElementById('output-functions').textContent = '[1, 4, 9, 16, 25]';
+        }
+
+        function runStrings() {
+            const output = `Python is awesome
+Python Is Awesome
+18`;
+            document.getElementById('output-strings').textContent = output;
+        }
+
+        function runErrorHandling() {
+            document.getElementById('output-errorhandling').textContent = 'Invalid number format!';
+        }
+
+        function runOOP() {
+            document.getElementById('output-oop').textContent = 'Area: 78.5';
+        }
+
+        function runModules() {
+            document.getElementById('output-modules').textContent = 'Area: 78.50';
+        }
+
+        function runProjects() {
+            const output = `=== To-Do List ===
+1. Learn Python
+2. Build Projects
+3. Master Python`;
+            document.getElementById('output-projects').textContent = output;
+        }
+    </script>
+</body>
+</html>
