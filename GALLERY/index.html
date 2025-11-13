@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X-Gallery</title>
+  <link rel="icon" href="./assets/1.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #000000;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 40px 0 20px;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .tab.active {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 1200px;
+      margin-bottom: 50px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .no-images {
+      text-align: center;
+      color: #777;
+      font-size: 1rem;
+      margin-top: 20px;
+    }
+
+    /* Popup Overlay */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+  <h1>X Gallery</h1>
+
+  <div class="tabs">
+    <div class="tab active" data-category="all">All</div>
+    <div class="tab" data-category="nature">Nature</div>
+    <div class="tab" data-category="architecture">Architecture</div>
+    <div class="tab" data-category="travel">Travel</div>
+    <div class="tab" data-category="restaurant">Restaurant</div>
+    <div class="tab" data-category="school/Collage">School/collage</div>
+    <div class="tab" data-category="Professional">Professional</div>
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-item" data-category="nature">
+      <img src="https://i.postimg.cc/XJnLGpCt/image.png" alt="Nature 1" />
+    </div>
+    <div class="gallery-item" data-category="nature">
+        <img src="https://i.postimg.cc/yN3kHHYj/image.png" alt="nature" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/7L3J2914/IMG-3753.jpg" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/8C4nNqKw/image.png" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/SRMBSgYT/image.png" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/prb0ZRpR/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/4N864Xsn/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/8PCv0xW2/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/FsqYnzhK/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/W3WNFY3g/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/6682VCXq/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/htctYdHg/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/x1f95SzC/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/kXnr3vXf/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/RFzs1v3V/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/Dz3dHB7c/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/vZFVZTkj/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/bJsx2MTV/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/6qCGrNGk/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/fbF31bcF/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/cLLrH3TF/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/qvqv0TvT/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/ry9Vrmdc/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/prVtZf9y/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/htdNVyCJ/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/GhYZyggB/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/X70sTjxJ/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/LsrtLDbR/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/y8GcCnBc/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/C1gZwQ27/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/qM5zNRYR/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/sfn2Lx3T/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/1zHSN7tf/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="Professional">
+      <img src="https://i.postimg.cc/g0N90wtp/image.png" alt="Professional" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/dtYK4Kyh/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/tC2mW0tY/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/MpntBnp7/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/wvghwMgb/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/sXHv5gXK/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/50yt9W3w/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/YC7Yrjm4/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/KYH1MY4t/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/fLdRSjGh/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/25szYL1C/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/wjt8BT8K/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/hvGZ3pKg/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/xTwgK0N9/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/wvMDCPR0/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/L8mDyxDx/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/P56WSTPv/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="travel">
+      <img src="https://i.postimg.cc/tJtPWHKR/image.png" alt="Travel" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/JnCGq2ck/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/Mpj6FYGF/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/1RCyRdnc/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/FHP60tvk/image.png" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/QMTqCvd7/image.png" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/jqZyxR4B/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/sxqXMHXV/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/3xH8zv06/image.png" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/FHZYZZCn/image.png" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/jd62xcTw/image.png" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="restaurant">
+      <img src="https://i.postimg.cc/6Q8BvLkh/image.png" alt="restaurant" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/wxQY3G1n/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/vHT2MqfG/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/cJhfvZNW/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/rmb04wZz/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="school/Collage">
+      <img src="https://i.postimg.cc/pTyqfkxy/image.png" alt="school/Collage" />
+    </div>
+    <div class="gallery-item" data-category="Professional">
+      <img src="https://i.postimg.cc/zGJwwpS4/image.png" alt="school/Collage" />
+    </div>
+  </div>
+
+  <div class="no-images" style="display: none;">No images found in this category.</div>
+
+  <!-- Popup Container -->
+  <div class="popup" id="popup">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <img id="popupImg" src="" alt="Full Image">
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const items = document.querySelectorAll('.gallery-item');
+    const noImagesText = document.querySelector('.no-images');
+    const popup = document.getElementById('popup');
+    const popupImg = document.getElementById('popupImg');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Category Filter
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelector('.tab.active').classList.remove('active');
+        tab.classList.add('active');
+
+        const category = tab.dataset.category;
+        let hasVisible = false;
+
+        items.forEach(item => {
+          if (category === 'all' || item.dataset.category === category) {
+            item.style.display = 'block';
+            hasVisible = true;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        noImagesText.style.display = hasVisible ? 'none' : 'block';
+      });
+    });
+
+    // Popup Open
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.querySelector('img').src;
+        popupImg.src = imgSrc;
+        popup.classList.add('active');
+      });
+    });
+
+    // Popup Close
+    closeBtn.addEventListener('click', () => popup.classList.remove('active'));
+    popup.addEventListener('click', e => {
+      if (e.target === popup) popup.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
