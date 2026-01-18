@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="theme-color" content="#00FF00">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- Open Graph (Facebook, Messenger, LinkedIn) -->
     <meta property="og:title" content="MD. Mahfujor Rahman Roton">
@@ -33,8 +32,7 @@
     <div class="top-bar">
         <div class="container">
             <div class="top-bar-content">
-                 <span id="rot">FOR NEW AWESOME POSTS MAKE...</span><script>const t=["FOR NEW AWESOME POSTS MAKE...","CHECK THIS OUT...","NEW POST LIVE...","DON'T MISS IT...", "Dreams spark strength.", "Code is creation’s touch.", "Ideas shape the future.", "A journey full of light.", "Wings of digital dreams."];let i=0;setInterval(()=>document.getElementById('rot').innerText=t[++i%t.length],1000);</script>
-
+                <span id="rot">FOR NEW AWESOME POSTS MAKE...</span><script>const t=["FOR NEW AWESOME POSTS MAKE...","CHECK THIS OUT...","NEW POST LIVE...","DON'T MISS IT...", "Dreams spark strength.", "Code is creation’s touch.", "Ideas shape the future.", "A journey full of light.", "Wings of digital dreams."];let i=0;setInterval(()=>document.getElementById('rot').innerText=t[++i%t.length],1000);</script>
 
                 <div class="top-bar-right">
                     <div class="social-links">
@@ -59,14 +57,50 @@
                     <a href="#HOME" style="color: #00ff66; font-size: larger; font-weight: bolder ; text-decoration: none;">Roton</a>
                 </div>
                 <nav class="nav">
-                    <ul>
-                        <li><a href="#HOME" data-target="HOME" class="active">HOME</a></li>
-                        <li><a href="#ABOUT" data-target="ABOUT">ABOUT</a></li>
-                        <li><a href="#SERVICES" data-target="SERVICES">SERVICES</a></li>
-                        <li><a href="#poem" data-target="poem">poetry</a></li>
-                        
-                    </ul>
+                  <ul>
+                    <li><a href="#HOME" data-target="HOME" class="active">HOME</a></li>
+                    <li><a href="#ABOUT" data-target="ABOUT">ABOUT</a></li>
+                    <li><a href="#SERVICES" data-target="SERVICES">SERVICES</a></li>
+
+                    <!-- Poetry Dropdown -->
+                    <li class="dropdown">
+                      <a href="#poem" class="dropdown-toggle" style="position: relative; top: -6px;">poetry <svg width="24" height="24" viewBox="0 0 24 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 10L12 15L17 10" 
+                            stroke="#fff" 
+                            stroke-width="1" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round"/>
+                        </svg></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="./poem/তোমার জন্য.html" style="color: #fff;">তোমার জন্য</a></li>
+                        <li><a href="./poem/কল্পকথার গল্প.html" style="color: #fff;">কল্পকথার গল্প</a></li>
+                        <li><a href="./poem/অপেক্ষার প্রহর.html" style="color: #fff;">অপেক্ষার প্রহর</a></li>
+                        <li><a href="./poem/মহাকাশের নিঃস্তব্ধতা.html" style="color: #fff;">মহাকাশের নিঃস্তব্ধতা</a></li>
+                        <li><a href="./poem/মরীচিকার প্রেম.html" style="color: #fff;">মরীচিকার প্রেম</a></li>
+                        <li><a href="./poem/ধ্বংসের তীরে.html" style="color: #fff;">ধ্বংসের তীরে</a></li>
+                      </ul>
+                    </li>
+                    <!-- Poetry Dropdown -->
+                    <li class="dropdown">
+                      <a href="#Story" class="dropdown-toggle" style="position: relative; top: -6px;">Story <svg width="24" height="24" viewBox="0 0 24 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 10L12 15L17 10" 
+                            stroke="#fff" 
+                            stroke-width="1" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round"/>
+                        </svg></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="./poem/তোমার জন্য.html" style="color: #fff;">তোমার জন্য</a></li>
+                        <li><a href="./poem/কল্পকথার গল্প.html" style="color: #fff;">কল্পকথার গল্প</a></li>
+                        <li><a href="./poem/অপেক্ষার প্রহর.html" style="color: #fff;">অপেক্ষার প্রহর</a></li>
+                        <li><a href="./poem/মহাকাশের নিঃস্তব্ধতা.html" style="color: #fff;">মহাকাশের নিঃস্তব্ধতা</a></li>
+                        <li><a href="./poem/মরীচিকার প্রেম.html" style="color: #fff;">মরীচিকার প্রেম</a></li>
+                        <li><a href="./poem/ধ্বংসের তীরে.html" style="color: #fff;">ধ্বংসের তীরে</a></li>
+                      </ul>
+                    </li>
+                  </ul>
                 </nav>
+
 
                 <script>
                 (function() {
@@ -141,7 +175,7 @@
                         KNOWLEDGE
                     </h1>
                     <p>Together, we first people achieve more than any single person could ever do alone.</p>
-                    <a href="https://alfaax.vercel.app/" class="btn-primary">Try AlfaaX</a>
+                    <a href="#HOME" class="btn-primary">GETTING STARTED</a>
                 </div>
                 <div class="hero-image">
                     <img src="./assets/image.png" alt="Professional man" onclick="openPopup(this.src)" style="cursor:pointer;">
@@ -177,6 +211,17 @@
     <a href="https://www.tiktok.com/@paradoxical_roton" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
     <a href="https://www.instagram.com/paradoxical_roton/" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="https://github.com/Rotonvai" target="_blank"><i class="fab fa-github"></i></a>
+    
+  </div>
+
+  <h2>Websites</h2>
+  <div class="social">
+    <a href="https://singair-bloodline.vercel.app/" target="_blank"><i class="fa-solid fa-droplet fa-bounce"></i></a>
+    <a href="https://rotonvai.github.io/learnn5bd/" target="_blank"><i class="fas fa-language"></i></a>
+    <a href="https://rotonvai.github.io/Tic-Tac-Toe/" target="_blank"><i class="fa-solid fa-gamepad"></i></a>
+    <a href="https://rotonvai.github.io/AlFAA-Note/" target="_blank"><i class="fa-solid fa-note-sticky"></i></a>
+    <a href="https://rotonvai.github.io/To-Do_list/" target="_blank"><i class="fa-solid fa-list"></i></a>
+    <a href="https://rotonvai.github.io/QR/" target="_blank"><i class="fa-solid fa-qrcode"></i></a>
   </div>
 
   <h2>Achievement</h2>
@@ -520,6 +565,223 @@
         </div>
       </div>
     </article>
+
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://www.tbsnews.net/sites/default/files/styles/infograph/public/images/2025/07/29/shrabon_bidroho.png" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">কবিতা</div>
+        <h3 class="poem-card__title">শ্রাবণ বিদ্রোহ</h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+  </div>
+  </section>
+
+  <section id="Story">
+     <pre>
+
+
+
+    </pre>
+   <h2 style="text-align: center; white-space: nowrap; font-size: 38px; font-family: 'Kalpurush', sans-serif;">
+      আমার  <span style="color: red;">গল্প</span>
+    </h2> <pre>
+
+    </pre>
+
+   <div class="poem-text">
+  কল্পনার ডানায় ভর করে বেঁচে থাকে হাজারো না বলা গল্প।<br> প্রতিটি গল্পের ভাঁজে লুকিয়ে থাকে জীবনের কোনো এক গভীর সত্য।
+</div>
+    <div class="poem-cards" role="list">
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://ik.imagekit.io/onlock/u3813165747_httpss-mj-runjcLmmY_ehrM_The_sky_is_light_blue_with_50a61f44-86e4-493f-9069-f93efde6836e.png?tr=w-300" alt="poem image 1">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title">হৃদয়ে তুমি চিরদিন</h3>
+        <p class="poem-card__excerpt">তোমার জন্য দাঁড়িয়ে ছিলাম বলে ---
+        মেঘ বলেছে খানিক আঁধার ঢেলেও</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/হৃদয়ে তুমি চিরদিন.html" aria-label="Read more: হৃদয়ে তুমি চিরদিন">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://mir-s3-cdn-cf.behance.net/projects/404/582c43163595773.Y3JvcCwxODUzLDE0NDksNjQsMzM0.jpg" alt="poem image 2">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title">বসন্ত এসে গেছে</h3>
+        <p class="poem-card__excerpt">তোমাকে দেখিনাই কল্পনায় দেখি, তোমার উক্তি হৃদয়ে মাখি ।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/বসন্ত এসে গেছে.html" aria-label="Read more: বসন্ত এসে গেছে">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://img.staticmb.com/mbcontent/images/crop/uploads/2023/1/Lucky-bamboo-Feng-Shui-wallpaper-for-success_0_1200.jpg.webp" alt="poem image 3">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> সম্পদ</h3>
+        <p class="poem-card__excerpt">তোমার জন্য কবিতার মহিমায়--- জগৎ আমার স্নিগ্ধ বাতাসের কোলাহল।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/অপেক্ষার প্রহর.html" aria-label="Read more: অপেক্ষার প্রহর">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://tds-images-bn.thedailystar.net/sites/default/files/styles/big_202/public/images/2025/05/22/eight-behaviours-that-build-trust-2-scaled-1-1024x683.jpg" alt="poem image 4">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> বিশ্বাস</h3>
+        <p class="poem-card__excerpt">তারাদের ভিড়ে খুঁজে পাই সে একা, মহাকাশের নিস্তব্ধতা, তার হৃদয়ের ভাষা---</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/মহাকাশের নিস্তব্ধতা.html" aria-label="Read more: মহাকাশের নিস্তব্ধতা">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://img.freepik.com/free-photo/sunset-time-tropical-beach-sea-with-coconut-palm-tree_74190-1075.jpg?semt=ais_hybrid&w=740&q=80" alt="poem image 5">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title">বেলা ফুরাবার আগে</h3>
+        <p class="poem-card__excerpt">মরীচিকার প্রেমে মগ্ন হৃদয়-- কম্পাসে থাকে না চোখ;</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/মরীচিকার প্রেম.html" aria-label="Read more: মরীচিকার প্রেম">Read</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://cdn.mos.cms.futurecdn.net/ARWms77gyVZ5u2MZkQqcKc-1256-80.jpg" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> জীবন যেখানে যেমন </h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://img.freepik.com/free-vector/bad-habits-cartoon-concept-with-unhealthy-addiction-symbols-vector-illustration_1284-80088.jpg?semt=ais_hybrid&w=740&q=80" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> আসক্তির রাজ্য</h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+                                        নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://wallpapers.com/images/hd/happy-desktop-ln7f5hzwlfcs6pg4.jpg" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> সুখ </h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+                                        নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://cdn.pixabay.com/photo/2023/03/14/11/22/camel-7852098_1280.jpg" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> চোরাবালি </h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+                                        নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://cdn.pixabay.com/photo/2018/05/08/21/38/ramadan-3384043_640.jpg" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> সালাতে আমার মন বসে না  </h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+                                        নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://wallpapercat.com/w/full/b/7/b/1154111-3840x2160-desktop-4k-hot-air-balloon-background-photo.jpg" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> মুক্ত বাতাস </h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+                                        নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://4kwallpapers.com/images/wallpapers/thankful-friends-3840x2160-14748.png" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> বন্ধু </h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+                                        নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="poem-card" role="listitem">
+      <img class="poem-card__media" src="https://c4.wallpaperflare.com/wallpaper/139/305/123/minimalism-art-red-mickey-mouse-wallpaper-preview.jpg" alt="poem image 6">
+      <div class="poem-card__body">
+        <div class="poem-card__category">গল্প</div>
+        <h3 class="poem-card__title"> ফাঁদ  </h3>
+        <p class="poem-card__excerpt">ধ্বংসের মাঝে পথ করেছি আঁকা,  
+                                        নিঃস্ব প্রাণে জ্বলে উঠেছে পাঁকা।</p>
+        <div class="poem-card__footer">
+          <span>মোঃ মাহফুজুর রহমান রতন</span>
+          <a class="poem-card__read" href="./poem/ধ্বংসের তীরে.html" aria-label="Read more: ধ্বংসের তীরে">Read</a>
+        </div>
+      </div>
+    </article>
   </div>
   </section>
      
@@ -587,10 +849,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
-
-
-
-
-

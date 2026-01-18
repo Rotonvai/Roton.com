@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>তোমার জন্য</title>
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
     <link rel="icon" href="./assets/1.png" type="image/png">
+    <title>অপেক্ষার প্রহর</title>
     <style>
-         * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -16,121 +17,149 @@
             font-family: 'Kalpurush', sans-serif;
             line-height: 1.6;
             color: #fff;
-            background: linear-gradient(135deg, #000000 0%, #434343 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
             min-height: 100vh;
-            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+            max-width: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(50,50,50,0.5) 100%);
+            display: flex;
+            flex-direction: column;
             position: relative;
+            overflow: hidden;
         }
         
         .back-button {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border: none;
+            top: 30px;
+            left: 30px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
             z-index: 10;
         }
         
         .back-button:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateX(-5px);
         }
         
         .back-button svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             fill: #fff;
         }
         
         .header {
-            background: linear-gradient(to right, pink, purple);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 40px 30px;
+            padding: 60px 40px;
             text-align: center;
+            flex: 0 0 auto;
         }
         
         h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
             font-weight: 300;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #e0e0e0, #ffb366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         h2 {
             font-size: 1.8rem;
             font-weight: 300;
-            opacity: 0.9;
+            opacity: 0.85;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        h3 {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.7;
+            letter-spacing: 0.5px;
         }
         
         .content {
-            padding: 40px 30px;
+            flex: 1;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
         }
         
         .poem-section {
-            margin-bottom: 30px;
+            max-width: 700px;
+            width: 100%;
         }
         
         .poem-section p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            text-align: justify;
+            margin-bottom: 30px;
+            font-size: 1.3rem;
+            text-align: center;
+            line-height: 2;
+            opacity: 0.95;
         }
         
         .note {
-            font-size: 0.9rem;
-            color: #ccc;
+            font-size: 0.95rem;
+            color: #aaa;
             text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #555;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
         }
         
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 0;
-            }
-            
+        @media (max-width: 768px) {
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             h2 {
                 font-size: 1.5rem;
             }
             
+            .header {
+                padding: 40px 20px;
+            }
+            
             .content {
-                padding: 30px 20px;
+                padding: 40px 20px;
+            }
+            
+            .poem-section p {
+                font-size: 1.1rem;
             }
             
             .back-button {
-                top: 15px;
-                left: 15px;
-                width: 40px;
-                height: 40px;
-            }
-            
-            .back-button svg {
-                width: 20px;
-                height: 20px;
+                width: 50px;
+                height: 50px;
+                top: 20px;
+                left: 20px;
             }
         }
     </style>
@@ -141,10 +170,9 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
             </svg>
-            
         </button>
-        
-        <header class="header">
+
+         <header class="header">
             <h1>তোমার জন্য</h1>
             <h2>যখন আমি তোমাকে আশা সম্পর্কে বলি</h2>
             <h3>-- মোঃ মাহফুজুর রহমান রতন --</h3>
@@ -182,7 +210,6 @@
 
     <script>
         function goBack() {
-            // This will take the user to the previous page in their browsing history
             window.history.back();
         }
     </script>

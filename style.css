@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* cursor: url('cursor.png'), auto; */
+    /* cursor: url('cursor.png'), pointer; */
 }
 
 ::-webkit-scrollbar {
@@ -14,7 +16,7 @@
 }
 
 ::selection {
-    background-color: green;
+    background-color:#00cc4c;
     color: white;
 }
 
@@ -23,6 +25,7 @@ body {
     background-color: #1a1a1a;
     color: #ffffff;
     line-height: 1.6;
+    
 }
 
 .container {
@@ -94,6 +97,7 @@ body {
 
 .header.scrolled {
     top: 0px;
+    
 }
 
 .nav-wrapper {
@@ -133,10 +137,12 @@ body {
 }
 
 .nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
 }
+
 
 .nav a {
     color: #ffffff;
@@ -160,6 +166,55 @@ body {
     height: 2px;
     background-color: #00d563;
 }
+
+
+/* Dropdown Container */
+.dropdown {
+  position: relative; /* এটি খুবই গুরুত্বপূর্ণ */
+}
+
+
+/* ড্রপডাউন মেনু ডিফল্টভাবে হাইড থাকবে */
+.dropdown-menu {
+  display: none !important; /* আপাতত নিশ্চিত হওয়ার জন্য !important ব্যবহার করতে পারেন */
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  background: #000; /* আপনার ছবির ব্যাকগ্রাউন্ড অনুযায়ী */
+  color: #fff;
+  list-style: none;
+  padding: 10px 0;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+/* শুধুমাত্র হোভার করলে শো করবে */
+.dropdown:hover .dropdown-menu {
+  display: block !important;
+}
+
+/* ড্রপডাউন এর ভিতরের লিঙ্কগুলো */
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #444; /* টেক্সট কালার */
+  font-size: 14px;
+  font-weight: normal;
+  transition: background 0.3s;
+}
+
+/* হোভার করলে ব্যাকগ্রাউন্ড চেঞ্জ হবে */
+.dropdown-menu li a:hover {
+  background-color: #858585;
+  color: #00d563; /* আপনার পছন্দের কালার দিতে পারেন */
+}
+
+/* হোভার করলে মেনু দেখাবে */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
 
 .header-right {
     display: flex;
@@ -1016,3 +1071,20 @@ body {
 
   /* ছোট পর্দায় অটোম্যাটিকly ফিট করতে চাইলে শব্দ ভেঙে দিতে চাইলে নিচটা আনকমেন্ট করো */
   /* @media (max-width:420px){ .one-line{ white-space: normal; } } */
+
+
+
+   /* আপেলের স্টাইল */
+        .falling-apple {
+        position: fixed;
+        top: -60px;
+        font-size: 60px; /* আপেলের সাইজ */
+        z-index: 99999; /* সবকিছুর ওপরে দেখানোর জন্য */
+        pointer-events: none;
+        animation: dropApple 3s ease-in forwards;
+    }
+
+    @keyframes dropApple {
+        0% { top: -60px; transform: rotate(0deg); }
+        100% { top: 110vh; transform: rotate(360deg); }
+    }

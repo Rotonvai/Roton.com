@@ -179,3 +179,55 @@ function toggleSidebar() {
 
 
   
+  // অ্যাপল ইমোজি ফেলা স্ক্রিপ্ট
+
+   (function() {
+        const secretCode = 'apple';
+        let pressedKeys = [];
+
+        window.addEventListener('keyup', (e) => {
+            pressedKeys.push(e.key.toLowerCase());
+            
+            // অ্যারের সাইজ ঠিক রাখা
+            pressedKeys.splice(-secretCode.length - 1, pressedKeys.length - secretCode.length);
+            
+            // 'apple' লেখা হলে ফাংশন কল হবে
+            if (pressedKeys.join('').includes(secretCode)) {
+                spawnApple();
+                pressedKeys = []; 
+            }
+        });
+
+        function spawnApple() {
+            const apple = document.createElement('div');
+            apple.innerText = '🍎'; 
+            apple.classList.add('falling-apple');
+            
+            // র‍্যান্ডম পজিশন (বাম-ডান)
+            apple.style.left = Math.random() * 90 + 'vw';
+            
+            document.body.appendChild(apple);
+
+            // ৩ সেকেন্ড পর ডিলেট হবে
+            setTimeout(() => {
+                apple.remove();
+            }, 3000);
+        }
+    })();
+
+function toggleDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  // ড্রপডাউনের বাইরে ক্লিক করলে মেনু বন্ধ হয়ে যাবে
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-btn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      for (var i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
