@@ -5,165 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
     <link rel="icon" href="./assets/1.png" type="image/png">
-    <title>অপেক্ষার প্রহর</title>
+    <title>শ্রাবণ বিদ্রোহ</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
         
         body {
             font-family: 'Kalpurush', sans-serif;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #fff;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            padding: 20px;
         }
         
         .container {
-            width: 100%;
-            height: 100vh;
-            max-width: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(50,50,50,0.5) 100%);
-            display: flex;
-            flex-direction: column;
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 50px 40px;
             position: relative;
-            overflow: hidden;
         }
         
         .back-button {
             position: absolute;
-            top: 30px;
-            left: 30px;
-            background-color: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 10;
         }
         
         .back-button:hover {
-            background-color: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateX(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-3px);
         }
         
         .back-button svg {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             fill: #fff;
         }
         
         .header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 60px 40px;
             text-align: center;
-            flex: 0 0 auto;
+            margin-bottom: 50px;
         }
         
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 15px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, #e0e0e0, #ffb366);
+            background: linear-gradient(135deg, #ffb366, #e0e0e0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         h2 {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 300;
-            opacity: 0.85;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 10px;
         }
         
         h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 300;
-            opacity: 0.7;
-            letter-spacing: 0.5px;
-        }
-        
-        .content {
-            flex: 1;
-            padding: 60px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto;
+            opacity: 0.6;
         }
         
         .poem-section {
-            max-width: 700px;
             width: 100%;
         }
         
         .poem-section p {
-            margin-bottom: 30px;
-            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
             text-align: center;
-            line-height: 2;
+            line-height: 2.2;
             opacity: 0.95;
         }
         
         .note {
-            font-size: 0.95rem;
-            color: #aaa;
+            font-size: 0.9rem;
+            color: #888;
             text-align: center;
-            margin-top: 60px;
+            margin-top: 50px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            opacity: 0.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             h2 {
-                font-size: 1.5rem;
-            }
-            
-            .header {
-                padding: 40px 20px;
-            }
-            
-            .content {
-                padding: 40px 20px;
+                font-size: 1rem;
             }
             
             .poem-section p {
-                font-size: 1.1rem;
-            }
-            
-            .back-button {
-                width: 50px;
-                height: 50px;
-                top: 20px;
-                left: 20px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -176,7 +133,7 @@
             </svg>
         </button>
 
-          <header class="header">
+         <header class="header">
             <h1>কল্পকথার গল্প</h1>
             <h2>তবু মনে রয়ে গেলে তুমি।</h2>
             <h3>-- মোঃ মাহফুজুর রহমান রতন --</h3>

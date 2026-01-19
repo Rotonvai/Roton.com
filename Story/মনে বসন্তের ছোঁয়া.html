@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
+    <link rel="icon" href="./assets/1.png" type="image/png">
+    <title>মনে বসন্তের ছোঁয়া</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Kalpurush', sans-serif;
+            line-height: 1.8;
+            color: #fff;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 50px 40px;
+            position: relative;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-3px);
+        }
+        
+        .back-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffb366, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 0.95rem;
+            font-weight: 300;
+            opacity: 0.6;
+        }
+        
+        .poem-section {
+            width: 100%;
+        }
+        
+        .poem-section p {
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 2.2;
+            opacity: 0.95;
+        }
+        
+        .note {
+            font-size: 0.9rem;
+            color: #888;
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1rem;
+            }
+            
+            .poem-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="goBack()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+        </button>
+
+        <header class="header">
+            <h1>মনে বসন্তের ছোঁয়া</h1>
+            <h3>-- মোঃ মাহফুজুর রহমান রতন --</h3>
+        </header>
+        
+        <div class="poem-section">
+            <p>
+                হৃদয়ে যে বাসন্ত আসে সেই বাসন্ত মানে হচ্ছে দ্বীন, এটি সেই দ্বীন যা মানুষের মনের অন্ধকারকে দূর করে। হৃদয়কে করে তোলে উৎফুল্ল। এটি সেই উৎফুল্ল বসন্তের যেমন গাছের পুরাতন পাতা ঝড়ে নতুন পাতা উঠে তেমনি অতীতের গুনাহকে ঝেড়ে ফেলে দেওয়ার উৎফুল্ল। হৃদয়কে করে দেয় খুশির কল্লোল, প্রস্ফুটিত করে প্রশান্তির, নতুন আশা এবং স্বপ্নের।
+
+            </p>
+
+            <p>
+               দ্বীনকে বাস্তবিক অর্থে বাস্তবায়ন করা খুবই সহজ। আবার অন্য অর্থে খুবই কঠিন। যারা সত্যিকার অর্থে দ্বীনে প্রবেশ করতে চায় তাদের হৃদয় বিস্মৃত হলেও আল্লাহ সুবহানু ওয়া তায়ালার ভালোবাসায় পুরোপুরি তা বিলুপ্ত হয়ে যায়নি দ্বীনের পথে আসা, নাফসের থেকে পরিত্রাণ তাদের জন্য দ্বীনের পথে আসা সহজ হয়ে যায়। কেউ যদি পাপের বোঝা নিয়ে আল্লাহ সুবহানু ওয়া তায়ালার দিকে অগ্রসরিত হয় আল্লাহ সুবহানু ওয়া তায়ালা সেই রাস্তার সকল বাধা-বিপত্তি দুর করে দেন। এই সম্পর্কে আল্লাহ সুবহানু ওয়া তায়ালা বলেন 'যে আল্লাহকে ভয় করে আল্লাহ তার জন্য রাস্তা বের করে দেন। আর তাকে এমন উৎস থেকে রিজিক দান করেন যা তিনি কল্পনাও করতে পারবে না। যারা আল্লাহর উপর ভরসা করেন, আল্লাহ তার জন্য যথেষ্ট'। <sup style="font-size: small;">[১] </sup>
+
+            </p>
+
+            <p>
+                দ্বীন একজন মানুষকে শুধু ভালো বানায় না, বরং তার চিন্তা, তার আচরণ, তার ভাষা এমনকি তার মনোভাবও আনে পরিবর্তন সে হয়ে উঠে বিনয়ী, পরোপকারী দায়িত্বশীল, তার ভেতরকার বসন্তের ফুল ফোটে মানুষের ভালোবাসায়, আল্লাহর ভয় এবং আশার মাধ্যমে।
+
+            </p>
+
+            <p>
+               এই দ্বীন একজন মানুষকে সেই অবস্থানে নিয়ে যায়, যেখানে থেকে সে নিজের অতীতকে দেখে চোখে পানি নিয়ে কিন্তু ভবিষ্যতের দিকে তাকায় নতুন আশায় নতুন স্বপ্নে।
+
+
+            </p>
+
+            <p>
+                যদি কখনো ভুলের অতলে নিজেকে হারিয়ে ফেলো কিংবা পাপে নিমজ্জিত মনে করো, তবে নিরাশ হয়ো না। জেনে রেখো তোমার জন্য দ্বীনের রহমতের দরজা সর্বদা উন্মুক্ত।
+                ফিরে এসো, অনুশোচনা করে তওবা করো বুকে বিশ্বাস রাখো এবং দেখ তোমার হৃদয়ে এসেছে বসন্ত।
+            </p>
+
+            <p><br>
+                references:<br>
+                [১] সুরা তালাক, আয়াত ২-৩; <br>
+
+
+            </p>
+            
+            <div class="note">
+                Writing Date: December 18, 2025
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

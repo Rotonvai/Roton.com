@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
+    <link rel="icon" href="./assets/1.png" type="image/png">
+    <title>সম্পদ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Kalpurush', sans-serif;
+            line-height: 1.8;
+            color: #fff;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 50px 40px;
+            position: relative;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-3px);
+        }
+        
+        .back-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffb366, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 0.95rem;
+            font-weight: 300;
+            opacity: 0.6;
+        }
+        
+        .poem-section {
+            width: 100%;
+        }
+        
+        .poem-section p {
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 2.2;
+            opacity: 0.95;
+        }
+        
+        .note {
+            font-size: 0.9rem;
+            color: #888;
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1rem;
+            }
+            
+            .poem-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="goBack()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+        </button>
+
+        <header class="header">
+            <h1>সম্পদ</h1>
+            <h3>-- মোঃ মাহফুজুর রহমান রতন --</h3>
+        </header>
+        
+        <div class="poem-section">
+            <p>
+                আজ আমার জন্মদিন। ক্যালেন্ডার মেনে এই দিনটি সব সময় আনন্দের বার্তা নিয়ে আসে। ঘরজুড়ে শুয়ে আমি একে একে সেইসব প্রিয়জনদের উত্তর দিচ্ছিলাম, যারা প্রথম প্রহরে আমাকে শুভেচ্ছা জানিয়েছে। প্রতিটি বার্তা যেন ছিল রহমতের এক একটি ফোঁটা।
+
+            </p>
+
+            <p>
+               কিন্তু, সেই শান্ত আধ্যাত্মিক পরিবেশ হঠাৎ ছিন্নভিন্ন হয়ে গেল বাইরে থেকে ভেসে আসা এক তীব্র চিল্লাচিল্লির শব্দে। কী ঘটেছে দেখতে বাইরে এসে যা দেখলাম, তা মনকে মুহূর্তে ভারাক্রান্ত করে তুলল। আমার মেজো চাচার সঙ্গে তাঁর ছোট ভাইয়ের দুই সন্তান আমার চাচার সাথে ভাইদের তুমুল ঝগড়া চলছে। এই দৃশ্য কেবল পারিবারিক কলহ নয়, এটি যেন ছিল শয়তানের প্ররোচনা, যা মানুষের মধ্যে বিভেদ সৃষ্টি করে।
+
+            </p>
+
+            <p>
+               আমাদের প্রিয় নবীজি (সা.) বলেছেন:
+                ”তোমরা হিংসা-বিদ্বেষকে পরিহার করো। কেননা হিংসা নেক আমলসমূহকে সেভাবে খেয়ে ফেলে, যেভাবে আগুন কাঠকে খেয়ে ফেলে।”<sup style="font-size: small;">[১]</sup>
+
+            </p>
+
+            <p>
+               আমার বাবা সেই হুলস্থূল থামাতে এগিয়ে গেলেন। বাবার উদ্দেশ্য ছিল কেবল আল্লাহর সন্তুষ্টির জন্য শান্তি প্রতিষ্ঠা করা, যা মুমিনের কর্তব্য। কিন্তু ক্রোধে অন্ধ হয়ে আমার দুই চাচাতো ভাই বাবার উপরই ঝাঁপিয়ে পড়লো যা ইসলামে জ্যেষ্ঠদের প্রতি আদব ও সম্মানের সম্পূর্ণ পরিপন্থী। ঝগড়ার এই তুমুল স্রোতে তারা যেন ভুলে গেল, আল্লাহ তাআলা কুরআনে নির্দেশ দিয়েছেন:
+
+
+            </p>
+
+            <p>
+               "আর তোমরা আল্লাহর ইবাদত কর এবং তাঁর সাথে কোনো কিছুকে শরীক করো না। আর সদাচারণ করো পিতামাতার সাথে, নিকটাত্মীয়র সাথে"<sup style="font-size: small;">[২]</sup>
+            </p>
+
+            <p>
+              তুমুল ঝগড়ার শেষে কারণ জানা গেল এই সমস্ত অশান্তির মূলে রয়েছে তুচ্ছ জায়গা-জমি সংক্রান্ত ভেজাল ও সম্পদ মোহ। এই জাগতিক মোহ, যা মানুষকে নিজেদের ভাইয়ের হক (অধিকার) থেকে দূরে সরিয়ে দেয়, তা আমাকে গভীরভাবে নাড়া দিল।
+                সম্পদের উৎপত্তি ও মালিকানা নিয়ে আল্লাহ তাআলা কুরআনে সুস্পষ্ট ঘোষণা দিয়েছেন:
+                "আসমান ও জমিনের রাজত্ব আল্লাহরই এবং আল্লাহ সব কিছুর উপর ক্ষমতাবান।" <sup style="font-size: small;">[৩]</sup>
+
+            </p>
+
+            <p>
+              আসলে, এই জমি, অর্থ-সম্পদ সবই আল্লাহ সুবহানাহু তায়ালার পক্ষ থেকে মানুষের জন্য একটি পরীক্ষা মাত্র। এই পরীক্ষায় উত্তীর্ণ হওয়ার মাধ্যম হলো ইনসাফ (ন্যায়বিচার), তাকওয়া (আল্লাহভীতি) এবং আত্মীয়তার বন্ধন (সিলাতুর রাহিম) রক্ষা করা। নবী (সা.) বলেছেন, আত্মীয়তার বন্ধন ছিন্নকারী জান্নাতে প্রবেশ করবে না।
+
+            </p>
+
+            <p>
+              জন্মদিনের এই দিনে, মিষ্টি শুভেচ্ছার মাঝে এই তিক্ত ঘটনা আমাকে এক গভীর শিক্ষা দিয়ে গেল—সম্পদ বড় নয়, বরং আল্লাহর ভয় এবং ভ্রাতৃত্বের মর্যাদা রক্ষা করাই মুমিনের জীবনের আসল সফলতা। আল্লাহ যেন আমাদের সকলকে সম্পদের মোহে নয়, বরং তাঁর সন্তুষ্টির পথে পরিচালিত করেন।
+
+            </p>
+
+            <p>
+              আসলে এই জমি, অর্থ-সম্পদ সবই আল্লাহ সুবহানাহু তায়ালার পক্ষ থেকে আমাদের নিকট গচ্ছিত এক পবিত্র আমানত। আমরা দুনিয়ার মোহে পড়ে প্রায়ই মালিকানা দাবি করি, কিন্তু প্রকৃতপক্ষে আমরা কেউ কিছুই সাথে নিয়ে আসিনি, আর সাথে করে কিছু নিয়েও যাব না। তাঁর দেওয়া এই নেয়ামতগুলো ভোগ করার পাশাপাশি আমাদের দায়িত্ব হলো তাঁর প্রতি কৃতজ্ঞ থাকা এবং এই সম্পদকে মানুষের কল্যাণে ব্যয় করে তাঁর সন্তুষ্টি অর্জন করা। 
+
+            </p>
+
+            <p><br>
+                references:<br>
+                [১]  সুনান আবূ দাউদঃ  ৪৯০৩; <br>
+                [২] সূরা নিসা, ৪: ৩৬; <br>
+                [৩] সূরা আলে ইমরান, ৩: ১৮৯;
+
+
+            </p>
+            
+            <div class="note">
+                Writing Date: December 18, 2025
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
